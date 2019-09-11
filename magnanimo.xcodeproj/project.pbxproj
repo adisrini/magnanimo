@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0B0C21EE2328CF9A008655F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */; };
+		0B0C21F02328DB7C008655F8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0C21EF2328DB7C008655F8 /* ProfileViewController.swift */; };
 		0BF187E9232894DD005E60B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187E8232894DD005E60B6 /* AppDelegate.swift */; };
-		0BF187EB232894DD005E60B6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187EA232894DD005E60B6 /* FirstViewController.swift */; };
-		0BF187ED232894DD005E60B6 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187EC232894DD005E60B6 /* SecondViewController.swift */; };
+		0BF187EB232894DD005E60B6 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187EA232894DD005E60B6 /* DashboardViewController.swift */; };
+		0BF187ED232894DD005E60B6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187EC232894DD005E60B6 /* SearchViewController.swift */; };
 		0BF187F0232894DD005E60B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF187EE232894DD005E60B6 /* Main.storyboard */; };
 		0BF187F2232894DE005E60B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF187F1232894DE005E60B6 /* Assets.xcassets */; };
 		0BF187F5232894DE005E60B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF187F3232894DE005E60B6 /* LaunchScreen.storyboard */; };
@@ -41,10 +42,11 @@
 /* Begin PBXFileReference section */
 		08604FD3EEF787538BA6FCAA /* Pods-magnanimoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-magnanimoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-magnanimoUITests/Pods-magnanimoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0B0C21EF2328DB7C008655F8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0BF187E5232894DD005E60B6 /* magnanimo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = magnanimo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF187E8232894DD005E60B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0BF187EA232894DD005E60B6 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		0BF187EC232894DD005E60B6 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		0BF187EA232894DD005E60B6 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		0BF187EC232894DD005E60B6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0BF187EF232894DD005E60B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0BF187F1232894DE005E60B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BF187F4232894DE005E60B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -119,13 +121,14 @@
 			isa = PBXGroup;
 			children = (
 				0BF187E8232894DD005E60B6 /* AppDelegate.swift */,
-				0BF187EA232894DD005E60B6 /* FirstViewController.swift */,
-				0BF187EC232894DD005E60B6 /* SecondViewController.swift */,
+				0BF187EA232894DD005E60B6 /* DashboardViewController.swift */,
+				0BF187EC232894DD005E60B6 /* SearchViewController.swift */,
 				0BF187EE232894DD005E60B6 /* Main.storyboard */,
 				0BF187F1232894DE005E60B6 /* Assets.xcassets */,
 				0BF187F3232894DE005E60B6 /* LaunchScreen.storyboard */,
 				0BF187F6232894DE005E60B6 /* Info.plist */,
 				0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */,
+				0B0C21EF2328DB7C008655F8 /* ProfileViewController.swift */,
 			);
 			path = magnanimo;
 			sourceTree = "<group>";
@@ -406,9 +409,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B0C21EE2328CF9A008655F8 /* LoginViewController.swift in Sources */,
-				0BF187ED232894DD005E60B6 /* SecondViewController.swift in Sources */,
+				0BF187ED232894DD005E60B6 /* SearchViewController.swift in Sources */,
+				0B0C21F02328DB7C008655F8 /* ProfileViewController.swift in Sources */,
 				0BF187E9232894DD005E60B6 /* AppDelegate.swift in Sources */,
-				0BF187EB232894DD005E60B6 /* FirstViewController.swift in Sources */,
+				0BF187EB232894DD005E60B6 /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
