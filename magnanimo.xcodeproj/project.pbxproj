@@ -1,0 +1,595 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BF187E9232894DD005E60B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187E8232894DD005E60B6 /* AppDelegate.swift */; };
+		0BF187EB232894DD005E60B6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187EA232894DD005E60B6 /* FirstViewController.swift */; };
+		0BF187ED232894DD005E60B6 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187EC232894DD005E60B6 /* SecondViewController.swift */; };
+		0BF187F0232894DD005E60B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF187EE232894DD005E60B6 /* Main.storyboard */; };
+		0BF187F2232894DE005E60B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF187F1232894DE005E60B6 /* Assets.xcassets */; };
+		0BF187F5232894DE005E60B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF187F3232894DE005E60B6 /* LaunchScreen.storyboard */; };
+		0BF18800232894DE005E60B6 /* magnanimoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187FF232894DE005E60B6 /* magnanimoTests.swift */; };
+		0BF1880B232894DF005E60B6 /* magnanimoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1880A232894DF005E60B6 /* magnanimoUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0BF187FC232894DE005E60B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0BF187DD232894DD005E60B6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0BF187E4232894DD005E60B6;
+			remoteInfo = magnanimo;
+		};
+		0BF18807232894DE005E60B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0BF187DD232894DD005E60B6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0BF187E4232894DD005E60B6;
+			remoteInfo = magnanimo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0BF187E5232894DD005E60B6 /* magnanimo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = magnanimo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BF187E8232894DD005E60B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0BF187EA232894DD005E60B6 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		0BF187EC232894DD005E60B6 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		0BF187EF232894DD005E60B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0BF187F1232894DE005E60B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0BF187F4232894DE005E60B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0BF187F6232894DE005E60B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0BF187FB232894DE005E60B6 /* magnanimoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = magnanimoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BF187FF232894DE005E60B6 /* magnanimoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = magnanimoTests.swift; sourceTree = "<group>"; };
+		0BF18801232894DE005E60B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0BF18806232894DE005E60B6 /* magnanimoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = magnanimoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BF1880A232894DF005E60B6 /* magnanimoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = magnanimoUITests.swift; sourceTree = "<group>"; };
+		0BF1880C232894DF005E60B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0BF187E2232894DD005E60B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BF187F8232894DE005E60B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BF18803232894DE005E60B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0BF187DC232894DD005E60B6 = {
+			isa = PBXGroup;
+			children = (
+				0BF187E7232894DD005E60B6 /* magnanimo */,
+				0BF187FE232894DE005E60B6 /* magnanimoTests */,
+				0BF18809232894DF005E60B6 /* magnanimoUITests */,
+				0BF187E6232894DD005E60B6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0BF187E6232894DD005E60B6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0BF187E5232894DD005E60B6 /* magnanimo.app */,
+				0BF187FB232894DE005E60B6 /* magnanimoTests.xctest */,
+				0BF18806232894DE005E60B6 /* magnanimoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0BF187E7232894DD005E60B6 /* magnanimo */ = {
+			isa = PBXGroup;
+			children = (
+				0BF187E8232894DD005E60B6 /* AppDelegate.swift */,
+				0BF187EA232894DD005E60B6 /* FirstViewController.swift */,
+				0BF187EC232894DD005E60B6 /* SecondViewController.swift */,
+				0BF187EE232894DD005E60B6 /* Main.storyboard */,
+				0BF187F1232894DE005E60B6 /* Assets.xcassets */,
+				0BF187F3232894DE005E60B6 /* LaunchScreen.storyboard */,
+				0BF187F6232894DE005E60B6 /* Info.plist */,
+			);
+			path = magnanimo;
+			sourceTree = "<group>";
+		};
+		0BF187FE232894DE005E60B6 /* magnanimoTests */ = {
+			isa = PBXGroup;
+			children = (
+				0BF187FF232894DE005E60B6 /* magnanimoTests.swift */,
+				0BF18801232894DE005E60B6 /* Info.plist */,
+			);
+			path = magnanimoTests;
+			sourceTree = "<group>";
+		};
+		0BF18809232894DF005E60B6 /* magnanimoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0BF1880A232894DF005E60B6 /* magnanimoUITests.swift */,
+				0BF1880C232894DF005E60B6 /* Info.plist */,
+			);
+			path = magnanimoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0BF187E4232894DD005E60B6 /* magnanimo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BF1880F232894DF005E60B6 /* Build configuration list for PBXNativeTarget "magnanimo" */;
+			buildPhases = (
+				0BF187E1232894DD005E60B6 /* Sources */,
+				0BF187E2232894DD005E60B6 /* Frameworks */,
+				0BF187E3232894DD005E60B6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = magnanimo;
+			productName = magnanimo;
+			productReference = 0BF187E5232894DD005E60B6 /* magnanimo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0BF187FA232894DE005E60B6 /* magnanimoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BF18812232894DF005E60B6 /* Build configuration list for PBXNativeTarget "magnanimoTests" */;
+			buildPhases = (
+				0BF187F7232894DE005E60B6 /* Sources */,
+				0BF187F8232894DE005E60B6 /* Frameworks */,
+				0BF187F9232894DE005E60B6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0BF187FD232894DE005E60B6 /* PBXTargetDependency */,
+			);
+			name = magnanimoTests;
+			productName = magnanimoTests;
+			productReference = 0BF187FB232894DE005E60B6 /* magnanimoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0BF18805232894DE005E60B6 /* magnanimoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BF18815232894DF005E60B6 /* Build configuration list for PBXNativeTarget "magnanimoUITests" */;
+			buildPhases = (
+				0BF18802232894DE005E60B6 /* Sources */,
+				0BF18803232894DE005E60B6 /* Frameworks */,
+				0BF18804232894DE005E60B6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0BF18808232894DE005E60B6 /* PBXTargetDependency */,
+			);
+			name = magnanimoUITests;
+			productName = magnanimoUITests;
+			productReference = 0BF18806232894DE005E60B6 /* magnanimoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0BF187DD232894DD005E60B6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Aditya Srinivasan";
+				TargetAttributes = {
+					0BF187E4232894DD005E60B6 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					0BF187FA232894DE005E60B6 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 0BF187E4232894DD005E60B6;
+					};
+					0BF18805232894DE005E60B6 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 0BF187E4232894DD005E60B6;
+					};
+				};
+			};
+			buildConfigurationList = 0BF187E0232894DD005E60B6 /* Build configuration list for PBXProject "magnanimo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0BF187DC232894DD005E60B6;
+			productRefGroup = 0BF187E6232894DD005E60B6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0BF187E4232894DD005E60B6 /* magnanimo */,
+				0BF187FA232894DE005E60B6 /* magnanimoTests */,
+				0BF18805232894DE005E60B6 /* magnanimoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0BF187E3232894DD005E60B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BF187F5232894DE005E60B6 /* LaunchScreen.storyboard in Resources */,
+				0BF187F2232894DE005E60B6 /* Assets.xcassets in Resources */,
+				0BF187F0232894DD005E60B6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BF187F9232894DE005E60B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BF18804232894DE005E60B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0BF187E1232894DD005E60B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BF187ED232894DD005E60B6 /* SecondViewController.swift in Sources */,
+				0BF187E9232894DD005E60B6 /* AppDelegate.swift in Sources */,
+				0BF187EB232894DD005E60B6 /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BF187F7232894DE005E60B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BF18800232894DE005E60B6 /* magnanimoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BF18802232894DE005E60B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BF1880B232894DF005E60B6 /* magnanimoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0BF187FD232894DE005E60B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0BF187E4232894DD005E60B6 /* magnanimo */;
+			targetProxy = 0BF187FC232894DE005E60B6 /* PBXContainerItemProxy */;
+		};
+		0BF18808232894DE005E60B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0BF187E4232894DD005E60B6 /* magnanimo */;
+			targetProxy = 0BF18807232894DE005E60B6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0BF187EE232894DD005E60B6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0BF187EF232894DD005E60B6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0BF187F3232894DE005E60B6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0BF187F4232894DE005E60B6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0BF1880D232894DF005E60B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0BF1880E232894DF005E60B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0BF18810232894DF005E60B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8N7W2G99UY;
+				INFOPLIST_FILE = magnanimo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adisrini.magnanimo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0BF18811232894DF005E60B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8N7W2G99UY;
+				INFOPLIST_FILE = magnanimo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adisrini.magnanimo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0BF18813232894DF005E60B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8N7W2G99UY;
+				INFOPLIST_FILE = magnanimoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adisrini.magnanimoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/magnanimo.app/magnanimo";
+			};
+			name = Debug;
+		};
+		0BF18814232894DF005E60B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8N7W2G99UY;
+				INFOPLIST_FILE = magnanimoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adisrini.magnanimoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/magnanimo.app/magnanimo";
+			};
+			name = Release;
+		};
+		0BF18816232894DF005E60B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8N7W2G99UY;
+				INFOPLIST_FILE = magnanimoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adisrini.magnanimoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = magnanimo;
+			};
+			name = Debug;
+		};
+		0BF18817232894DF005E60B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8N7W2G99UY;
+				INFOPLIST_FILE = magnanimoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adisrini.magnanimoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = magnanimo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0BF187E0232894DD005E60B6 /* Build configuration list for PBXProject "magnanimo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BF1880D232894DF005E60B6 /* Debug */,
+				0BF1880E232894DF005E60B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0BF1880F232894DF005E60B6 /* Build configuration list for PBXNativeTarget "magnanimo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BF18810232894DF005E60B6 /* Debug */,
+				0BF18811232894DF005E60B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0BF18812232894DF005E60B6 /* Build configuration list for PBXNativeTarget "magnanimoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BF18813232894DF005E60B6 /* Debug */,
+				0BF18814232894DF005E60B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0BF18815232894DF005E60B6 /* Build configuration list for PBXNativeTarget "magnanimoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BF18816232894DF005E60B6 /* Debug */,
+				0BF18817232894DF005E60B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0BF187DD232894DD005E60B6 /* Project object */;
+}
