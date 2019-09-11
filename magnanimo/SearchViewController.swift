@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  SearchViewController.swift
 //  magnanimo
 //
 //  Created by Aditya Srinivasan on 9/11/19.

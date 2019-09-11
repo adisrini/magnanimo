@@ -9,8 +9,13 @@
 /* Begin PBXBuildFile section */
 		0B0C21EE2328CF9A008655F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */; };
 		0B0C21F02328DB7C008655F8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0C21EF2328DB7C008655F8 /* ProfileViewController.swift */; };
+		0B0C21F22329011A008655F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B0C21F12329011A008655F8 /* GoogleService-Info.plist */; };
+		0BD316762329383500ACC5A9 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD316752329383500ACC5A9 /* UIColor+Hex.swift */; };
+		0BD316782329393500ACC5A9 /* UIColor+Blueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD316772329393500ACC5A9 /* UIColor+Blueprint.swift */; };
+		0BD3167B232966DC00ACC5A9 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3167A232966DC00ACC5A9 /* Organization.swift */; };
+		0BD3167D2329679F00ACC5A9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3167C2329679F00ACC5A9 /* Category.swift */; };
 		0BF187E9232894DD005E60B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187E8232894DD005E60B6 /* AppDelegate.swift */; };
-		0BF187EB232894DD005E60B6 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187EA232894DD005E60B6 /* DashboardViewController.swift */; };
+		0BF187EB232894DD005E60B6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187EA232894DD005E60B6 /* HomeViewController.swift */; };
 		0BF187ED232894DD005E60B6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187EC232894DD005E60B6 /* SearchViewController.swift */; };
 		0BF187F0232894DD005E60B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF187EE232894DD005E60B6 /* Main.storyboard */; };
 		0BF187F2232894DE005E60B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF187F1232894DE005E60B6 /* Assets.xcassets */; };
@@ -43,9 +48,14 @@
 		08604FD3EEF787538BA6FCAA /* Pods-magnanimoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-magnanimoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-magnanimoUITests/Pods-magnanimoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0B0C21EF2328DB7C008655F8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0B0C21F12329011A008655F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0BD316752329383500ACC5A9 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		0BD316772329393500ACC5A9 /* UIColor+Blueprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Blueprint.swift"; sourceTree = "<group>"; };
+		0BD3167A232966DC00ACC5A9 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		0BD3167C2329679F00ACC5A9 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		0BF187E5232894DD005E60B6 /* magnanimo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = magnanimo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF187E8232894DD005E60B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0BF187EA232894DD005E60B6 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		0BF187EA232894DD005E60B6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0BF187EC232894DD005E60B6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0BF187EF232894DD005E60B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0BF187F1232894DE005E60B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -95,6 +105,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BD31679232966CE00ACC5A9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0BD3167A232966DC00ACC5A9 /* Organization.swift */,
+				0BD3167C2329679F00ACC5A9 /* Category.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		0BF187DC232894DD005E60B6 = {
 			isa = PBXGroup;
 			children = (
@@ -120,8 +139,9 @@
 		0BF187E7232894DD005E60B6 /* magnanimo */ = {
 			isa = PBXGroup;
 			children = (
+				0BD31679232966CE00ACC5A9 /* Model */,
 				0BF187E8232894DD005E60B6 /* AppDelegate.swift */,
-				0BF187EA232894DD005E60B6 /* DashboardViewController.swift */,
+				0BF187EA232894DD005E60B6 /* HomeViewController.swift */,
 				0BF187EC232894DD005E60B6 /* SearchViewController.swift */,
 				0BF187EE232894DD005E60B6 /* Main.storyboard */,
 				0BF187F1232894DE005E60B6 /* Assets.xcassets */,
@@ -129,6 +149,9 @@
 				0BF187F6232894DE005E60B6 /* Info.plist */,
 				0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */,
 				0B0C21EF2328DB7C008655F8 /* ProfileViewController.swift */,
+				0B0C21F12329011A008655F8 /* GoogleService-Info.plist */,
+				0BD316752329383500ACC5A9 /* UIColor+Hex.swift */,
+				0BD316772329393500ACC5A9 /* UIColor+Blueprint.swift */,
 			);
 			path = magnanimo;
 			sourceTree = "<group>";
@@ -285,6 +308,7 @@
 				0BF187F5232894DE005E60B6 /* LaunchScreen.storyboard in Resources */,
 				0BF187F2232894DE005E60B6 /* Assets.xcassets in Resources */,
 				0BF187F0232894DD005E60B6 /* Main.storyboard in Resources */,
+				0B0C21F22329011A008655F8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,20 +383,36 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-magnanimo/Pods-magnanimo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -408,11 +448,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BD316782329393500ACC5A9 /* UIColor+Blueprint.swift in Sources */,
 				0B0C21EE2328CF9A008655F8 /* LoginViewController.swift in Sources */,
+				0BD3167B232966DC00ACC5A9 /* Organization.swift in Sources */,
+				0BD316762329383500ACC5A9 /* UIColor+Hex.swift in Sources */,
 				0BF187ED232894DD005E60B6 /* SearchViewController.swift in Sources */,
+				0BD3167D2329679F00ACC5A9 /* Category.swift in Sources */,
 				0B0C21F02328DB7C008655F8 /* ProfileViewController.swift in Sources */,
 				0BF187E9232894DD005E60B6 /* AppDelegate.swift in Sources */,
-				0BF187EB232894DD005E60B6 /* DashboardViewController.swift in Sources */,
+				0BF187EB232894DD005E60B6 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

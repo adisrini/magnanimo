@@ -9,6 +9,7 @@
 import UIKit
 import FacebookCore
 import FacebookLogin
+import FirebaseAuth
 
 class LoginViewController: UIViewController, LoginButtonDelegate {
     
@@ -23,7 +24,14 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         if AccessToken.current != nil {
-            performSegue(withIdentifier: "login", sender: self)
+            let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+            Auth.auth().signIn(with: credential, completion: { user, error in
+                if let err = error {
+                    print("Error signing into Firebase: %@", err)
+                    return
+                }
+                self.performSegue(withIdentifier: "login", sender: self)
+            })
         }
     }
     
@@ -44,6 +52,12 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
     }
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print("Error signing out of Firebase: %@", signOutError)
+        }
         print("Logged out")
     }
         

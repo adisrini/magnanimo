@@ -7,7 +7,25 @@
 		<key>magnanimo.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>24</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0BF187E4232894DD005E60B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0BF187FA232894DE005E60B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0BF18805232894DE005E60B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
