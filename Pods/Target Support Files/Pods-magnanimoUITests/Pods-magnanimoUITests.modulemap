@@ -1,0 +1,6 @@
+framework module Pods_magnanimoUITests {
+  umbrella header "Pods-magnanimoUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

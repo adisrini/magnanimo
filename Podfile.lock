@@ -1,0 +1,59 @@
+PODS:
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - FacebookCore (0.9.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FacebookLogin (0.9.0):
+    - FacebookCore (~> 0.9.0)
+    - FBSDKCoreKit (~> 5.0)
+    - FBSDKLoginKit (~> 5.0)
+  - FBSDKCoreKit (5.5.0):
+    - FBSDKCoreKit/Basics (= 5.5.0)
+    - FBSDKCoreKit/Core (= 5.5.0)
+  - FBSDKCoreKit/Basics (5.5.0)
+  - FBSDKCoreKit/Core (5.5.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.5.0):
+    - FBSDKCoreKit (~> 5.0)
+
+DEPENDENCIES:
+  - Bolts
+  - FacebookCore (from `https://github.com/facebook/facebook-sdk-swift`, branch `master`)
+  - FacebookLogin (from `https://github.com/facebook/facebook-sdk-swift`, branch `master`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Bolts
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+
+EXTERNAL SOURCES:
+  FacebookCore:
+    :branch: master
+    :git: https://github.com/facebook/facebook-sdk-swift
+  FacebookLogin:
+    :branch: master
+    :git: https://github.com/facebook/facebook-sdk-swift
+
+CHECKOUT OPTIONS:
+  FacebookCore:
+    :commit: 50a4060b0eed4e493decb1f862303ce91d032a2b
+    :git: https://github.com/facebook/facebook-sdk-swift
+  FacebookLogin:
+    :commit: 50a4060b0eed4e493decb1f862303ce91d032a2b
+    :git: https://github.com/facebook/facebook-sdk-swift
+
+SPEC CHECKSUMS:
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FacebookCore: d3eb343079ecbbaf464b80c4b2d32d87824bd6d6
+  FacebookLogin: 53325d4af649a8d6c3b2b0771f7080d8f0c191e9
+  FBSDKCoreKit: 7ade9cfea30eef2f6cf105a1aa904f89ea68fb7d
+  FBSDKLoginKit: bb28062f24e79590c44ba03297ca9bea4b6436d2
+
+PODFILE CHECKSUM: 456e226ade4d1505df7cde2034ee4dbfc9698ed0
+
+COCOAPODS: 1.5.3

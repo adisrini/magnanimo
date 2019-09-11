@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B0C21EE2328CF9A008655F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */; };
 		0BF187E9232894DD005E60B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187E8232894DD005E60B6 /* AppDelegate.swift */; };
 		0BF187EB232894DD005E60B6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187EA232894DD005E60B6 /* FirstViewController.swift */; };
 		0BF187ED232894DD005E60B6 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187EC232894DD005E60B6 /* SecondViewController.swift */; };
@@ -15,6 +16,9 @@
 		0BF187F5232894DE005E60B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF187F3232894DE005E60B6 /* LaunchScreen.storyboard */; };
 		0BF18800232894DE005E60B6 /* magnanimoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187FF232894DE005E60B6 /* magnanimoTests.swift */; };
 		0BF1880B232894DF005E60B6 /* magnanimoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1880A232894DF005E60B6 /* magnanimoUITests.swift */; };
+		2B9CF8BE0C3B466D10CB9C91 /* Pods_magnanimoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925B2DACA4BF7233FFBBFD7C /* Pods_magnanimoTests.framework */; };
+		8C98FA25766CD56B52EEEEC2 /* Pods_magnanimo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C888666054C1BD11F707896B /* Pods_magnanimo.framework */; };
+		C10B2F612C284E0D3665E31F /* Pods_magnanimoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A670566025C67CC6481E24F8 /* Pods_magnanimoUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08604FD3EEF787538BA6FCAA /* Pods-magnanimoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-magnanimoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-magnanimoUITests/Pods-magnanimoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0BF187E5232894DD005E60B6 /* magnanimo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = magnanimo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF187E8232894DD005E60B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BF187EA232894DD005E60B6 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +55,14 @@
 		0BF18806232894DE005E60B6 /* magnanimoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = magnanimoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF1880A232894DF005E60B6 /* magnanimoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = magnanimoUITests.swift; sourceTree = "<group>"; };
 		0BF1880C232894DF005E60B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6952B5939E3D103332A4DFDD /* Pods-magnanimo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-magnanimo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-magnanimo/Pods-magnanimo.debug.xcconfig"; sourceTree = "<group>"; };
+		8B18BA8933A829F42AEF4007 /* Pods-magnanimoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-magnanimoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-magnanimoTests/Pods-magnanimoTests.release.xcconfig"; sourceTree = "<group>"; };
+		925B2DACA4BF7233FFBBFD7C /* Pods_magnanimoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_magnanimoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A670566025C67CC6481E24F8 /* Pods_magnanimoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_magnanimoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A88ADFE7FA16DA95441847F9 /* Pods-magnanimo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-magnanimo.release.xcconfig"; path = "Pods/Target Support Files/Pods-magnanimo/Pods-magnanimo.release.xcconfig"; sourceTree = "<group>"; };
+		C264246496CF95EF5C52B642 /* Pods-magnanimoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-magnanimoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-magnanimoTests/Pods-magnanimoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C888666054C1BD11F707896B /* Pods_magnanimo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_magnanimo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8010229CB1D030F598B7282 /* Pods-magnanimoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-magnanimoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-magnanimoUITests/Pods-magnanimoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C98FA25766CD56B52EEEEC2 /* Pods_magnanimo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B9CF8BE0C3B466D10CB9C91 /* Pods_magnanimoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C10B2F612C284E0D3665E31F /* Pods_magnanimoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +100,8 @@
 				0BF187FE232894DE005E60B6 /* magnanimoTests */,
 				0BF18809232894DF005E60B6 /* magnanimoUITests */,
 				0BF187E6232894DD005E60B6 /* Products */,
+				3A2EA8AEC537ED763C4CFE24 /* Pods */,
+				D87A855D46896CFB60BF2935 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +125,7 @@
 				0BF187F1232894DE005E60B6 /* Assets.xcassets */,
 				0BF187F3232894DE005E60B6 /* LaunchScreen.storyboard */,
 				0BF187F6232894DE005E60B6 /* Info.plist */,
+				0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */,
 			);
 			path = magnanimo;
 			sourceTree = "<group>";
@@ -128,6 +148,29 @@
 			path = magnanimoUITests;
 			sourceTree = "<group>";
 		};
+		3A2EA8AEC537ED763C4CFE24 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6952B5939E3D103332A4DFDD /* Pods-magnanimo.debug.xcconfig */,
+				A88ADFE7FA16DA95441847F9 /* Pods-magnanimo.release.xcconfig */,
+				C264246496CF95EF5C52B642 /* Pods-magnanimoTests.debug.xcconfig */,
+				8B18BA8933A829F42AEF4007 /* Pods-magnanimoTests.release.xcconfig */,
+				08604FD3EEF787538BA6FCAA /* Pods-magnanimoUITests.debug.xcconfig */,
+				D8010229CB1D030F598B7282 /* Pods-magnanimoUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D87A855D46896CFB60BF2935 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C888666054C1BD11F707896B /* Pods_magnanimo.framework */,
+				925B2DACA4BF7233FFBBFD7C /* Pods_magnanimoTests.framework */,
+				A670566025C67CC6481E24F8 /* Pods_magnanimoUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +178,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0BF1880F232894DF005E60B6 /* Build configuration list for PBXNativeTarget "magnanimo" */;
 			buildPhases = (
+				6766DA5785C15A42F0C1E3ED /* [CP] Check Pods Manifest.lock */,
 				0BF187E1232894DD005E60B6 /* Sources */,
 				0BF187E2232894DD005E60B6 /* Frameworks */,
 				0BF187E3232894DD005E60B6 /* Resources */,
+				E1D250B8F84C8C4DC919BA50 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +197,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0BF18812232894DF005E60B6 /* Build configuration list for PBXNativeTarget "magnanimoTests" */;
 			buildPhases = (
+				910562C9042A96A7DD2A0660 /* [CP] Check Pods Manifest.lock */,
 				0BF187F7232894DE005E60B6 /* Sources */,
 				0BF187F8232894DE005E60B6 /* Frameworks */,
 				0BF187F9232894DE005E60B6 /* Resources */,
@@ -170,6 +216,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0BF18815232894DF005E60B6 /* Build configuration list for PBXNativeTarget "magnanimoUITests" */;
 			buildPhases = (
+				F1F1D4E830D2E31B8A4949AA /* [CP] Check Pods Manifest.lock */,
 				0BF18802232894DE005E60B6 /* Sources */,
 				0BF18803232894DE005E60B6 /* Frameworks */,
 				0BF18804232894DE005E60B6 /* Resources */,
@@ -254,11 +301,111 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6766DA5785C15A42F0C1E3ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-magnanimo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		910562C9042A96A7DD2A0660 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-magnanimoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1D250B8F84C8C4DC919BA50 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-magnanimo/Pods-magnanimo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-magnanimo/Pods-magnanimo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1F1D4E830D2E31B8A4949AA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-magnanimoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0BF187E1232894DD005E60B6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B0C21EE2328CF9A008655F8 /* LoginViewController.swift in Sources */,
 				0BF187ED232894DD005E60B6 /* SecondViewController.swift in Sources */,
 				0BF187E9232894DD005E60B6 /* AppDelegate.swift in Sources */,
 				0BF187EB232894DD005E60B6 /* FirstViewController.swift in Sources */,
@@ -434,6 +581,7 @@
 		};
 		0BF18810232894DF005E60B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6952B5939E3D103332A4DFDD /* Pods-magnanimo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -442,6 +590,15 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.adisrini.magnanimo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -452,6 +609,7 @@
 		};
 		0BF18811232894DF005E60B6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A88ADFE7FA16DA95441847F9 /* Pods-magnanimo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -460,6 +618,15 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.adisrini.magnanimo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -470,6 +637,7 @@
 		};
 		0BF18813232894DF005E60B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C264246496CF95EF5C52B642 /* Pods-magnanimoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -491,6 +659,7 @@
 		};
 		0BF18814232894DF005E60B6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B18BA8933A829F42AEF4007 /* Pods-magnanimoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +681,7 @@
 		};
 		0BF18816232894DF005E60B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08604FD3EEF787538BA6FCAA /* Pods-magnanimoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +702,7 @@
 		};
 		0BF18817232894DF005E60B6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8010229CB1D030F598B7282 /* Pods-magnanimoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
