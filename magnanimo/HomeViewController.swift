@@ -21,7 +21,9 @@ class HomeViewController: UIViewController {
     
     let SIZE_FACTOR: CGFloat = 2.3
     var data: [[String: NSObject]]?
+    
     var selectedOrganization: Organization?
+    var selectedCategory: Category?
     
     let applePayButton: PKPaymentButton = PKPaymentButton(paymentButtonType: .plain, paymentButtonStyle: .black)
     
@@ -185,8 +187,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     
     @objc func handleShowButtonTapped(sender: ShowOrganizationButton!) {
         let organization = sender.organization
+        let category = sender.category
         print("Selecting organization: " + organization.debugDescription)
         self.selectedOrganization = organization
+        self.selectedCategory = category
         performSegue(withIdentifier: "showOrganization", sender: self)
     }
     
@@ -194,6 +198,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         if segue.identifier == "showOrganization" {
             if let destinationVC = segue.destination as? OrganizationViewController {
                 destinationVC.organization = self.selectedOrganization
+                destinationVC.category = self.selectedCategory
             }
         }
     }
@@ -202,6 +207,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
 
 class ShowOrganizationButton: UIButton {
     var organization: Organization?
+    var category: Category?
 }
 
 class OrganizationCell: UICollectionViewCell {
@@ -225,6 +231,7 @@ class OrganizationCell: UICollectionViewCell {
             
             showButton.setTitleColor(category.accentColor, for: .normal)
             showButton.layer.backgroundColor = category.baseColor.withAlphaComponent(0.15).cgColor
+            showButton.category = category
         }
     }
     

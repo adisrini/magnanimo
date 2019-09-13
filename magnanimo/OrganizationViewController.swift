@@ -18,6 +18,17 @@ class OrganizationViewController: UIViewController {
         }
     }
     
+    var category: Category? {
+        didSet {
+            guard let category = category else { return }
+            let attributedString = NSMutableAttributedString(string: category.name.uppercased())
+            attributedString.addAttribute(NSAttributedString.Key.kern, value: CGFloat(1.4), range: NSRange(location: 0, length: category.name.count))
+            categoryLabel.attributedText = attributedString
+            categoryLabel.layer.backgroundColor = category.baseColor.withAlphaComponent(0.15).cgColor
+            categoryLabel.textColor = category.accentColor
+        }
+    }
+    
     fileprivate let titleLabel: UILabel = {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -26,6 +37,15 @@ class OrganizationViewController: UIViewController {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
         
         return titleLabel
+    }()
+    
+    fileprivate let categoryLabel: UILabel = {
+        let label = TagLabel(frame: .zero)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.layer.cornerRadius = 4
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        return label
     }()
     
     fileprivate let descriptionLabel: UILabel = {
@@ -54,10 +74,12 @@ class OrganizationViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         view.addSubview(titleLabel)
+        view.addSubview(categoryLabel)
         view.addSubview(descriptionLabel)
         view.addSubview(closeButton)
 
         positionTitle()
+        positionCategoryLabel()
         positionDescription()
         positionCloseButton()
     }
@@ -69,9 +91,15 @@ class OrganizationViewController: UIViewController {
         titleLabel.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: -20).isActive = true
     }
     
+    func positionCategoryLabel() {
+        let guide = view.safeAreaLayoutGuide
+        categoryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
+        categoryLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 20).isActive = true
+    }
+    
     func positionDescription() {
         let guide = view.safeAreaLayoutGuide
-        descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 20).isActive = true
         descriptionLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 20).isActive = true
         descriptionLabel.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -20).isActive = true
     }
