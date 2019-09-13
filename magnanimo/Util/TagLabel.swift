@@ -12,6 +12,18 @@ class TagLabel: UILabel {
     
     let inset = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
     
+    init() {
+        super.init(frame: .zero)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.numberOfLines = 0
+        self.layer.cornerRadius = 4
+        self.font = UIFont.boldSystemFont(ofSize: 12)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func draw(_ rect: CGRect) {
         super.drawText(in: rect.inset(by: inset))
     }

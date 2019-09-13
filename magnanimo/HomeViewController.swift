@@ -235,32 +235,9 @@ class OrganizationCell: UICollectionViewCell {
         }
     }
     
-    fileprivate let titleLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.textColor = UIColor.Blueprint.DarkGray.DarkGray1
-        label.font = UIFont.boldSystemFont(ofSize: 26)
-        return label
-    }()
-    
-    fileprivate let descriptionLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.textColor = UIColor.Blueprint.DarkGray.DarkGray5
-        label.font = UIFont.systemFont(ofSize: 16)
-        return label
-    }()
-    
-    fileprivate let categoryLabel: UILabel = {
-        let label = TagLabel(frame: .zero)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.layer.cornerRadius = 4
-        label.font = UIFont.boldSystemFont(ofSize: 12)
-        return label
-    }()
+    fileprivate let titleLabel = MagnanimoLabel(type: .Title)
+    fileprivate let descriptionLabel = MagnanimoLabel(type: .Text)
+    fileprivate let categoryLabel = TagLabel()
     
     fileprivate let showButton: ShowOrganizationButton = {
         let button = ShowOrganizationButton()

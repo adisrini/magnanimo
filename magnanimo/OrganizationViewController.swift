@@ -29,34 +29,11 @@ class OrganizationViewController: UIViewController {
         }
     }
     
-    fileprivate let titleLabel: UILabel = {
-        let titleLabel = UILabel(frame: .zero)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.numberOfLines = 0
-        titleLabel.textColor = UIColor.Blueprint.DarkGray.DarkGray1
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        
-        return titleLabel
-    }()
+    fileprivate let titleLabel = MagnanimoLabel(type: .Title)
     
-    fileprivate let categoryLabel: UILabel = {
-        let label = TagLabel(frame: .zero)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.layer.cornerRadius = 4
-        label.font = UIFont.boldSystemFont(ofSize: 12)
-        return label
-    }()
+    fileprivate let categoryLabel = TagLabel()
     
-    fileprivate let descriptionLabel: UILabel = {
-        let descriptionLabel = UILabel(frame: .zero)
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.textColor = UIColor.Blueprint.DarkGray.DarkGray5
-        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
-        
-        return descriptionLabel
-    }()
+    fileprivate let descriptionLabel = MagnanimoLabel(type: .Text)
     
     fileprivate let closeButton: UIButton = {
         let button = UIButton()
@@ -68,6 +45,8 @@ class OrganizationViewController: UIViewController {
         
         return button
     }()
+    
+    fileprivate let historyLabel = MagnanimoLabel(type: .Header)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +87,10 @@ class OrganizationViewController: UIViewController {
         let guide = view.safeAreaLayoutGuide
         closeButton.topAnchor.constraint(equalTo: guide.topAnchor, constant: 20).isActive = true
         closeButton.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -20).isActive = true
+    }
+    
+    func positionHistoryLabel() {
+        
     }
     
     @objc func handleCloseButtonTapped() {
