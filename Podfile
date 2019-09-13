@@ -13,6 +13,7 @@ target 'magnanimo' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
+  pod 'Stripe'
   
 
   target 'magnanimoTests' do

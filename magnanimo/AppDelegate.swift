@@ -9,17 +9,18 @@
 import UIKit
 import FacebookCore
 import Firebase
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         FirebaseApp.configure()
+        Stripe.setDefaultPublishableKey("pk_test_5G2Xc1eMlUWFofGpWjGF733t00d6rM2wA9")
         return true
     }
     

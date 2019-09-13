@@ -16,7 +16,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let loginButton = FBLoginButton(permissions: ["public_profile"])
+        let loginButton = FBLoginButton(permissions: ["public_profile", "email"])
         loginButton.center = view.center
         loginButton.delegate = self
         self.view.addSubview(loginButton)

@@ -11,14 +11,16 @@ import UIKit
 
 class Category: NSObject {
     var name: String
-    var color: UIColor
+    var baseColor: UIColor
+    var accentColor: UIColor
     
-    public init(name: String, color: String) {
+    public init(name: String, baseColor: String, accentColor: String) {
         self.name = name
-        self.color = UIColor(netHex: Int(color, radix: 16)!)
+        self.baseColor = UIColor(netHex: Int(baseColor, radix: 16)!)
+        self.accentColor = UIColor(netHex: Int(accentColor, radix: 16)!)
     }
     
     convenience init(map: [String: Any]) {
-        self.init(name: map["name"] as! String, color: map["color"] as! String)
+        self.init(name: map["name"] as! String, baseColor: map["baseColor"] as! String, accentColor: map["accentColor"] as! String)
     }
 }

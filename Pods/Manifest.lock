@@ -136,6 +136,7 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.9.0)
+  - Stripe (17.0.1)
 
 DEPENDENCIES:
   - Bolts
@@ -145,6 +146,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
+  - Stripe
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -171,6 +173,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - Protobuf
+    - Stripe
 
 EXTERNAL SOURCES:
   FacebookCore:
@@ -214,7 +217,8 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
+  Stripe: b8e845e12fd6dbc9cb010422b3b6b212e803d308
 
-PODFILE CHECKSUM: 9cebd9b9c25b369bdcf57a24078b6563aadc1f39
+PODFILE CHECKSUM: 841964a8428d5aeb44051adf58380b098950e916
 
 COCOAPODS: 1.5.3

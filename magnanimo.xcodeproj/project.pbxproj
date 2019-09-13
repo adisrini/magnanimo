@@ -10,6 +10,12 @@
 		0B0C21EE2328CF9A008655F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */; };
 		0B0C21F02328DB7C008655F8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0C21EF2328DB7C008655F8 /* ProfileViewController.swift */; };
 		0B0C21F22329011A008655F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B0C21F12329011A008655F8 /* GoogleService-Info.plist */; };
+		0B18EE45232A3EB600A16A1C /* BrowseProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE44232A3EB600A16A1C /* BrowseProductsViewController.swift */; };
+		0B18EE47232A3EF500A16A1C /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE46232A3EF500A16A1C /* Buttons.swift */; };
+		0B18EE49232A3F2100A16A1C /* CheckoutRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE48232A3F2100A16A1C /* CheckoutRowView.swift */; };
+		0B18EE4B232A3F4900A16A1C /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE4A232A3F4900A16A1C /* CheckoutViewController.swift */; };
+		0B18EE4F232A400700A16A1C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE4E232A400700A16A1C /* SettingsViewController.swift */; };
+		0B18EE50232A5BDC00A16A1C /* MyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE4C232A3F9F00A16A1C /* MyAPIClient.swift */; };
 		0BD316762329383500ACC5A9 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD316752329383500ACC5A9 /* UIColor+Hex.swift */; };
 		0BD316782329393500ACC5A9 /* UIColor+Blueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD316772329393500ACC5A9 /* UIColor+Blueprint.swift */; };
 		0BD3167B232966DC00ACC5A9 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3167A232966DC00ACC5A9 /* Organization.swift */; };
@@ -22,6 +28,10 @@
 		0BF187F5232894DE005E60B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF187F3232894DE005E60B6 /* LaunchScreen.storyboard */; };
 		0BF18800232894DE005E60B6 /* magnanimoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187FF232894DE005E60B6 /* magnanimoTests.swift */; };
 		0BF1880B232894DF005E60B6 /* magnanimoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1880A232894DF005E60B6 /* magnanimoUITests.swift */; };
+		0BF33AB4232A5E5B00190F15 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF33AB3232A5E5B00190F15 /* EmojiCell.swift */; };
+		0BF33AB6232A5E8000190F15 /* EmojiCheckoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF33AB5232A5E8000190F15 /* EmojiCheckoutCell.swift */; };
+		0BF33AB8232A5EB300190F15 /* PaymentContextFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF33AB7232A5EB300190F15 /* PaymentContextFooterView.swift */; };
+		0BF33ABA232A5F0E00190F15 /* UIColor+Stripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF33AB9232A5F0E00190F15 /* UIColor+Stripe.swift */; };
 		2B9CF8BE0C3B466D10CB9C91 /* Pods_magnanimoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925B2DACA4BF7233FFBBFD7C /* Pods_magnanimoTests.framework */; };
 		8C98FA25766CD56B52EEEEC2 /* Pods_magnanimo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C888666054C1BD11F707896B /* Pods_magnanimo.framework */; };
 		C10B2F612C284E0D3665E31F /* Pods_magnanimoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A670566025C67CC6481E24F8 /* Pods_magnanimoUITests.framework */; };
@@ -49,6 +59,13 @@
 		0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0B0C21EF2328DB7C008655F8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0B0C21F12329011A008655F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0B18EE42232A2AB000A16A1C /* magnanimo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = magnanimo.entitlements; sourceTree = "<group>"; };
+		0B18EE44232A3EB600A16A1C /* BrowseProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseProductsViewController.swift; sourceTree = "<group>"; };
+		0B18EE46232A3EF500A16A1C /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		0B18EE48232A3F2100A16A1C /* CheckoutRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutRowView.swift; sourceTree = "<group>"; };
+		0B18EE4A232A3F4900A16A1C /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
+		0B18EE4C232A3F9F00A16A1C /* MyAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAPIClient.swift; sourceTree = "<group>"; };
+		0B18EE4E232A400700A16A1C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0BD316752329383500ACC5A9 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		0BD316772329393500ACC5A9 /* UIColor+Blueprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Blueprint.swift"; sourceTree = "<group>"; };
 		0BD3167A232966DC00ACC5A9 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
@@ -67,6 +84,10 @@
 		0BF18806232894DE005E60B6 /* magnanimoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = magnanimoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF1880A232894DF005E60B6 /* magnanimoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = magnanimoUITests.swift; sourceTree = "<group>"; };
 		0BF1880C232894DF005E60B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0BF33AB3232A5E5B00190F15 /* EmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
+		0BF33AB5232A5E8000190F15 /* EmojiCheckoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCheckoutCell.swift; sourceTree = "<group>"; };
+		0BF33AB7232A5EB300190F15 /* PaymentContextFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentContextFooterView.swift; sourceTree = "<group>"; };
+		0BF33AB9232A5F0E00190F15 /* UIColor+Stripe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Stripe.swift"; sourceTree = "<group>"; };
 		6952B5939E3D103332A4DFDD /* Pods-magnanimo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-magnanimo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-magnanimo/Pods-magnanimo.debug.xcconfig"; sourceTree = "<group>"; };
 		8B18BA8933A829F42AEF4007 /* Pods-magnanimoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-magnanimoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-magnanimoTests/Pods-magnanimoTests.release.xcconfig"; sourceTree = "<group>"; };
 		925B2DACA4BF7233FFBBFD7C /* Pods_magnanimoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_magnanimoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +126,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B18EE43232A3E9E00A16A1C /* Stripe */ = {
+			isa = PBXGroup;
+			children = (
+				0B18EE44232A3EB600A16A1C /* BrowseProductsViewController.swift */,
+				0B18EE46232A3EF500A16A1C /* Buttons.swift */,
+				0B18EE48232A3F2100A16A1C /* CheckoutRowView.swift */,
+				0B18EE4A232A3F4900A16A1C /* CheckoutViewController.swift */,
+				0B18EE4C232A3F9F00A16A1C /* MyAPIClient.swift */,
+				0B18EE4E232A400700A16A1C /* SettingsViewController.swift */,
+				0BF33AB3232A5E5B00190F15 /* EmojiCell.swift */,
+				0BF33AB5232A5E8000190F15 /* EmojiCheckoutCell.swift */,
+				0BF33AB7232A5EB300190F15 /* PaymentContextFooterView.swift */,
+			);
+			path = Stripe;
+			sourceTree = "<group>";
+		};
 		0BD31679232966CE00ACC5A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +176,8 @@
 		0BF187E7232894DD005E60B6 /* magnanimo */ = {
 			isa = PBXGroup;
 			children = (
+				0B18EE43232A3E9E00A16A1C /* Stripe */,
+				0B18EE42232A2AB000A16A1C /* magnanimo.entitlements */,
 				0BD31679232966CE00ACC5A9 /* Model */,
 				0BF187E8232894DD005E60B6 /* AppDelegate.swift */,
 				0BF187EA232894DD005E60B6 /* HomeViewController.swift */,
@@ -152,6 +191,7 @@
 				0B0C21F12329011A008655F8 /* GoogleService-Info.plist */,
 				0BD316752329383500ACC5A9 /* UIColor+Hex.swift */,
 				0BD316772329393500ACC5A9 /* UIColor+Blueprint.swift */,
+				0BF33AB9232A5F0E00190F15 /* UIColor+Stripe.swift */,
 			);
 			path = magnanimo;
 			sourceTree = "<group>";
@@ -269,6 +309,11 @@
 				TargetAttributes = {
 					0BF187E4232894DD005E60B6 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 1;
+							};
+						};
 					};
 					0BF187FA232894DE005E60B6 = {
 						CreatedOnToolsVersion = 10.1;
@@ -391,6 +436,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -409,6 +455,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stripe.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -449,13 +496,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BD316782329393500ACC5A9 /* UIColor+Blueprint.swift in Sources */,
+				0B18EE4B232A3F4900A16A1C /* CheckoutViewController.swift in Sources */,
+				0B18EE50232A5BDC00A16A1C /* MyAPIClient.swift in Sources */,
+				0B18EE49232A3F2100A16A1C /* CheckoutRowView.swift in Sources */,
+				0BF33AB8232A5EB300190F15 /* PaymentContextFooterView.swift in Sources */,
 				0B0C21EE2328CF9A008655F8 /* LoginViewController.swift in Sources */,
 				0BD3167B232966DC00ACC5A9 /* Organization.swift in Sources */,
+				0BF33ABA232A5F0E00190F15 /* UIColor+Stripe.swift in Sources */,
+				0B18EE47232A3EF500A16A1C /* Buttons.swift in Sources */,
 				0BD316762329383500ACC5A9 /* UIColor+Hex.swift in Sources */,
+				0B18EE4F232A400700A16A1C /* SettingsViewController.swift in Sources */,
+				0BF33AB6232A5E8000190F15 /* EmojiCheckoutCell.swift in Sources */,
+				0B18EE45232A3EB600A16A1C /* BrowseProductsViewController.swift in Sources */,
 				0BF187ED232894DD005E60B6 /* SearchViewController.swift in Sources */,
 				0BD3167D2329679F00ACC5A9 /* Category.swift in Sources */,
 				0B0C21F02328DB7C008655F8 /* ProfileViewController.swift in Sources */,
 				0BF187E9232894DD005E60B6 /* AppDelegate.swift in Sources */,
+				0BF33AB4232A5E5B00190F15 /* EmojiCell.swift in Sources */,
 				0BF187EB232894DD005E60B6 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -632,6 +689,7 @@
 			baseConfigurationReference = 6952B5939E3D103332A4DFDD /* Pods-magnanimo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = magnanimo/magnanimo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8N7W2G99UY;
 				INFOPLIST_FILE = magnanimo/Info.plist;
@@ -660,6 +718,7 @@
 			baseConfigurationReference = A88ADFE7FA16DA95441847F9 /* Pods-magnanimo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = magnanimo/magnanimo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8N7W2G99UY;
 				INFOPLIST_FILE = magnanimo/Info.plist;

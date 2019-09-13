@@ -9,6 +9,8 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import PassKit
+import Stripe
 
 class HomeViewController: UIViewController {
 
@@ -18,14 +20,15 @@ class HomeViewController: UIViewController {
     @IBOutlet var centAmount: UILabel!
     
     let SIZE_FACTOR: CGFloat = 2.3
-    
     var data: [[String: NSObject]]?
+    
+    let applePayButton: PKPaymentButton = PKPaymentButton(paymentButtonType: .plain, paymentButtonStyle: .black)
     
     fileprivate let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 20
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 50, left: 10, bottom: 50, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 50, left: 20, bottom: 50, right: 20)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(OrganizationCell.self, forCellWithReuseIdentifier: "cell")
@@ -37,12 +40,22 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         initializeGreeting()
         initializeData()
+        initializePayment()
     }
     
     func initializeGreeting() {
         let displayName = (Auth.auth().currentUser?.displayName)!
         let firstName = String(displayName.split(separator: " ").first!)
         self.greetingLabel.text = "Hello, \(firstName)."
+    }
+    
+    func initializePayment() {
+        view.addSubview(applePayButton)
+        applePayButton.translatesAutoresizingMaskIntoConstraints = false
+        applePayButton.isEnabled = Stripe.deviceSupportsApplePay()
+        applePayButton.topAnchor.constraint(equalTo: dollarAmount.bottomAnchor, constant: 15).isActive = true
+        applePayButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        applePayButton.addTarget(self, action: #selector(handleApplePayButtonTapped), for: .touchUpInside)
     }
     
     func initializeData() {
@@ -70,14 +83,84 @@ class HomeViewController: UIViewController {
         let guide = view.safeAreaLayoutGuide
         collectionView.backgroundColor = UIColor.Blueprint.Util.Transparent
         collectionView.topAnchor.constraint(equalTo: dollarAmount.bottomAnchor, constant: 40).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 20).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -20).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -20).isActive = true
         
         collectionView.delegate = self
         collectionView.dataSource = self
     }
 
+}
+
+extension HomeViewController: PKPaymentAuthorizationViewControllerDelegate {
+    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+        // Use Stripe to charge the user
+        STPAPIClient.shared().createToken(with: payment) { (stripeToken, error) in
+            guard error == nil, let stripeToken = stripeToken else {
+                print(error!)
+                return
+            }
+            
+            let token = stripeToken.tokenId
+            
+            let db = Firestore.firestore()
+            let stripeCustomerRef = db.collection("stripe_customers").document((Auth.auth().currentUser?.uid)!)
+
+            // Add payment source
+            stripeCustomerRef
+                .collection("tokens")
+                .document(token)
+                .setData([
+                    "token": token
+                    ])
+            
+            // Create charge
+            stripeCustomerRef
+                .collection("charges")
+                .document(token)
+                .setData([
+                    "amount": 500,
+                    "currency": "USD"
+                ])
+            
+            completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+        }
+    }
+
+    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        // Dismiss the Apple Pay UI
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func handleApplePayButtonTapped(sender: UIButton!) {
+        // Cards that should be accepted
+        let paymentNetworks:[PKPaymentNetwork] = [.amex,.masterCard,.visa]
+        
+        if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: paymentNetworks) {
+            let request = PKPaymentRequest()
+            
+            request.merchantIdentifier = "merchant.com.magnanimo"
+            request.countryCode = "US"
+            request.currencyCode = "USD"
+            request.supportedNetworks = paymentNetworks
+            // This is based on using Stripe
+            request.merchantCapabilities = .capability3DS
+            
+            let tshirt = PKPaymentSummaryItem(label: "T-shirt", amount: NSDecimalNumber(decimal: 4.00), type: .final)
+            let tax = PKPaymentSummaryItem(label: "Tax", amount: NSDecimalNumber(decimal: 1.00), type: .final)
+            let total = PKPaymentSummaryItem(label: "Total", amount: NSDecimalNumber(decimal: 5.00), type: .final)
+            request.paymentSummaryItems = [tshirt, tax, total]
+            
+            let authorizationViewController = PKPaymentAuthorizationViewController(paymentRequest: request)
+            
+            if let viewController = authorizationViewController {
+                viewController.delegate = self
+                
+                present(viewController, animated: true, completion: nil)
+            }
+        }
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -127,8 +210,11 @@ class OrganizationCell: UICollectionViewCell {
     var category: Category? {
         didSet {
             guard let category = category else { return }
-            categoryLabel.text = category.name
-            categoryLabel.layer.backgroundColor = category.color.withAlphaComponent(0.6).cgColor
+            let attributedString = NSMutableAttributedString(string: category.name.uppercased())
+            attributedString.addAttribute(NSAttributedString.Key.kern, value: CGFloat(1.4), range: NSRange(location: 0, length: category.name.count))
+            categoryLabel.attributedText = attributedString
+            categoryLabel.layer.backgroundColor = category.baseColor.withAlphaComponent(0.15).cgColor
+            categoryLabel.textColor = category.accentColor
         }
     }
     
@@ -136,7 +222,7 @@ class OrganizationCell: UICollectionViewCell {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.textColor = UIColor.Blueprint.LightGray.LightGray4
+        label.textColor = UIColor.Blueprint.DarkGray.DarkGray1
         label.font = UIFont.boldSystemFont(ofSize: 26)
         return label
     }()
@@ -145,8 +231,8 @@ class OrganizationCell: UICollectionViewCell {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.textColor = UIColor.Blueprint.LightGray.LightGray1
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.Blueprint.DarkGray.DarkGray5
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     
@@ -154,9 +240,8 @@ class OrganizationCell: UICollectionViewCell {
         let label = TagLabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.textColor = UIColor.white.withAlphaComponent(0.6)
-        label.layer.cornerRadius = 8
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.layer.cornerRadius = 4
+        label.font = UIFont.boldSystemFont(ofSize: 12)
         return label
     }()
     
@@ -164,15 +249,15 @@ class OrganizationCell: UICollectionViewCell {
         super.init(frame: frame)
         
         // round corners and add shadows
-        self.contentView.backgroundColor = UIColor.Blueprint.DarkGray.DarkGray4
+        self.contentView.backgroundColor = UIColor.white
         self.contentView.layer.opacity = 0.9
-        self.contentView.layer.cornerRadius = 12
+        self.contentView.layer.cornerRadius = 4
         self.contentView.layer.borderWidth = 1.0
         self.contentView.layer.borderColor = UIColor.clear.cgColor
         self.contentView.layer.masksToBounds = true
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
-        self.layer.shadowRadius = 8
+        self.layer.shadowRadius = 5
         self.layer.shadowOpacity = 0.3
         self.layer.masksToBounds = false
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
