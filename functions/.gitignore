@@ -6,6 +6,3 @@
 typings/
 
 node_modules/
-
-# Secrets
-*/secrets.ts
