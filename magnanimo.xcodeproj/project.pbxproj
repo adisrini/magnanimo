@@ -16,6 +16,8 @@
 		0B18EE4B232A3F4900A16A1C /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE4A232A3F4900A16A1C /* CheckoutViewController.swift */; };
 		0B18EE4F232A400700A16A1C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE4E232A400700A16A1C /* SettingsViewController.swift */; };
 		0B18EE50232A5BDC00A16A1C /* MyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE4C232A3F9F00A16A1C /* MyAPIClient.swift */; };
+		0BCF956D232B863C00F308B8 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF956C232B863C00F308B8 /* TagLabel.swift */; };
+		0BCF956F232B8E8B00F308B8 /* OrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF956E232B8E8B00F308B8 /* OrganizationViewController.swift */; };
 		0BD316762329383500ACC5A9 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD316752329383500ACC5A9 /* UIColor+Hex.swift */; };
 		0BD316782329393500ACC5A9 /* UIColor+Blueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD316772329393500ACC5A9 /* UIColor+Blueprint.swift */; };
 		0BD3167B232966DC00ACC5A9 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3167A232966DC00ACC5A9 /* Organization.swift */; };
@@ -66,6 +68,8 @@
 		0B18EE4A232A3F4900A16A1C /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		0B18EE4C232A3F9F00A16A1C /* MyAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAPIClient.swift; sourceTree = "<group>"; };
 		0B18EE4E232A400700A16A1C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0BCF956C232B863C00F308B8 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
+		0BCF956E232B8E8B00F308B8 /* OrganizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationViewController.swift; sourceTree = "<group>"; };
 		0BD316752329383500ACC5A9 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		0BD316772329393500ACC5A9 /* UIColor+Blueprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Blueprint.swift"; sourceTree = "<group>"; };
 		0BD3167A232966DC00ACC5A9 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
@@ -142,6 +146,14 @@
 			path = Stripe;
 			sourceTree = "<group>";
 		};
+		0BCF956B232B862900F308B8 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				0BCF956C232B863C00F308B8 /* TagLabel.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		0BD31679232966CE00ACC5A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +188,7 @@
 		0BF187E7232894DD005E60B6 /* magnanimo */ = {
 			isa = PBXGroup;
 			children = (
+				0BCF956B232B862900F308B8 /* Util */,
 				0B18EE43232A3E9E00A16A1C /* Stripe */,
 				0B18EE42232A2AB000A16A1C /* magnanimo.entitlements */,
 				0BD31679232966CE00ACC5A9 /* Model */,
@@ -192,6 +205,7 @@
 				0BD316752329383500ACC5A9 /* UIColor+Hex.swift */,
 				0BD316772329393500ACC5A9 /* UIColor+Blueprint.swift */,
 				0BF33AB9232A5F0E00190F15 /* UIColor+Stripe.swift */,
+				0BCF956E232B8E8B00F308B8 /* OrganizationViewController.swift */,
 			);
 			path = magnanimo;
 			sourceTree = "<group>";
@@ -504,9 +518,11 @@
 				0BD3167B232966DC00ACC5A9 /* Organization.swift in Sources */,
 				0BF33ABA232A5F0E00190F15 /* UIColor+Stripe.swift in Sources */,
 				0B18EE47232A3EF500A16A1C /* Buttons.swift in Sources */,
+				0BCF956D232B863C00F308B8 /* TagLabel.swift in Sources */,
 				0BD316762329383500ACC5A9 /* UIColor+Hex.swift in Sources */,
 				0B18EE4F232A400700A16A1C /* SettingsViewController.swift in Sources */,
 				0BF33AB6232A5E8000190F15 /* EmojiCheckoutCell.swift in Sources */,
+				0BCF956F232B8E8B00F308B8 /* OrganizationViewController.swift in Sources */,
 				0B18EE45232A3EB600A16A1C /* BrowseProductsViewController.swift in Sources */,
 				0BF187ED232894DD005E60B6 /* SearchViewController.swift in Sources */,
 				0BD3167D2329679F00ACC5A9 /* Category.swift in Sources */,

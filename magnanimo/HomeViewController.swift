@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
     
     let SIZE_FACTOR: CGFloat = 2.3
     var data: [[String: NSObject]]?
+    var selectedOrganization: Organization?
     
     let applePayButton: PKPaymentButton = PKPaymentButton(paymentButtonType: .plain, paymentButtonStyle: .black)
     
@@ -176,26 +177,30 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! OrganizationCell
         cell.organization = self.data?[indexPath.row]["organization"] as? Organization
         cell.category = self.data?[indexPath.row]["category"] as? Category
+        cell.showButton.addTarget(self, action: #selector(handleShowButtonTapped), for: .touchUpInside)
+
         return cell
     }
     
+    @objc func handleShowButtonTapped(sender: ShowOrganizationButton!) {
+        let organization = sender.organization
+        print("Selecting organization: " + organization.debugDescription)
+        self.selectedOrganization = organization
+        performSegue(withIdentifier: "showOrganization", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showOrganization" {
+            if let destinationVC = segue.destination as? OrganizationViewController {
+                destinationVC.organization = self.selectedOrganization
+            }
+        }
+    }
     
 }
 
-class TagLabel: UILabel {
-    
-    let inset = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
-    
-    override func draw(_ rect: CGRect) {
-        super.drawText(in: rect.inset(by: inset))
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        var intrinsicContentSize = super.intrinsicContentSize
-        intrinsicContentSize.width += self.inset.left + self.inset.right
-        intrinsicContentSize.height += self.inset.top + self.inset.bottom
-        return intrinsicContentSize
-    }
+class ShowOrganizationButton: UIButton {
+    var organization: Organization?
 }
 
 class OrganizationCell: UICollectionViewCell {
@@ -204,6 +209,7 @@ class OrganizationCell: UICollectionViewCell {
             guard let organization = organization else { return }
             titleLabel.text = organization.name
             descriptionLabel.text = organization.desc
+            showButton.organization = organization
         }
     }
     
@@ -215,6 +221,9 @@ class OrganizationCell: UICollectionViewCell {
             categoryLabel.attributedText = attributedString
             categoryLabel.layer.backgroundColor = category.baseColor.withAlphaComponent(0.15).cgColor
             categoryLabel.textColor = category.accentColor
+            
+            showButton.setTitleColor(category.accentColor, for: .normal)
+            showButton.layer.backgroundColor = category.baseColor.withAlphaComponent(0.15).cgColor
         }
     }
     
@@ -245,8 +254,31 @@ class OrganizationCell: UICollectionViewCell {
         return label
     }()
     
+    fileprivate let showButton: ShowOrganizationButton = {
+        let button = ShowOrganizationButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        // set text
+        button.setTitle(">", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        
+        // format layer
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 4
+        
+        return button
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        // make interactive
+        self.contentView.isUserInteractionEnabled = false
+        
+        // position button
+        self.addSubview(showButton)
+        showButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
+        showButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         
         // round corners and add shadows
         self.contentView.backgroundColor = UIColor.white

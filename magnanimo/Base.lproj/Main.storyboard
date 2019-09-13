@@ -70,11 +70,27 @@
                         <outlet property="dollarAmount" destination="OYG-hM-7RU" id="mUa-c4-kcr"/>
                         <outlet property="greetingLabel" destination="pIE-6z-eBV" id="Sq9-2z-lZO"/>
                         <outlet property="subgreetingLabel" destination="Aoc-6j-LQH" id="rbs-SV-DKk"/>
+                        <segue destination="GgN-vY-jPE" kind="show" identifier="showOrganization" id="rrw-vc-hiL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2288.8000000000002" y="-759.60591133004925"/>
+        </scene>
+        <!--Organization-->
+        <scene sceneID="aSr-bf-GDs">
+            <objects>
+                <viewController id="GgN-vY-jPE" userLabel="Organization" customClass="OrganizationViewController" customModule="magnanimo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kJM-kx-XGJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="vpt-BB-7NO"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tpj-de-tgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3426" y="-760"/>
         </scene>
         <!--Profile-->
         <scene sceneID="EhV-8O-nlK">
