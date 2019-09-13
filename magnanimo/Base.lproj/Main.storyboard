@@ -87,8 +87,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="vpt-BB-7NO"/>
                     </view>
+                    <connections>
+                        <segue destination="T4t-Du-qDo" kind="unwind" identifier="unwindToHome" unwindAction="unwindToHomeWithSegue:" id="Bmt-2b-bbc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tpj-de-tgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="T4t-Du-qDo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3426" y="-760"/>
         </scene>

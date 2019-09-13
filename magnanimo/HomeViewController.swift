@@ -91,7 +91,8 @@ class HomeViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-
+    
+    @IBAction func unwindToHome(segue: UIStoryboardSegue) {}
 }
 
 extension HomeViewController: PKPaymentAuthorizationViewControllerDelegate {
