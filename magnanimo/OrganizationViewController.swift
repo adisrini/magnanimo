@@ -55,7 +55,7 @@ class OrganizationViewController: UIViewController {
     }()
     
     fileprivate let oneTimeDonateButton: UIButton = {
-        let button = MagnanimoButton(title: "One-time", shadowType: .Small)
+        let button = MagnanimoButton(title: "One-time", subtitle: "Make a single payment.", shadowType: .Small)
         button.addTarget(self, action: #selector(handleOneTimeDonateButtonTapped), for: .touchUpInside)
         
         return button
@@ -63,7 +63,7 @@ class OrganizationViewController: UIViewController {
 
     
     fileprivate let subscribeDonateButton: UIButton = {
-        let button = MagnanimoButton(title: "Subscribe", shadowType: .Small)
+        let button = MagnanimoButton(title: "Subscribe", subtitle: "Schedule payments to repeat.", shadowType: .Small)
         button.addTarget(self, action: #selector(handleSubscribeDonateButtonTapped), for: .touchUpInside)
         
         return button
@@ -128,13 +128,13 @@ class OrganizationViewController: UIViewController {
         donateLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
         oneTimeDonateButton.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
         oneTimeDonateButton.topAnchor.constraint(equalTo: donateLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
-        subscribeDonateButton.leadingAnchor.constraint(equalTo: oneTimeDonateButton.trailingAnchor, constant: Constants.GRID_SIZE).isActive = true
-        subscribeDonateButton.topAnchor.constraint(equalTo: donateLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
+        subscribeDonateButton.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
+        subscribeDonateButton.topAnchor.constraint(equalTo: oneTimeDonateButton.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
     }
     
     func positionHistoryLabel() {
         let guide = view.safeAreaLayoutGuide
-        historyLabel.topAnchor.constraint(equalTo: oneTimeDonateButton.bottomAnchor, constant: 2 * Constants.GRID_SIZE).isActive = true
+        historyLabel.topAnchor.constraint(equalTo: subscribeDonateButton.bottomAnchor, constant: 2 * Constants.GRID_SIZE).isActive = true
         historyLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
     }
     

@@ -19,6 +19,7 @@
 		0B97BCEF232C09A800CA2D9F /* MagnanimoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCEE232C09A800CA2D9F /* MagnanimoLabel.swift */; };
 		0B97BCF1232F48D400CA2D9F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF0232F48D400CA2D9F /* Constants.swift */; };
 		0B97BCF3232F55E300CA2D9F /* MagnanimoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */; };
+		0B97BCF5232F75C500CA2D9F /* StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF4232F75C500CA2D9F /* StringProtocol.swift */; };
 		0BCF956D232B863C00F308B8 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF956C232B863C00F308B8 /* TagLabel.swift */; };
 		0BCF956F232B8E8B00F308B8 /* OrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF956E232B8E8B00F308B8 /* OrganizationViewController.swift */; };
 		0BD316762329383500ACC5A9 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD316752329383500ACC5A9 /* UIColor+Hex.swift */; };
@@ -74,6 +75,7 @@
 		0B97BCEE232C09A800CA2D9F /* MagnanimoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoLabel.swift; sourceTree = "<group>"; };
 		0B97BCF0232F48D400CA2D9F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoButton.swift; sourceTree = "<group>"; };
+		0B97BCF4232F75C500CA2D9F /* StringProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocol.swift; sourceTree = "<group>"; };
 		0BCF956C232B863C00F308B8 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
 		0BCF956E232B8E8B00F308B8 /* OrganizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationViewController.swift; sourceTree = "<group>"; };
 		0BD316752329383500ACC5A9 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				0B97BCEE232C09A800CA2D9F /* MagnanimoLabel.swift */,
 				0B97BCF0232F48D400CA2D9F /* Constants.swift */,
 				0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */,
+				0B97BCF4232F75C500CA2D9F /* StringProtocol.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				0B18EE4B232A3F4900A16A1C /* CheckoutViewController.swift in Sources */,
 				0B18EE50232A5BDC00A16A1C /* MyAPIClient.swift in Sources */,
 				0B18EE49232A3F2100A16A1C /* CheckoutRowView.swift in Sources */,
+				0B97BCF5232F75C500CA2D9F /* StringProtocol.swift in Sources */,
 				0BF33AB8232A5EB300190F15 /* PaymentContextFooterView.swift in Sources */,
 				0B0C21EE2328CF9A008655F8 /* LoginViewController.swift in Sources */,
 				0B97BCF1232F48D400CA2D9F /* Constants.swift in Sources */,

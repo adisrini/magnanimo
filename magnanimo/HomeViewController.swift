@@ -205,9 +205,17 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     
 }
 
-class ShowOrganizationButton: UIButton {
-    var organization: Organization?
-    var category: Category?
+class ShowOrganizationButton: MagnanimoButton {
+    var organization: Organization? = nil
+    var category: Category? = nil
+    
+    init(title: String, shadowType: MagnanimoButton.MagnanimoButtonShadowType) {
+        super.init(attributedTitle: NSAttributedString(string: title), shadowType: shadowType)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 class OrganizationCell: UICollectionViewCell {
@@ -229,7 +237,6 @@ class OrganizationCell: UICollectionViewCell {
             categoryLabel.layer.backgroundColor = category.baseColor.withAlphaComponent(0.15).cgColor
             categoryLabel.textColor = category.accentColor
             
-            showButton.setTitleColor(category.accentColor, for: .normal)
             showButton.layer.backgroundColor = category.baseColor.withAlphaComponent(0.15).cgColor
             showButton.category = category
         }
@@ -239,20 +246,7 @@ class OrganizationCell: UICollectionViewCell {
     fileprivate let descriptionLabel = MagnanimoLabel(type: .Text)
     fileprivate let categoryLabel = TagLabel()
     
-    fileprivate let showButton: ShowOrganizationButton = {
-        let button = ShowOrganizationButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        // set text
-        button.setTitle(">", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        
-        // format layer
-        button.clipsToBounds = true
-        button.layer.cornerRadius = Constants.CORNER_RADIUS
-        
-        return button
-    }()
+    fileprivate let showButton = ShowOrganizationButton(title: "View", shadowType: .Medium)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -263,6 +257,7 @@ class OrganizationCell: UICollectionViewCell {
         // position button
         self.addSubview(showButton)
         showButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.GRID_SIZE).isActive = true
+        showButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
         showButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
         
         // round corners and add shadows

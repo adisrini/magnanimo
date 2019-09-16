@@ -14,14 +14,39 @@ class MagnanimoButton: UIButton {
         case None, Small, Medium, Large
     }
     
-    init(title: String, shadowType: MagnanimoButtonShadowType) {
+    convenience init(title: String, shadowType: MagnanimoButtonShadowType) {
+        let attributedTitle = NSMutableAttributedString(string: title)
+        attributedTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Blueprint.DarkGray.DarkGray1, range: title.fullRange())
+        
+        self.init(attributedTitle: attributedTitle, shadowType: shadowType)
+    }
+    
+    convenience init(title: String, subtitle: String, shadowType: MagnanimoButtonShadowType) {
+        let combined = title + "\n" + subtitle
+        
+        let attributedTitle = NSMutableAttributedString(string: combined)
+
+        attributedTitle.addAttributes([
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
+            NSAttributedString.Key.foregroundColor: UIColor.Blueprint.DarkGray.DarkGray1
+            ], range: combined.nsRange(from: combined.range(of: title)!))
+
+        attributedTitle.addAttributes([
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+            NSAttributedString.Key.foregroundColor: UIColor.Blueprint.Gray.Gray1
+            ], range: combined.nsRange(from: combined.range(of: subtitle)!))
+        
+        self.init(attributedTitle: attributedTitle, shadowType: shadowType)
+    }
+    
+    init(attributedTitle: NSAttributedString, shadowType: MagnanimoButtonShadowType) {
         super.init(frame: .zero)
         
         // ignore sizing
         self.translatesAutoresizingMaskIntoConstraints = false
         
         // set title
-        self.setTitle(title, for: .normal)
+        self.setAttributedTitle(attributedTitle, for: .normal)
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
         // change layer
@@ -32,10 +57,13 @@ class MagnanimoButton: UIButton {
         
         // default colors
         self.layer.backgroundColor = UIColor.white.cgColor
-        self.setTitleColor(UIColor.Blueprint.DarkGray.DarkGray1, for: .normal)
         
         // padding
         self.titleEdgeInsets = Constants.INSETS
+        
+        // line breaks
+        self.titleLabel?.numberOfLines = 0
+        self.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
     }
     
     func applyShadow(_ shadowType: MagnanimoButtonShadowType) {
