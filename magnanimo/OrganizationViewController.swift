@@ -61,7 +61,7 @@ class OrganizationViewController: UIViewController {
 
     
     fileprivate let subscribeDonateButton: UIButton = {
-        let button = MagnanimoButton(title: "Donate", shadowType: .Small)
+        let button = MagnanimoButton(title: "Subscribe", shadowType: .Small)
         button.addTarget(self, action: #selector(handleSubscribeDonateButtonTapped), for: .touchUpInside)
         
         return button
