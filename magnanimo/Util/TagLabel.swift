@@ -16,7 +16,7 @@ class TagLabel: UILabel {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.numberOfLines = 0
-        self.layer.cornerRadius = 4
+        self.layer.cornerRadius = Constants.CORNER_RADIUS
         self.font = UIFont.boldSystemFont(ofSize: 12)
     }
     

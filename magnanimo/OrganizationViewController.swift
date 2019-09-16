@@ -46,7 +46,32 @@ class OrganizationViewController: UIViewController {
         return button
     }()
     
-    fileprivate let historyLabel = MagnanimoLabel(type: .Header)
+    fileprivate let donateLabel: UILabel = {
+        let label = MagnanimoLabel(type: .Header)
+        label.text = "Donate"
+        return label
+    }()
+    
+    fileprivate let oneTimeDonateButton: UIButton = {
+        let button = DonateButton(label: "One-time")
+        button.addTarget(self, action: #selector(handleOneTimeDonateButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+
+    
+    fileprivate let subscribeDonateButton: UIButton = {
+        let button = DonateButton(label: "Subscribe")
+        button.addTarget(self, action: #selector(handleSubscribeDonateButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    fileprivate let historyLabel: UILabel = {
+        let label = MagnanimoLabel(type: .Header)
+        label.text = "Your History"
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,11 +81,17 @@ class OrganizationViewController: UIViewController {
         view.addSubview(categoryLabel)
         view.addSubview(descriptionLabel)
         view.addSubview(closeButton)
+        view.addSubview(donateLabel)
+        view.addSubview(oneTimeDonateButton)
+        view.addSubview(subscribeDonateButton)
+        view.addSubview(historyLabel)
 
         positionTitle()
         positionCategoryLabel()
         positionDescription()
         positionCloseButton()
+        positionDonateSection()
+        positionHistoryLabel()
     }
     
     func positionTitle() {
@@ -89,12 +120,32 @@ class OrganizationViewController: UIViewController {
         closeButton.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -20).isActive = true
     }
     
+    func positionDonateSection() {
+        let guide = view.safeAreaLayoutGuide
+        donateLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40).isActive = true
+        donateLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 20).isActive = true
+        oneTimeDonateButton.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 20).isActive = true
+        oneTimeDonateButton.topAnchor.constraint(equalTo: donateLabel.bottomAnchor, constant: 20).isActive = true
+        subscribeDonateButton.leadingAnchor.constraint(equalTo: oneTimeDonateButton.trailingAnchor, constant: 20).isActive = true
+        subscribeDonateButton.topAnchor.constraint(equalTo: donateLabel.bottomAnchor, constant: 20).isActive = true
+    }
+    
     func positionHistoryLabel() {
-        
+        let guide = view.safeAreaLayoutGuide
+        historyLabel.topAnchor.constraint(equalTo: oneTimeDonateButton.bottomAnchor, constant: 40).isActive = true
+        historyLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 20).isActive = true
     }
     
     @objc func handleCloseButtonTapped() {
         performSegue(withIdentifier: "unwindToHome", sender: self)
+    }
+    
+    @objc func handleOneTimeDonateButtonTapped() {
+        print("One-time")
+    }
+    
+    @objc func handleSubscribeDonateButtonTapped() {
+        print("Subscribe")
     }
     
 
@@ -108,4 +159,44 @@ class OrganizationViewController: UIViewController {
     }
     */
 
+}
+
+class DonateButton: UIButton {
+    
+    let inset = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
+    
+    init(label: String) {
+        super.init(frame: .zero)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.setTitle(label, for: .normal)
+
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        // change layer
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowRadius = 3
+        self.layer.shadowOpacity = 0.3
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = Constants.CORNER_RADIUS
+        
+        // colors
+        self.layer.backgroundColor = UIColor.white.cgColor
+        self.setTitleColor(UIColor.Blueprint.DarkGray.DarkGray1, for: .normal)
+        
+        // padding
+        self.titleEdgeInsets = inset
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        var intrinsicContentSize = super.intrinsicContentSize
+        intrinsicContentSize.width += self.inset.left + self.inset.right
+        intrinsicContentSize.height += self.inset.top + self.inset.bottom
+        return intrinsicContentSize
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
