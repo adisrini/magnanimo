@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vAU-b4-JkD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vAU-b4-JkD">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,59 +17,11 @@
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, John." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIE-6z-eBV">
-                                <rect key="frame" x="20" y="74" width="132" height="29"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <color key="textColor" red="0.093031309549999996" green="0.12513345479999999" blue="0.15015828610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It all starts with a small step." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aoc-6j-LQH" userLabel="Subgreeting Label">
-                                <rect key="frame" x="20" y="105" width="183.33333333333334" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.53901660442352295" green="0.60721254348754883" blue="0.65732854604721069" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYG-hM-7RU" userLabel="Dollars Donated">
-                                <rect key="frame" x="20.000000000000004" y="138" width="59.333333333333343" height="43"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
-                                <color key="textColor" red="0.56468158960000003" green="0.47210651640000001" blue="0.9456331134" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tBy-Dl-V2S" userLabel="Cents Donated">
-                                <rect key="frame" x="80" y="153" width="28" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
-                                <color key="textColor" red="0.56468158960000003" green="0.47210651640000001" blue="0.9456331134" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="donated" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEk-cj-yVj" userLabel="Donated Label">
-                                <rect key="frame" x="116" y="158" width="54" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.56468158960000003" green="0.47210651640000001" blue="0.9456331134" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" red="0.96033936738967896" green="0.97251003980636597" blue="0.9807325005531311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="dEk-cj-yVj" firstAttribute="leading" secondItem="tBy-Dl-V2S" secondAttribute="trailing" constant="8" id="4Dl-12-buO"/>
-                            <constraint firstItem="Aoc-6j-LQH" firstAttribute="top" secondItem="pIE-6z-eBV" secondAttribute="bottom" constant="2" id="4oZ-Wg-Wjw"/>
-                            <constraint firstItem="OYG-hM-7RU" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="20" id="51v-Me-PxL"/>
-                            <constraint firstItem="dEk-cj-yVj" firstAttribute="top" secondItem="Aoc-6j-LQH" secondAttribute="bottom" constant="36" id="6gM-BX-fKt"/>
-                            <constraint firstItem="pIE-6z-eBV" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="20" id="X3J-Hg-dlw"/>
-                            <constraint firstItem="OYG-hM-7RU" firstAttribute="top" secondItem="Aoc-6j-LQH" secondAttribute="bottom" constant="16" id="Xxj-hk-eCm"/>
-                            <constraint firstItem="tBy-Dl-V2S" firstAttribute="top" secondItem="Aoc-6j-LQH" secondAttribute="bottom" constant="31" id="e8X-Y4-fFo"/>
-                            <constraint firstItem="tBy-Dl-V2S" firstAttribute="leading" secondItem="OYG-hM-7RU" secondAttribute="trailing" constant="0.67000000000000004" id="epn-h2-grR"/>
-                            <constraint firstItem="Aoc-6j-LQH" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="20" id="feg-mR-rE2"/>
-                            <constraint firstItem="pIE-6z-eBV" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="30" id="peB-Ke-jkP"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="first" id="acW-dT-cKf"/>
                     <connections>
-                        <outlet property="centAmount" destination="tBy-Dl-V2S" id="yTh-Jn-Xs7"/>
-                        <outlet property="dollarAmount" destination="OYG-hM-7RU" id="mUa-c4-kcr"/>
-                        <outlet property="greetingLabel" destination="pIE-6z-eBV" id="Sq9-2z-lZO"/>
-                        <outlet property="subgreetingLabel" destination="Aoc-6j-LQH" id="rbs-SV-DKk"/>
                         <segue destination="GgN-vY-jPE" kind="show" identifier="showOrganization" id="rrw-vc-hiL"/>
                     </connections>
                 </viewController>

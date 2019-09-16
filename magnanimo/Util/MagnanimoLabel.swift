@@ -42,11 +42,11 @@ class MagnanimoLabel: UILabel {
     func fontForType(_ type: MagnanimoLabelType) -> UIFont {
         switch type {
         case .Title:
-            return UIFont.boldSystemFont(ofSize: 26)
+            return UIFont.systemFont(ofSize: 26, weight: UIFont.Weight.heavy)
         case .Subtitle:
             return UIFont.systemFont(ofSize: 16)
         case .Header:
-            return UIFont.systemFont(ofSize: 22)
+            return UIFont.boldSystemFont(ofSize: 22)
         case .Text:
             return UIFont.systemFont(ofSize: 16)
         }

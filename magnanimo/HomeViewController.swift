@@ -14,18 +14,27 @@ import Stripe
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet var greetingLabel: UILabel!
-    @IBOutlet var subgreetingLabel: UILabel!
-    @IBOutlet var dollarAmount: UILabel!
-    @IBOutlet var centAmount: UILabel!
+//    @IBOutlet var greetingLabel: UILabel!
+//    @IBOutlet var subgreetingLabel: UILabel!
+//    @IBOutlet var dollarAmount: UILabel!
+//    @IBOutlet var centAmount: UILabel!
     
-    let SIZE_FACTOR: CGFloat = 2.3
     var data: [[String: NSObject]]?
     
     var selectedOrganization: Organization?
     var selectedCategory: Category?
     
     let applePayButton: PKPaymentButton = PKPaymentButton(paymentButtonType: .plain, paymentButtonStyle: .black)
+    
+    fileprivate let greetingLabel = MagnanimoLabel(type: .Header)
+    fileprivate let greetingSublabel = MagnanimoLabel(type: .Subtitle)
+    fileprivate let amountLabel: UILabel = {
+        let label = MagnanimoLabel(type: .Header)
+        label.font = UIFont.systemFont(ofSize: 40, weight: UIFont.Weight.heavy)
+        label.textColor = UIColor.Blueprint.Indigo.Indigo4
+        label.text = "$0.00"
+        return label
+    }()
     
     fileprivate let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -43,23 +52,38 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         initializeGreeting()
         initializeData()
-        initializePayment()
+//        initializePayment()
     }
     
     func initializeGreeting() {
         let displayName = (Auth.auth().currentUser?.displayName)!
         let firstName = String(displayName.split(separator: " ").first!)
-        self.greetingLabel.text = "Hello, \(firstName)."
+        let subtitle = "It all starts with one small step."
+        
+        greetingLabel.text = "Hello, \(firstName)."
+        greetingSublabel.text = subtitle
+        
+        view.addSubview(greetingLabel)
+        view.addSubview(greetingSublabel)
+        view.addSubview(amountLabel)
+        
+        let guide = view.safeAreaLayoutGuide
+        greetingLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: Constants.GRID_SIZE).isActive = true
+        greetingLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
+        greetingSublabel.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor).isActive = true
+        greetingSublabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
+        amountLabel.topAnchor.constraint(equalTo: greetingSublabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
+        amountLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
     }
     
-    func initializePayment() {
-        view.addSubview(applePayButton)
-        applePayButton.translatesAutoresizingMaskIntoConstraints = false
-        applePayButton.isEnabled = Stripe.deviceSupportsApplePay()
-        applePayButton.topAnchor.constraint(equalTo: dollarAmount.bottomAnchor, constant: 15).isActive = true
-        applePayButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        applePayButton.addTarget(self, action: #selector(handleApplePayButtonTapped), for: .touchUpInside)
-    }
+//    func initializePayment() {
+//        view.addSubview(applePayButton)
+//        applePayButton.translatesAutoresizingMaskIntoConstraints = false
+//        applePayButton.isEnabled = Stripe.deviceSupportsApplePay()
+//        applePayButton.topAnchor.constraint(equalTo: dollarAmount.bottomAnchor, constant: 15).isActive = true
+//        applePayButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+//        applePayButton.addTarget(self, action: #selector(handleApplePayButtonTapped), for: .touchUpInside)
+//    }
     
     func initializeData() {
         let db = Firestore.firestore()
@@ -85,7 +109,7 @@ class HomeViewController: UIViewController {
         self.view.addSubview(collectionView)
         let guide = view.safeAreaLayoutGuide
         collectionView.backgroundColor = UIColor.Blueprint.Util.Transparent
-        collectionView.topAnchor.constraint(equalTo: dollarAmount.bottomAnchor, constant: 2 * Constants.GRID_SIZE).isActive = true
+        collectionView.topAnchor.constraint(equalTo: amountLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -Constants.GRID_SIZE).isActive = true
