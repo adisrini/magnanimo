@@ -20,6 +20,10 @@
 		0B97BCF1232F48D400CA2D9F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF0232F48D400CA2D9F /* Constants.swift */; };
 		0B97BCF3232F55E300CA2D9F /* MagnanimoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */; };
 		0B97BCF5232F75C500CA2D9F /* StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF4232F75C500CA2D9F /* StringProtocol.swift */; };
+		0B97BCF7232F960B00CA2D9F /* OneTimePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF6232F960B00CA2D9F /* OneTimePaymentViewController.swift */; };
+		0B97BCFB232F9C8E00CA2D9F /* MagnanimoCurrencyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCFA232F9C8E00CA2D9F /* MagnanimoCurrencyField.swift */; };
+		0B97BCFE232F9F3500CA2D9F /* UIFont+Magnanimo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCFD232F9F3500CA2D9F /* UIFont+Magnanimo.swift */; };
+		0B97BD00232F9FCF00CA2D9F /* UIColor+Magnanimo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCFF232F9FCF00CA2D9F /* UIColor+Magnanimo.swift */; };
 		0BCF956D232B863C00F308B8 /* MagnanimoTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF956C232B863C00F308B8 /* MagnanimoTag.swift */; };
 		0BCF956F232B8E8B00F308B8 /* OrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF956E232B8E8B00F308B8 /* OrganizationViewController.swift */; };
 		0BD316762329383500ACC5A9 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD316752329383500ACC5A9 /* UIColor+Hex.swift */; };
@@ -76,6 +80,10 @@
 		0B97BCF0232F48D400CA2D9F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoButton.swift; sourceTree = "<group>"; };
 		0B97BCF4232F75C500CA2D9F /* StringProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocol.swift; sourceTree = "<group>"; };
+		0B97BCF6232F960B00CA2D9F /* OneTimePaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimePaymentViewController.swift; sourceTree = "<group>"; };
+		0B97BCFA232F9C8E00CA2D9F /* MagnanimoCurrencyField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoCurrencyField.swift; sourceTree = "<group>"; };
+		0B97BCFD232F9F3500CA2D9F /* UIFont+Magnanimo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Magnanimo.swift"; sourceTree = "<group>"; };
+		0B97BCFF232F9FCF00CA2D9F /* UIColor+Magnanimo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Magnanimo.swift"; sourceTree = "<group>"; };
 		0BCF956C232B863C00F308B8 /* MagnanimoTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoTag.swift; sourceTree = "<group>"; };
 		0BCF956E232B8E8B00F308B8 /* OrganizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationViewController.swift; sourceTree = "<group>"; };
 		0BD316752329383500ACC5A9 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
@@ -154,6 +162,14 @@
 			path = Stripe;
 			sourceTree = "<group>";
 		};
+		0B97BCFC232F9F2900CA2D9F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0B97BCFD232F9F3500CA2D9F /* UIFont+Magnanimo.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		0BCF956B232B862900F308B8 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +178,7 @@
 				0B97BCF0232F48D400CA2D9F /* Constants.swift */,
 				0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */,
 				0B97BCF4232F75C500CA2D9F /* StringProtocol.swift */,
+				0B97BCFA232F9C8E00CA2D9F /* MagnanimoCurrencyField.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -181,6 +198,7 @@
 				0BD316752329383500ACC5A9 /* UIColor+Hex.swift */,
 				0BD316772329393500ACC5A9 /* UIColor+Blueprint.swift */,
 				0BF33AB9232A5F0E00190F15 /* UIColor+Stripe.swift */,
+				0B97BCFF232F9FCF00CA2D9F /* UIColor+Magnanimo.swift */,
 			);
 			path = Colors;
 			sourceTree = "<group>";
@@ -210,6 +228,7 @@
 		0BF187E7232894DD005E60B6 /* magnanimo */ = {
 			isa = PBXGroup;
 			children = (
+				0B97BCFC232F9F2900CA2D9F /* Fonts */,
 				0BE0E857232C0862007E9344 /* Colors */,
 				0BCF956B232B862900F308B8 /* Util */,
 				0B18EE43232A3E9E00A16A1C /* Stripe */,
@@ -226,6 +245,7 @@
 				0B0C21EF2328DB7C008655F8 /* ProfileViewController.swift */,
 				0B0C21F12329011A008655F8 /* GoogleService-Info.plist */,
 				0BCF956E232B8E8B00F308B8 /* OrganizationViewController.swift */,
+				0B97BCF6232F960B00CA2D9F /* OneTimePaymentViewController.swift */,
 			);
 			path = magnanimo;
 			sourceTree = "<group>";
@@ -535,7 +555,10 @@
 				0B18EE49232A3F2100A16A1C /* CheckoutRowView.swift in Sources */,
 				0B97BCF5232F75C500CA2D9F /* StringProtocol.swift in Sources */,
 				0BF33AB8232A5EB300190F15 /* PaymentContextFooterView.swift in Sources */,
+				0B97BCFB232F9C8E00CA2D9F /* MagnanimoCurrencyField.swift in Sources */,
 				0B0C21EE2328CF9A008655F8 /* LoginViewController.swift in Sources */,
+				0B97BD00232F9FCF00CA2D9F /* UIColor+Magnanimo.swift in Sources */,
+				0B97BCF7232F960B00CA2D9F /* OneTimePaymentViewController.swift in Sources */,
 				0B97BCF1232F48D400CA2D9F /* Constants.swift in Sources */,
 				0BD3167B232966DC00ACC5A9 /* Organization.swift in Sources */,
 				0BF33ABA232A5F0E00190F15 /* UIColor+Stripe.swift in Sources */,
@@ -543,6 +566,7 @@
 				0BCF956D232B863C00F308B8 /* MagnanimoTag.swift in Sources */,
 				0B97BCF3232F55E300CA2D9F /* MagnanimoButton.swift in Sources */,
 				0BD316762329383500ACC5A9 /* UIColor+Hex.swift in Sources */,
+				0B97BCFE232F9F3500CA2D9F /* UIFont+Magnanimo.swift in Sources */,
 				0B18EE4F232A400700A16A1C /* SettingsViewController.swift in Sources */,
 				0BF33AB6232A5E8000190F15 /* EmojiCheckoutCell.swift in Sources */,
 				0BCF956F232B8E8B00F308B8 /* OrganizationViewController.swift in Sources */,

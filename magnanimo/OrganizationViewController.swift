@@ -96,33 +96,33 @@ class OrganizationViewController: UIViewController {
         positionHistoryLabel()
     }
     
-    func positionTitle() {
+    private func positionTitle() {
         let guide = view.safeAreaLayoutGuide
         titleLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: Constants.GRID_SIZE).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: -Constants.GRID_SIZE).isActive = true
     }
     
-    func positionCategoryLabel() {
+    private func positionCategoryLabel() {
         let guide = view.safeAreaLayoutGuide
         categoryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
         categoryLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
     }
     
-    func positionDescription() {
+    private func positionDescription() {
         let guide = view.safeAreaLayoutGuide
         descriptionLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
         descriptionLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
         descriptionLabel.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
     }
     
-    func positionCloseButton() {
+    private func positionCloseButton() {
         let guide = view.safeAreaLayoutGuide
         closeButton.topAnchor.constraint(equalTo: guide.topAnchor, constant: Constants.GRID_SIZE).isActive = true
         closeButton.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
     }
     
-    func positionDonateSection() {
+    private func positionDonateSection() {
         let guide = view.safeAreaLayoutGuide
         donateLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 2 * Constants.GRID_SIZE).isActive = true
         donateLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
@@ -132,7 +132,7 @@ class OrganizationViewController: UIViewController {
         subscribeDonateButton.topAnchor.constraint(equalTo: oneTimeDonateButton.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
     }
     
-    func positionHistoryLabel() {
+    private func positionHistoryLabel() {
         let guide = view.safeAreaLayoutGuide
         historyLabel.topAnchor.constraint(equalTo: subscribeDonateButton.bottomAnchor, constant: 2 * Constants.GRID_SIZE).isActive = true
         historyLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
@@ -144,7 +144,7 @@ class OrganizationViewController: UIViewController {
     
     @objc func handleOneTimeDonateButtonTapped() {
         impact.impactOccurred()
-        print("One-time")
+        performSegue(withIdentifier: "showOneTimePayment", sender: self)
     }
     
     @objc func handleSubscribeDonateButtonTapped() {
@@ -153,14 +153,15 @@ class OrganizationViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showOneTimePayment" {
+            if let destinationVC = segue.destination as? OneTimePaymentViewController {
+                destinationVC.organization = self.organization
+            }
+        }
     }
-    */
 
 }

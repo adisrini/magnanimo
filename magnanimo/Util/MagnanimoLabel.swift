@@ -26,7 +26,7 @@ class MagnanimoLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func colorForType(_ type: MagnanimoLabelType) -> UIColor {
+    private func colorForType(_ type: MagnanimoLabelType) -> UIColor {
         switch type {
         case .Title:
             return UIColor.Blueprint.DarkGray.DarkGray1
@@ -39,7 +39,7 @@ class MagnanimoLabel: UILabel {
         }
     }
     
-    func fontForType(_ type: MagnanimoLabelType) -> UIFont {
+    private func fontForType(_ type: MagnanimoLabelType) -> UIFont {
         switch type {
         case .Title:
             return UIFont.systemFont(ofSize: 26, weight: UIFont.Weight.heavy)

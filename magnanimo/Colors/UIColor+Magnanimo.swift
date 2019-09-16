@@ -1,0 +1,16 @@
+//
+//  UIColor+Magnanimo.swift
+//  magnanimo
+//
+//  Created by Aditya Srinivasan on 9/16/19.
+//  Copyright © 2019 Aditya Srinivasan. All rights reserved.
+//
+
+import UIKit
+
+extension UIColor {
+    struct Magnanimo {
+        static let Disabled = UIColor.Blueprint.LightGray.LightGray1
+        static let Money = UIColor.Blueprint.Indigo.Indigo4
+    }
+}

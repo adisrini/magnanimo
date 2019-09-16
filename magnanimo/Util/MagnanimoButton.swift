@@ -66,7 +66,7 @@ class MagnanimoButton: UIButton {
         self.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
     }
     
-    func applyShadow(_ shadowType: MagnanimoButtonShadowType) {
+    private func applyShadow(_ shadowType: MagnanimoButtonShadowType) {
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowRadius = shadowRadiusForType(shadowType)
@@ -74,7 +74,7 @@ class MagnanimoButton: UIButton {
         self.layer.masksToBounds = false
     }
     
-    fileprivate func shadowRadiusForType(_ shadowType: MagnanimoButtonShadowType) -> CGFloat {
+    private func shadowRadiusForType(_ shadowType: MagnanimoButtonShadowType) -> CGFloat {
         switch shadowType {
         case .None:
             return 0

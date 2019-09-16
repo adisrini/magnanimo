@@ -30,8 +30,8 @@ class HomeViewController: UIViewController {
     fileprivate let greetingSublabel = MagnanimoLabel(type: .Subtitle)
     fileprivate let amountLabel: UILabel = {
         let label = MagnanimoLabel(type: .Header)
-        label.font = UIFont.systemFont(ofSize: 40, weight: UIFont.Weight.heavy)
-        label.textColor = UIColor.Blueprint.Indigo.Indigo4
+        label.font = UIFont.Magnanimo.Money
+        label.textColor = UIColor.Magnanimo.Money
         label.text = "$0.00"
         return label
     }()
@@ -55,7 +55,7 @@ class HomeViewController: UIViewController {
 //        initializePayment()
     }
     
-    func initializeGreeting() {
+    private func initializeGreeting() {
         let displayName = (Auth.auth().currentUser?.displayName)!
         let firstName = String(displayName.split(separator: " ").first!)
         let subtitle = "It all starts with one small step."
@@ -85,7 +85,7 @@ class HomeViewController: UIViewController {
 //        applePayButton.addTarget(self, action: #selector(handleApplePayButtonTapped), for: .touchUpInside)
 //    }
     
-    func initializeData() {
+    private func initializeData() {
         let db = Firestore.firestore()
         db.collection("organizations").getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -105,7 +105,7 @@ class HomeViewController: UIViewController {
         }
     }
 
-    func initializeOrganizations() {
+    private func initializeOrganizations() {
         self.view.addSubview(collectionView)
         let guide = view.safeAreaLayoutGuide
         collectionView.backgroundColor = UIColor.Blueprint.Util.Transparent
