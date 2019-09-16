@@ -25,6 +25,8 @@ class HomeViewController: UIViewController {
     var selectedOrganization: Organization?
     var selectedCategory: Category?
     
+    let impact = UIImpactFeedbackGenerator()
+    
     let applePayButton: PKPaymentButton = PKPaymentButton(paymentButtonType: .plain, paymentButtonStyle: .black)
     
     fileprivate let collectionView: UICollectionView = {
@@ -186,6 +188,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     @objc func handleShowButtonTapped(sender: ShowOrganizationButton!) {
+        impact.impactOccurred()
         let organization = sender.organization
         let category = sender.category
         print("Selecting organization: " + organization.debugDescription)

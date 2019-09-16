@@ -10,6 +10,8 @@ import UIKit
 
 class OrganizationViewController: UIViewController {
     
+    let impact = UIImpactFeedbackGenerator()
+    
     var organization: Organization? {
         didSet {
             guard let organization = organization else { return }
@@ -141,10 +143,12 @@ class OrganizationViewController: UIViewController {
     }
     
     @objc func handleOneTimeDonateButtonTapped() {
+        impact.impactOccurred()
         print("One-time")
     }
     
     @objc func handleSubscribeDonateButtonTapped() {
+        impact.impactOccurred()
         print("Subscribe")
     }
     

@@ -42,7 +42,7 @@ class MagnanimoButton: UIButton {
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowRadius = shadowRadiusForType(shadowType)
-        self.layer.shadowOpacity = 0.3
+        self.layer.shadowOpacity = 0.15
         self.layer.masksToBounds = false
     }
     
@@ -51,11 +51,11 @@ class MagnanimoButton: UIButton {
         case .None:
             return 0
         case .Small:
-            return 2
+            return 3
         case .Medium:
-            return 4
-        case .Large:
             return 6
+        case .Large:
+            return 9
         }
     }
     
