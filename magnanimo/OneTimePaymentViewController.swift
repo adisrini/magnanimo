@@ -27,6 +27,8 @@ class OneTimePaymentViewController: UIViewController {
         // Do any additional setup after loading the view.
         positionHeader()
         positionField()
+        
+        self.hideKeyboardWhenTappedAround()
     }
     
     private func positionHeader() {
@@ -41,10 +43,10 @@ class OneTimePaymentViewController: UIViewController {
         view.addSubview(amountField)
         
         let guide = view.safeAreaLayoutGuide
-        amountField.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 2 * Constants.GRID_SIZE).isActive = true
-        amountField.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
+        amountField.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 3 * Constants.GRID_SIZE).isActive = true
+        amountField.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -2 * Constants.GRID_SIZE).isActive = true
     }
-
+    
     /*
     // MARK: - Navigation
 
