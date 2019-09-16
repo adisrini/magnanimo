@@ -13,18 +13,11 @@ import PassKit
 import Stripe
 
 class HomeViewController: UIViewController {
-
-//    @IBOutlet var greetingLabel: UILabel!
-//    @IBOutlet var subgreetingLabel: UILabel!
-//    @IBOutlet var dollarAmount: UILabel!
-//    @IBOutlet var centAmount: UILabel!
     
     var data: [[String: NSObject]]?
     
     var selectedOrganization: Organization?
     var selectedCategory: Category?
-    
-    let applePayButton: PKPaymentButton = PKPaymentButton(paymentButtonType: .plain, paymentButtonStyle: .black)
     
     fileprivate let greetingLabel = MagnanimoLabel(type: .Header)
     fileprivate let greetingSublabel = MagnanimoLabel(type: .Subtitle)
@@ -52,7 +45,6 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         initializeGreeting()
         initializeData()
-//        initializePayment()
     }
     
     private func initializeGreeting() {
@@ -75,15 +67,6 @@ class HomeViewController: UIViewController {
         amountLabel.topAnchor.constraint(equalTo: greetingSublabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
         amountLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
     }
-    
-//    func initializePayment() {
-//        view.addSubview(applePayButton)
-//        applePayButton.translatesAutoresizingMaskIntoConstraints = false
-//        applePayButton.isEnabled = Stripe.deviceSupportsApplePay()
-//        applePayButton.topAnchor.constraint(equalTo: dollarAmount.bottomAnchor, constant: 15).isActive = true
-//        applePayButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-//        applePayButton.addTarget(self, action: #selector(handleApplePayButtonTapped), for: .touchUpInside)
-//    }
     
     private func initializeData() {
         let db = Firestore.firestore()
@@ -119,76 +102,6 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {}
-}
-
-extension HomeViewController: PKPaymentAuthorizationViewControllerDelegate {
-    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
-        // Use Stripe to charge the user
-        STPAPIClient.shared().createToken(with: payment) { (stripeToken, error) in
-            guard error == nil, let stripeToken = stripeToken else {
-                print(error!)
-                return
-            }
-            
-            let token = stripeToken.tokenId
-            
-            let db = Firestore.firestore()
-            let stripeCustomerRef = db.collection("stripe_customers").document((Auth.auth().currentUser?.uid)!)
-
-            // Add payment source
-            stripeCustomerRef
-                .collection("tokens")
-                .document(token)
-                .setData([
-                    "token": token
-                    ])
-            
-            // Create charge
-            stripeCustomerRef
-                .collection("charges")
-                .document(token)
-                .setData([
-                    "amount": 500,
-                    "currency": "USD"
-                ])
-            
-            completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
-        }
-    }
-
-    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-        // Dismiss the Apple Pay UI
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func handleApplePayButtonTapped(sender: UIButton!) {
-        // Cards that should be accepted
-        let paymentNetworks:[PKPaymentNetwork] = [.amex,.masterCard,.visa]
-        
-        if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: paymentNetworks) {
-            let request = PKPaymentRequest()
-            
-            request.merchantIdentifier = "merchant.com.magnanimo"
-            request.countryCode = "US"
-            request.currencyCode = "USD"
-            request.supportedNetworks = paymentNetworks
-            // This is based on using Stripe
-            request.merchantCapabilities = .capability3DS
-            
-            let tshirt = PKPaymentSummaryItem(label: "T-shirt", amount: NSDecimalNumber(decimal: 4.00), type: .final)
-            let tax = PKPaymentSummaryItem(label: "Tax", amount: NSDecimalNumber(decimal: 1.00), type: .final)
-            let total = PKPaymentSummaryItem(label: "Total", amount: NSDecimalNumber(decimal: 5.00), type: .final)
-            request.paymentSummaryItems = [tshirt, tax, total]
-            
-            let authorizationViewController = PKPaymentAuthorizationViewController(paymentRequest: request)
-            
-            if let viewController = authorizationViewController {
-                viewController.delegate = self
-                
-                present(viewController, animated: true, completion: nil)
-            }
-        }
-    }
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
