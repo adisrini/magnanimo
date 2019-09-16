@@ -15,6 +15,12 @@ import Stripe
 class HomeViewController: UIViewController {
     
     var data: [[String: NSObject]]?
+
+    var totalAmountDonated: Double = 0 {
+        didSet {
+            self.amountLabel.text = Formatter.currency.string(from: NSNumber(value: self.totalAmountDonated))
+        }
+    }
     
     var selectedOrganization: Organization?
     var selectedCategory: Category?
@@ -84,6 +90,20 @@ class HomeViewController: UIViewController {
                         self.initializeOrganizations()
                     }
                 }
+            }
+        }
+        
+        db.collection("stripe_customers").document(Auth.auth().currentUser!.uid).collection("charges").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting charges: \(err)")
+            } else {
+                let charges = querySnapshot!.documents.map({ doc in doc.data() })
+                for charge in charges {
+                    if charge["error"] == nil {
+                        self.totalAmountDonated += charge["amount"] as! Double
+                    }
+                }
+                self.totalAmountDonated /= 100
             }
         }
     }

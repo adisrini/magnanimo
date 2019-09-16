@@ -25,7 +25,22 @@ class OneTimePaymentViewController: UIViewController {
     
     fileprivate let amountField = MagnanimoCurrencyField()
     
-    fileprivate let applePayButton: PKPaymentButton = PKPaymentButton(paymentButtonType: .plain, paymentButtonStyle: .black)
+    fileprivate let publicLabel: UILabel = {
+        let label = MagnanimoLabel(type: .Text)
+        label.text = "Make public"
+        
+        return label
+    }()
+    
+    fileprivate let publicSwitch: UISwitch = {
+        let uiSwitch = UISwitch(frame: .zero)
+        uiSwitch.translatesAutoresizingMaskIntoConstraints = false
+        uiSwitch.isOn = true
+
+        return uiSwitch
+    }()
+    
+    fileprivate let applePayButton: PKPaymentButton = PKPaymentButton(paymentButtonType: .donate, paymentButtonStyle: .black)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +48,7 @@ class OneTimePaymentViewController: UIViewController {
         // Do any additional setup after loading the view.
         positionHeader()
         positionField()
+        positionSwitch()
         positionPayment()
         
         self.hideKeyboardWhenTappedAround()
@@ -51,7 +67,18 @@ class OneTimePaymentViewController: UIViewController {
         
         let guide = view.safeAreaLayoutGuide
         amountField.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 3 * Constants.GRID_SIZE).isActive = true
-        amountField.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -2 * Constants.GRID_SIZE).isActive = true
+        amountField.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
+    }
+    
+    private func positionSwitch() {
+        view.addSubview(publicLabel)
+        view.addSubview(publicSwitch)
+        
+        publicSwitch.topAnchor.constraint(equalTo: amountField.bottomAnchor, constant: 2 * Constants.GRID_SIZE).isActive = true
+        publicSwitch.trailingAnchor.constraint(equalTo: amountField.trailingAnchor).isActive = true
+        
+        publicLabel.centerYAnchor.constraint(equalTo: publicSwitch.centerYAnchor).isActive = true
+        publicLabel.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor).isActive = true
     }
     
     private func positionPayment() {
@@ -59,11 +86,12 @@ class OneTimePaymentViewController: UIViewController {
         applePayButton.translatesAutoresizingMaskIntoConstraints = false
 
         applePayButton.isEnabled = Stripe.deviceSupportsApplePay()
-        applePayButton.topAnchor.constraint(equalTo: amountField.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
-        applePayButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        applePayButton.topAnchor.constraint(equalTo: publicSwitch.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
+        applePayButton.trailingAnchor.constraint(equalTo: publicSwitch.trailingAnchor).isActive = true
+        applePayButton.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor).isActive = true
         applePayButton.addTarget(self, action: #selector(handleApplePayButtonTapped), for: .touchUpInside)
     }
-    
+
     /*
     // MARK: - Navigation
 
@@ -103,8 +131,10 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
                 .collection("charges")
                 .document(token)
                 .setData([
-                    "amount": 500,
-                    "currency": "USD"
+                    "amount": self.amountField.decimal * 100,
+                    "currency": "USD",
+                    "type": "one-time",
+                    "is_public": self.publicSwitch.isOn
                     ])
             
             completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
@@ -117,6 +147,12 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
     }
     
     @objc func handleApplePayButtonTapped(sender: UIButton!) {
+        let amount = amountField.decimal
+        
+        if amount == 0 {
+            return
+        }
+
         // Cards that should be accepted
         let paymentNetworks:[PKPaymentNetwork] = [.amex, .masterCard, .visa]
         
@@ -131,10 +167,8 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
             // This is based on using Stripe
             request.merchantCapabilities = .capability3DS
             
-            let amount = amountField.decimalNumber
-            
-            let donation = PKPaymentSummaryItem(label: "Donation to " + organization!.name, amount: amount, type: .final)
-            let total = PKPaymentSummaryItem(label: "Total", amount: amount, type: .final)
+            let donation = PKPaymentSummaryItem(label: "Donation to " + organization!.name, amount: NSDecimalNumber(decimal: amount), type: .final)
+            let total = PKPaymentSummaryItem(label: "Total", amount: NSDecimalNumber(decimal: amount), type: .final)
 
             request.paymentSummaryItems = [donation, total]
             
