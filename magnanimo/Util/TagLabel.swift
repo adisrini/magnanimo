@@ -10,8 +10,6 @@ import UIKit
 
 class TagLabel: UILabel {
     
-    let inset = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
-    
     init() {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -25,13 +23,13 @@ class TagLabel: UILabel {
     }
     
     override func draw(_ rect: CGRect) {
-        super.drawText(in: rect.inset(by: inset))
+        super.drawText(in: rect.inset(by: Constants.INSETS))
     }
     
     override var intrinsicContentSize: CGSize {
         var intrinsicContentSize = super.intrinsicContentSize
-        intrinsicContentSize.width += self.inset.left + self.inset.right
-        intrinsicContentSize.height += self.inset.top + self.inset.bottom
+        intrinsicContentSize.width += Constants.INSETS.left + Constants.INSETS.right
+        intrinsicContentSize.height += Constants.INSETS.top + Constants.INSETS.bottom
         return intrinsicContentSize
     }
 }

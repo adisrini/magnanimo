@@ -10,4 +10,6 @@ import UIKit
 
 class Constants {
     static let CORNER_RADIUS: CGFloat = 8
+    static let INSETS: UIEdgeInsets = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
+    static let GRID_SIZE: CGFloat = 20
 }

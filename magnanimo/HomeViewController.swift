@@ -29,9 +29,9 @@ class HomeViewController: UIViewController {
     
     fileprivate let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 20
+        layout.minimumLineSpacing = Constants.GRID_SIZE
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 50, left: 20, bottom: 50, right: 20)
+        layout.sectionInset = UIEdgeInsets(top: 2 * Constants.GRID_SIZE, left: Constants.GRID_SIZE, bottom: 2 * Constants.GRID_SIZE, right: Constants.GRID_SIZE)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(OrganizationCell.self, forCellWithReuseIdentifier: "cell")
@@ -85,10 +85,10 @@ class HomeViewController: UIViewController {
         self.view.addSubview(collectionView)
         let guide = view.safeAreaLayoutGuide
         collectionView.backgroundColor = UIColor.Blueprint.Util.Transparent
-        collectionView.topAnchor.constraint(equalTo: dollarAmount.bottomAnchor, constant: 40).isActive = true
+        collectionView.topAnchor.constraint(equalTo: dollarAmount.bottomAnchor, constant: 2 * Constants.GRID_SIZE).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -20).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -Constants.GRID_SIZE).isActive = true
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -169,7 +169,7 @@ extension HomeViewController: PKPaymentAuthorizationViewControllerDelegate {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width - 50, height: collectionView.frame.height - 30)
+        return CGSize(width: collectionView.frame.width - 2 * Constants.GRID_SIZE, height: collectionView.frame.height - Constants.GRID_SIZE)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -262,8 +262,8 @@ class OrganizationCell: UICollectionViewCell {
         
         // position button
         self.addSubview(showButton)
-        showButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
-        showButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        showButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.GRID_SIZE).isActive = true
+        showButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
         
         // round corners and add shadows
         self.contentView.backgroundColor = UIColor.white
@@ -281,20 +281,20 @@ class OrganizationCell: UICollectionViewCell {
 
         // position titleLabel
         contentView.addSubview(titleLabel)
-        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.GRID_SIZE).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
         
         // position categoryLabel
         contentView.addSubview(categoryLabel)
-        categoryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
-        categoryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        categoryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
+        categoryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
         
         // position descriptionLabel
         contentView.addSubview(descriptionLabel)
-        descriptionLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 20).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
+        descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
+        descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
