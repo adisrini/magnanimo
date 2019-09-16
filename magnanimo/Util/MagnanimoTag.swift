@@ -1,5 +1,5 @@
 //
-//  TagLabel.swift
+//  MagnanimoTag.swift
 //  magnanimo
 //
 //  Created by Aditya Srinivasan on 9/13/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TagLabel: UILabel {
+class MagnanimoTag: UILabel {
     
     init() {
         super.init(frame: .zero)

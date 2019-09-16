@@ -20,7 +20,7 @@
 		0B97BCF1232F48D400CA2D9F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF0232F48D400CA2D9F /* Constants.swift */; };
 		0B97BCF3232F55E300CA2D9F /* MagnanimoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */; };
 		0B97BCF5232F75C500CA2D9F /* StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF4232F75C500CA2D9F /* StringProtocol.swift */; };
-		0BCF956D232B863C00F308B8 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF956C232B863C00F308B8 /* TagLabel.swift */; };
+		0BCF956D232B863C00F308B8 /* MagnanimoTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF956C232B863C00F308B8 /* MagnanimoTag.swift */; };
 		0BCF956F232B8E8B00F308B8 /* OrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF956E232B8E8B00F308B8 /* OrganizationViewController.swift */; };
 		0BD316762329383500ACC5A9 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD316752329383500ACC5A9 /* UIColor+Hex.swift */; };
 		0BD316782329393500ACC5A9 /* UIColor+Blueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD316772329393500ACC5A9 /* UIColor+Blueprint.swift */; };
@@ -76,7 +76,7 @@
 		0B97BCF0232F48D400CA2D9F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoButton.swift; sourceTree = "<group>"; };
 		0B97BCF4232F75C500CA2D9F /* StringProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocol.swift; sourceTree = "<group>"; };
-		0BCF956C232B863C00F308B8 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
+		0BCF956C232B863C00F308B8 /* MagnanimoTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoTag.swift; sourceTree = "<group>"; };
 		0BCF956E232B8E8B00F308B8 /* OrganizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationViewController.swift; sourceTree = "<group>"; };
 		0BD316752329383500ACC5A9 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		0BD316772329393500ACC5A9 /* UIColor+Blueprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Blueprint.swift"; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 		0BCF956B232B862900F308B8 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				0BCF956C232B863C00F308B8 /* TagLabel.swift */,
+				0BCF956C232B863C00F308B8 /* MagnanimoTag.swift */,
 				0B97BCEE232C09A800CA2D9F /* MagnanimoLabel.swift */,
 				0B97BCF0232F48D400CA2D9F /* Constants.swift */,
 				0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */,
@@ -540,7 +540,7 @@
 				0BD3167B232966DC00ACC5A9 /* Organization.swift in Sources */,
 				0BF33ABA232A5F0E00190F15 /* UIColor+Stripe.swift in Sources */,
 				0B18EE47232A3EF500A16A1C /* Buttons.swift in Sources */,
-				0BCF956D232B863C00F308B8 /* TagLabel.swift in Sources */,
+				0BCF956D232B863C00F308B8 /* MagnanimoTag.swift in Sources */,
 				0B97BCF3232F55E300CA2D9F /* MagnanimoButton.swift in Sources */,
 				0BD316762329383500ACC5A9 /* UIColor+Hex.swift in Sources */,
 				0B18EE4F232A400700A16A1C /* SettingsViewController.swift in Sources */,

@@ -33,7 +33,7 @@ class OrganizationViewController: UIViewController {
     
     fileprivate let titleLabel = MagnanimoLabel(type: .Title)
     
-    fileprivate let categoryLabel = TagLabel()
+    fileprivate let categoryLabel = MagnanimoTag()
     
     fileprivate let descriptionLabel = MagnanimoLabel(type: .Text)
     

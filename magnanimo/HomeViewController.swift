@@ -193,7 +193,7 @@ extension HomeViewController: PKPaymentAuthorizationViewControllerDelegate {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width - 2 * Constants.GRID_SIZE, height: collectionView.frame.height - Constants.GRID_SIZE)
+        return CGSize(width: collectionView.frame.width - (3 * Constants.GRID_SIZE), height: collectionView.frame.height - Constants.GRID_SIZE)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -268,7 +268,7 @@ class OrganizationCell: UICollectionViewCell {
     
     fileprivate let titleLabel = MagnanimoLabel(type: .Title)
     fileprivate let descriptionLabel = MagnanimoLabel(type: .Text)
-    fileprivate let categoryLabel = TagLabel()
+    fileprivate let categoryLabel = MagnanimoTag()
     
     fileprivate let showButton = ShowOrganizationButton(title: "View", shadowType: .Medium)
 
