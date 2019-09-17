@@ -11,11 +11,11 @@ import FirebaseFirestore
 import FirebaseAuth
 import PassKit
 import Stripe
+import SkeletonView
 
 class HomeViewController: UIViewController {
     
     var data: [[String: NSObject]]?
-
     var totalAmountDonated: Double = 0 {
         didSet {
             self.amountLabel.text = Formatter.currency.string(from: NSNumber(value: self.totalAmountDonated))
@@ -34,6 +34,8 @@ class HomeViewController: UIViewController {
         label.text = "$0.00"
         return label
     }()
+    
+    fileprivate let activityIndicator = UIActivityIndicatorView(style: .gray)
     
     fileprivate let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -75,6 +77,17 @@ class HomeViewController: UIViewController {
     }
     
     private func initializeData() {
+        self.view.addSubview(collectionView)
+        let guide = view.safeAreaLayoutGuide
+        collectionView.backgroundColor = UIColor.Blueprint.Util.Transparent
+        collectionView.topAnchor.constraint(equalTo: amountLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -Constants.GRID_SIZE).isActive = true
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
         let db = Firestore.firestore()
         db.collection("organizations").getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -87,7 +100,7 @@ class HomeViewController: UIViewController {
                     } else {
                         let categories = Dictionary(uniqueKeysWithValues: querySnapshot!.documents.map({ doc in (doc.documentID, Category(map: doc.data())) }))
                         self.data = organizations.map({ org in ["organization": org, "category": categories[org.categoryId]!] })
-                        self.initializeOrganizations()
+                        self.collectionView.reloadData()
                     }
                 }
             }
@@ -107,24 +120,15 @@ class HomeViewController: UIViewController {
             }
         }
     }
-
-    private func initializeOrganizations() {
-        self.view.addSubview(collectionView)
-        let guide = view.safeAreaLayoutGuide
-        collectionView.backgroundColor = UIColor.Blueprint.Util.Transparent
-        collectionView.topAnchor.constraint(equalTo: amountLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -Constants.GRID_SIZE).isActive = true
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
-    }
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {}
 }
 
-extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDelegateFlowLayout, SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "cell"
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width - (3 * Constants.GRID_SIZE), height: collectionView.frame.height - Constants.GRID_SIZE)
     }
@@ -159,7 +163,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             }
         }
     }
-    
 }
 
 class ShowOrganizationButton: MagnanimoButton {
@@ -182,6 +185,7 @@ class OrganizationCell: UICollectionViewCell {
             titleLabel.text = organization.name
             descriptionLabel.text = organization.desc
             showButton.organization = organization
+            self.hideSkeleton()
         }
     }
     
@@ -210,6 +214,7 @@ class OrganizationCell: UICollectionViewCell {
         
         // make interactive
         self.contentView.isUserInteractionEnabled = false
+        self.isSkeletonable = true
         
         // position button
         self.addSubview(showButton)
@@ -247,6 +252,8 @@ class OrganizationCell: UICollectionViewCell {
         descriptionLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
         descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
         descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
+        
+        self.showAnimatedGradientSkeleton()
     }
     
     required init?(coder aDecoder: NSCoder) {

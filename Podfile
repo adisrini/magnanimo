@@ -14,6 +14,7 @@ target 'magnanimo' do
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
   pod 'Stripe'
+  pod 'SkeletonView'
   
 
   target 'magnanimoTests' do
