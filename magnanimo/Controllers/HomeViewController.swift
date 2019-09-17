@@ -219,7 +219,11 @@ class OrganizationCell: UICollectionViewCell {
         }
     }
     
-    fileprivate let titleLabel = MagnanimoLabel(type: .Title)
+    fileprivate let titleLabel: UILabel = {
+        let label = MagnanimoLabel(type: .Title)
+        label.numberOfLines = 0
+        return label
+    }()
     fileprivate let descriptionLabel: UILabel = {
         let label = MagnanimoLabel(type: .Text)
         label.numberOfLines = 0

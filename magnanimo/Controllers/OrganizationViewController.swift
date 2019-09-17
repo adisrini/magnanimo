@@ -33,7 +33,11 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
     
-    fileprivate let titleLabel = MagnanimoLabel(type: .Title)
+    fileprivate let titleLabel: UILabel = {
+        let label = MagnanimoLabel(type: .Title)
+        label.numberOfLines = 0
+        return label
+    }()
     
     fileprivate let categoryLabel = MagnanimoTag()
     
