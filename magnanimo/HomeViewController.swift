@@ -301,9 +301,6 @@ class LastCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        // make interactive
-        contentView.isUserInteractionEnabled = false
-        
         contentView.addSubview(lastCellTitleLabel)
         contentView.addSubview(lastCellSubtitleLabel)
         contentView.backgroundColor = UIColor.Blueprint.LightGray.LightGray3
