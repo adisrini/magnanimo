@@ -44,7 +44,8 @@ class HomeViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 2 * Constants.GRID_SIZE, left: Constants.GRID_SIZE, bottom: 2 * Constants.GRID_SIZE, right: Constants.GRID_SIZE)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.register(OrganizationCell.self, forCellWithReuseIdentifier: "cell")
+        cv.register(OrganizationCell.self, forCellWithReuseIdentifier: "organizationCell")
+        cv.register(LastCell.self, forCellWithReuseIdentifier: "lastCell")
         return cv
     }()
 
@@ -142,22 +143,24 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! OrganizationCell
         if let count = self.data?.count {
             if indexPath.row < count {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "organizationCell", for: indexPath) as! OrganizationCell
                 cell.organization = self.data?[indexPath.row]["organization"] as? Organization
                 cell.category = self.data?[indexPath.row]["category"] as? Category
                 cell.showButton.addTarget(self, action: #selector(handleShowButtonTapped), for: .touchUpInside)
+                return cell
             } else {
-                cell.isLastCell = true
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "lastCell", for: indexPath) as! LastCell
                 let gesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleLastCellTapped))
                 gesture.numberOfTapsRequired = 1
-                cell.contentView.isUserInteractionEnabled = true
                 cell.contentView.addGestureRecognizer(gesture)
+                return cell
             }
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "organizationCell", for: indexPath) as! OrganizationCell
+            return cell
         }
-
-        return cell
     }
     
     @objc func handleShowButtonTapped(sender: ShowOrganizationButton!) {
@@ -197,12 +200,6 @@ class ShowOrganizationButton: MagnanimoButton {
 }
 
 class OrganizationCell: UICollectionViewCell {
-    var isLastCell = false {
-        didSet {
-            makeLastCell()
-        }
-    }
-
     var organization: Organization? {
         didSet {
             guard let organization = organization else { return }
@@ -232,13 +229,6 @@ class OrganizationCell: UICollectionViewCell {
     fileprivate let categoryLabel = MagnanimoTag()
     
     fileprivate let showButton = ShowOrganizationButton(title: "View", shadowType: .Medium)
-    
-    fileprivate let lastCellTitleLabel: UILabel = {
-        let label = MagnanimoLabel(type: .Title)
-        label.text = "Browse all organizations..."
-        
-        return label
-    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -287,21 +277,43 @@ class OrganizationCell: UICollectionViewCell {
         self.showAnimatedGradientSkeleton()
     }
     
-    private func makeLastCell() {
-        showButton.removeFromSuperview()
-        for subview in contentView.subviews {
-            subview.removeFromSuperview()
-        }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
+class LastCell: UICollectionViewCell {
+    fileprivate let lastCellTitleLabel: UILabel = {
+        let label = MagnanimoLabel(type: .Title)
+        label.text = "Browse all organizations"
+        
+        return label
+    }()
+    
+    fileprivate let lastCellSubtitleLabel: UILabel = {
+        let label = MagnanimoLabel(type: .Subtitle)
+        label.text = "Find another cause to support"
+        
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        // make interactive
+        contentView.isUserInteractionEnabled = false
         
         contentView.addSubview(lastCellTitleLabel)
+        contentView.addSubview(lastCellSubtitleLabel)
         contentView.backgroundColor = UIColor.Blueprint.LightGray.LightGray3
-
-        lastCellTitleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        lastCellTitleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        lastCellTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
-        lastCellTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
         
-        self.hideSkeleton()
+        lastCellSubtitleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        lastCellSubtitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
+        lastCellSubtitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
+        lastCellTitleLabel.bottomAnchor.constraint(equalTo: lastCellSubtitleLabel.topAnchor).isActive = true
+        lastCellTitleLabel.leadingAnchor.constraint(equalTo: lastCellSubtitleLabel.leadingAnchor).isActive = true
+        lastCellTitleLabel.trailingAnchor.constraint(equalTo: lastCellSubtitleLabel.trailingAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
