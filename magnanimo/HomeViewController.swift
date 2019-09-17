@@ -128,24 +128,34 @@ class HomeViewController: UIViewController {
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {}
 }
 
-extension HomeViewController: UICollectionViewDelegateFlowLayout, SkeletonCollectionViewDataSource {
-    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return "cell"
-    }
-    
+extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width - (3 * Constants.GRID_SIZE), height: collectionView.frame.height - Constants.GRID_SIZE)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        if let count = self.data?.count {
+            return count + 1
+        } else {
+            return 3
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! OrganizationCell
-        cell.organization = self.data?[indexPath.row]["organization"] as? Organization
-        cell.category = self.data?[indexPath.row]["category"] as? Category
-        cell.showButton.addTarget(self, action: #selector(handleShowButtonTapped), for: .touchUpInside)
+        if let count = self.data?.count {
+            if indexPath.row < count {
+                cell.organization = self.data?[indexPath.row]["organization"] as? Organization
+                cell.category = self.data?[indexPath.row]["category"] as? Category
+                cell.showButton.addTarget(self, action: #selector(handleShowButtonTapped), for: .touchUpInside)
+            } else {
+                cell.isLastCell = true
+                let gesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleLastCellTapped))
+                gesture.numberOfTapsRequired = 1
+                cell.contentView.isUserInteractionEnabled = true
+                cell.contentView.addGestureRecognizer(gesture)
+            }
+        }
 
         return cell
     }
@@ -157,6 +167,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, SkeletonCollec
         self.selectedOrganization = organization
         self.selectedCategory = category
         performSegue(withIdentifier: "showOrganization", sender: self)
+    }
+    
+    @objc func handleLastCellTapped() {
+        tabBarController?.selectedIndex = 1
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -183,6 +197,12 @@ class ShowOrganizationButton: MagnanimoButton {
 }
 
 class OrganizationCell: UICollectionViewCell {
+    var isLastCell = false {
+        didSet {
+            makeLastCell()
+        }
+    }
+
     var organization: Organization? {
         didSet {
             guard let organization = organization else { return }
@@ -212,6 +232,13 @@ class OrganizationCell: UICollectionViewCell {
     fileprivate let categoryLabel = MagnanimoTag()
     
     fileprivate let showButton = ShowOrganizationButton(title: "View", shadowType: .Medium)
+    
+    fileprivate let lastCellTitleLabel: UILabel = {
+        let label = MagnanimoLabel(type: .Title)
+        label.text = "Browse all organizations..."
+        
+        return label
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -258,6 +285,23 @@ class OrganizationCell: UICollectionViewCell {
         descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
         
         self.showAnimatedGradientSkeleton()
+    }
+    
+    private func makeLastCell() {
+        showButton.removeFromSuperview()
+        for subview in contentView.subviews {
+            subview.removeFromSuperview()
+        }
+        
+        contentView.addSubview(lastCellTitleLabel)
+        contentView.backgroundColor = UIColor.Blueprint.LightGray.LightGray3
+
+        lastCellTitleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        lastCellTitleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        lastCellTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
+        lastCellTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
+        
+        self.hideSkeleton()
     }
     
     required init?(coder aDecoder: NSCoder) {
