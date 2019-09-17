@@ -32,4 +32,14 @@ class MagnanimoTag: UILabel {
         intrinsicContentSize.height += Constants.INSETS.top + Constants.INSETS.bottom
         return intrinsicContentSize
     }
+    
+    func withTextAndColor(text: String, baseColor: UIColor, accentColor: UIColor) -> MagnanimoTag {
+        let attributedString = NSMutableAttributedString(string: text.uppercased())
+        attributedString.addAttribute(NSAttributedString.Key.kern, value: CGFloat(1.4), range: NSRange(location: 0, length: text.count))
+        self.attributedText = attributedString
+        self.layer.backgroundColor = baseColor.withAlphaComponent(0.15).cgColor
+        self.textColor = accentColor
+        
+        return self
+    }
 }

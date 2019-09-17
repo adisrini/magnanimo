@@ -57,12 +57,31 @@ class MagnanimoFirebaseClient {
             .document(Auth.auth().currentUser!.uid)
             .collection("charges")
             .whereField("status", isEqualTo: "succeeded")
+            .order(by: "created", descending: true)
             .getDocuments(
                 completion: handleSnapshotCompletion(
                     completion: completion,
                     createObjectFn: { doc in StripeCharge(id: doc.documentID, map: doc.data()! )}
                 )
             )
+    }
+
+    static func getSuccessfulUserChargesForOrganization(
+        organizationId: String,
+        completion: @escaping MagnanimoFirebaseCompletion<StripeCharge>
+    ) {
+        self.db.collection("stripe_customers")
+            .document(Auth.auth().currentUser!.uid)
+            .collection("charges")
+            .whereField("status", isEqualTo: "succeeded")
+            .whereField("organization_id", isEqualTo: organizationId)
+            .order(by: "created", descending: true)
+            .getDocuments(
+                completion: handleSnapshotCompletion(
+                    completion: completion,
+                    createObjectFn: { doc in StripeCharge(id: doc.documentID, map: doc.data()! )}
+                )
+        )
     }
     
     static func customerRef() -> DocumentReference {

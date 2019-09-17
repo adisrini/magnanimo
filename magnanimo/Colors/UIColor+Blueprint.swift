@@ -42,6 +42,22 @@ extension UIColor {
             static let Indigo5 = UIColor(netHex: 0xAD99FF)
         }
         
+        struct Turquoise {
+            static let Turquoise1 = UIColor(netHex: 0x008075)
+            static let Turquoise2 = UIColor(netHex: 0x00998C)
+            static let Turquoise3 = UIColor(netHex: 0x00B3A4)
+            static let Turquoise4 = UIColor(netHex: 0x14CCBD)
+            static let Turquoise5 = UIColor(netHex: 0x2EE6D6)
+        }
+        
+        struct Forest {
+            static let Forest1 = UIColor(netHex: 0x1D7324)
+            static let Forest2 = UIColor(netHex: 0x238C2C)
+            static let Forest3 = UIColor(netHex: 0x29A634)
+            static let Forest4 = UIColor(netHex: 0x43BF4D)
+            static let Forest5 = UIColor(netHex: 0x62D96B)
+        }
+        
         struct Util {
             static let Transparent = UIColor(white: 0, alpha: 0)
         }

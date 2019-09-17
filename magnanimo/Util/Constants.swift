@@ -12,6 +12,8 @@ class Constants {
     static let CORNER_RADIUS: CGFloat = 8
     static let INSETS: UIEdgeInsets = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
     static let GRID_SIZE: CGFloat = 20
+    static let ONE_TIME_ICON = "plus"
+    static let SUBSCRIBE_ICON = "clock"
 
     static let MERCHANT_ID = "merchant.com.magnanimo"
 }

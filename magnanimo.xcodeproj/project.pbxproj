@@ -20,6 +20,7 @@
 		0B821D6A2330B6DF00B5F149 /* PaymentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D692330B6DF00B5F149 /* PaymentType.swift */; };
 		0B821D6C2330B81800B5F149 /* MagnanimoFirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D6B2330B81800B5F149 /* MagnanimoFirebaseClient.swift */; };
 		0B821D6E2330C97400B5F149 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D6D2330C97400B5F149 /* Functions.swift */; };
+		0B821D722330D87900B5F149 /* MagnanimoChargeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D712330D87900B5F149 /* MagnanimoChargeTableView.swift */; };
 		0B97BCEF232C09A800CA2D9F /* MagnanimoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCEE232C09A800CA2D9F /* MagnanimoLabel.swift */; };
 		0B97BCF1232F48D400CA2D9F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF0232F48D400CA2D9F /* Constants.swift */; };
 		0B97BCF3232F55E300CA2D9F /* MagnanimoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */; };
@@ -85,6 +86,7 @@
 		0B821D692330B6DF00B5F149 /* PaymentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentType.swift; sourceTree = "<group>"; };
 		0B821D6B2330B81800B5F149 /* MagnanimoFirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoFirebaseClient.swift; sourceTree = "<group>"; };
 		0B821D6D2330C97400B5F149 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		0B821D712330D87900B5F149 /* MagnanimoChargeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoChargeTableView.swift; sourceTree = "<group>"; };
 		0B97BCEE232C09A800CA2D9F /* MagnanimoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoLabel.swift; sourceTree = "<group>"; };
 		0B97BCF0232F48D400CA2D9F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoButton.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				0B97BD01232FA20800CA2D9F /* UIViewController.swift */,
 				0B821D692330B6DF00B5F149 /* PaymentType.swift */,
 				0B821D6D2330C97400B5F149 /* Functions.swift */,
+				0B821D712330D87900B5F149 /* MagnanimoChargeTableView.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				0B97BCFB232F9C8E00CA2D9F /* MagnanimoCurrencyField.swift in Sources */,
 				0B0C21EE2328CF9A008655F8 /* LoginViewController.swift in Sources */,
 				0B97BD00232F9FCF00CA2D9F /* UIColor+Magnanimo.swift in Sources */,
+				0B821D722330D87900B5F149 /* MagnanimoChargeTableView.swift in Sources */,
 				0B97BCF7232F960B00CA2D9F /* OneTimePaymentViewController.swift in Sources */,
 				0B97BCF1232F48D400CA2D9F /* Constants.swift in Sources */,
 				0B821D6E2330C97400B5F149 /* Functions.swift in Sources */,

@@ -8,9 +8,11 @@
 
 import UIKit
 
-class OrganizationViewController: UIViewController {
+class OrganizationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let impact = UIImpactFeedbackGenerator()
+    
+    var historicalCharges: Array<StripeCharge>?
     
     var organization: Organization? {
         didSet {
@@ -48,6 +50,22 @@ class OrganizationViewController: UIViewController {
         return button
     }()
     
+    fileprivate let scrollView: UIScrollView = {
+        let sv = UIScrollView()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.backgroundColor = UIColor.Blueprint.LightGray.LightGray4
+        sv.isExclusiveTouch = false
+        sv.delaysContentTouches = false
+
+        return sv
+    }()
+    
+    fileprivate let containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     fileprivate let donateLabel: UILabel = {
         let label = MagnanimoLabel(type: .Header)
         label.text = "Donate"
@@ -55,15 +73,14 @@ class OrganizationViewController: UIViewController {
     }()
     
     fileprivate let oneTimeDonateButton: UIButton = {
-        let button = MagnanimoButton(title: "One-time", subtitle: "Make a single payment.", shadowType: .Small).withIcon("dollar")
+        let button = MagnanimoButton(title: "One-time", subtitle: "Make a single payment.", shadowType: .Small).withIcon(Constants.ONE_TIME_ICON)
         button.addTarget(self, action: #selector(handleOneTimeDonateButtonTapped), for: .touchUpInside)
 
         return button
     }()
-
     
     fileprivate let subscribeDonateButton: UIButton = {
-        let button = MagnanimoButton(title: "Subscribe", subtitle: "Schedule payments to repeat.", shadowType: .Small).withIcon("clock")
+        let button = MagnanimoButton(title: "Subscribe", subtitle: "Schedule payments to repeat.", shadowType: .Small).withIcon(Constants.SUBSCRIBE_ICON)
         button.addTarget(self, action: #selector(handleSubscribeDonateButtonTapped), for: .touchUpInside)
         
         return button
@@ -74,6 +91,23 @@ class OrganizationViewController: UIViewController {
         label.text = "Your History"
         return label
     }()
+    
+    fileprivate let historicalAmountLabel: UILabel = {
+        let label = MagnanimoLabel(type: .Header)
+        label.font = UIFont.Magnanimo.Money
+        label.textColor = UIColor.Magnanimo.Money
+        label.text = "$0.00"
+        label.isSkeletonable = true
+        return label
+    }()
+    
+    fileprivate let historyTable: UITableView = {
+        let table = MagnanimoChargeTableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.register(MagnanimoChargeTableViewCell.self, forCellReuseIdentifier: MagnanimoChargeTableViewCell.ID)
+        table.rowHeight = UITableView.automaticDimension;
+        return table
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,19 +117,32 @@ class OrganizationViewController: UIViewController {
         view.addSubview(categoryLabel)
         view.addSubview(descriptionLabel)
         view.addSubview(closeButton)
-        view.addSubview(donateLabel)
-        view.addSubview(oneTimeDonateButton)
-        view.addSubview(subscribeDonateButton)
-        view.addSubview(historyLabel)
+        view.addSubview(scrollView)
+
+        scrollView.addSubview(containerView)
+        
+        containerView.addSubview(donateLabel)
+        scrollView.addSubview(oneTimeDonateButton)
+        scrollView.addSubview(subscribeDonateButton)
+        containerView.addSubview(historyLabel)
+        containerView.addSubview(historicalAmountLabel)
+        containerView.addSubview(historyTable)
 
         positionTitle()
         positionCategoryLabel()
         positionDescription()
         positionCloseButton()
+        positionScrollView()
         positionDonateSection()
-        positionHistoryLabel()
+        positionHistorySection()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        loadHistory()
+    }
+    
+    // MARK: - Positioning
+
     private func positionTitle() {
         let guide = view.safeAreaLayoutGuide
         titleLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: Constants.GRID_SIZE).isActive = true
@@ -104,40 +151,80 @@ class OrganizationViewController: UIViewController {
     }
     
     private func positionCategoryLabel() {
-        let guide = view.safeAreaLayoutGuide
         categoryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
-        categoryLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
-    }
-    
-    private func positionDescription() {
-        let guide = view.safeAreaLayoutGuide
-        descriptionLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
-        descriptionLabel.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
+        categoryLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
     }
     
     private func positionCloseButton() {
         let guide = view.safeAreaLayoutGuide
-        closeButton.topAnchor.constraint(equalTo: guide.topAnchor, constant: Constants.GRID_SIZE).isActive = true
+        closeButton.topAnchor.constraint(equalTo: titleLabel.topAnchor).isActive = true
         closeButton.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
     }
     
-    private func positionDonateSection() {
+    private func positionDescription() {
+        descriptionLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
+        descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        descriptionLabel.trailingAnchor.constraint(equalTo: closeButton.trailingAnchor).isActive = true
+    }
+    
+    private func positionScrollView() {
         let guide = view.safeAreaLayoutGuide
-        donateLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 2 * Constants.GRID_SIZE).isActive = true
-        donateLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
-        oneTimeDonateButton.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
+        
+        containerView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+    }
+    
+    private func positionDonateSection() {
+        donateLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: Constants.GRID_SIZE).isActive = true
+        donateLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        oneTimeDonateButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         oneTimeDonateButton.topAnchor.constraint(equalTo: donateLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
-        subscribeDonateButton.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
+        subscribeDonateButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         subscribeDonateButton.topAnchor.constraint(equalTo: oneTimeDonateButton.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
     }
     
-    private func positionHistoryLabel() {
-        let guide = view.safeAreaLayoutGuide
+    private func positionHistorySection() {
         historyLabel.topAnchor.constraint(equalTo: subscribeDonateButton.bottomAnchor, constant: 2 * Constants.GRID_SIZE).isActive = true
-        historyLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
+        historyLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        
+        historicalAmountLabel.topAnchor.constraint(equalTo: historyLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
+        historicalAmountLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        
+        historyTable.topAnchor.constraint(equalTo: historicalAmountLabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
+        historyTable.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        historyTable.trailingAnchor.constraint(equalTo: closeButton.trailingAnchor).isActive = true
+        historyTable.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -Constants.GRID_SIZE).isActive = true
+        
+        historyTable.delegate = self
+        historyTable.dataSource = self
     }
     
+    // MARK: - Data loading
+
+    private func loadHistory() {
+        historicalAmountLabel.showAnimatedGradientSkeleton()
+        if let organization = organization {
+            MagnanimoFirebaseClient.getSuccessfulUserChargesForOrganization(organizationId: organization.id) { charges in
+                self.historicalCharges = charges
+                var totalAmount: Double = 0
+                for charge in charges {
+                    totalAmount += charge.amountInCents
+                }
+                self.historicalAmountLabel.hideSkeleton()
+                self.historicalAmountLabel.text = Formatter.currency.string(from: NSNumber(value: totalAmount / 100))
+                self.historyTable.reloadData()
+            }
+        }
+    }
+    
+    // MARK: - Button handlers
+
     @objc func handleCloseButtonTapped() {
         performSegue(withIdentifier: "unwindToHome", sender: self)
     }
@@ -166,4 +253,25 @@ class OrganizationViewController: UIViewController {
     
     @IBAction func unwindToOrganization(segue: UIStoryboardSegue) {}
 
+    
+    // MARK: - TableView functions
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return historicalCharges?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: MagnanimoChargeTableViewCell.ID, for: indexPath) as! MagnanimoChargeTableViewCell
+        
+        if let charges = historicalCharges {
+            let charge = charges[indexPath.row]
+            cell.charge = charge
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.GRID_SIZE * 4
+    }
 }

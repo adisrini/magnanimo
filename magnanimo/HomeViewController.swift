@@ -208,11 +208,7 @@ class OrganizationCell: UICollectionViewCell {
     var category: Category? {
         didSet {
             guard let category = category else { return }
-            let attributedString = NSMutableAttributedString(string: category.name.uppercased())
-            attributedString.addAttribute(NSAttributedString.Key.kern, value: CGFloat(1.4), range: NSRange(location: 0, length: category.name.count))
-            categoryLabel.attributedText = attributedString
-            categoryLabel.layer.backgroundColor = category.baseColor.withAlphaComponent(0.15).cgColor
-            categoryLabel.textColor = category.accentColor
+            categoryLabel = categoryLabel.withTextAndColor(text: category.name, baseColor: category.baseColor, accentColor: category.accentColor)
             
             showButton.layer.backgroundColor = category.baseColor.withAlphaComponent(0.15).cgColor
             showButton.category = category
@@ -221,7 +217,7 @@ class OrganizationCell: UICollectionViewCell {
     
     fileprivate let titleLabel = MagnanimoLabel(type: .Title)
     fileprivate let descriptionLabel = MagnanimoLabel(type: .Text)
-    fileprivate let categoryLabel = MagnanimoTag()
+    fileprivate var categoryLabel = MagnanimoTag()
     
     fileprivate let showButton = ShowOrganizationButton(title: "View", shadowType: .Medium)
 
