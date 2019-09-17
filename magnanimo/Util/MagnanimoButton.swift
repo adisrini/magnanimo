@@ -87,6 +87,15 @@ class MagnanimoButton: UIButton {
         }
     }
     
+    public func withIcon(_ iconName: String) -> MagnanimoButton {
+        let icon = UIImage(named: iconName)!
+        self.setImage(icon, for: .normal)
+        self.imageView?.contentMode = .scaleAspectFit
+        self.imageEdgeInsets = UIEdgeInsets(top: 0, left: -Constants.GRID_SIZE / 2, bottom: 0, right: Constants.GRID_SIZE / 2)
+
+        return self
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

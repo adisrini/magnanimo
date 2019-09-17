@@ -23,6 +23,17 @@ class OneTimePaymentViewController: UIViewController {
         return label
     }()
     
+    fileprivate let closeButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("X", for: .normal)
+        button.titleLabel!.font = UIFont.boldSystemFont(ofSize: 16)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.addTarget(self, action: #selector(handleCloseButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
     fileprivate let amountField = MagnanimoCurrencyField()
     
     fileprivate let publicLabel: UILabel = {
@@ -56,18 +67,20 @@ class OneTimePaymentViewController: UIViewController {
     
     private func positionHeader() {
         view.addSubview(headerLabel)
+        view.addSubview(closeButton)
         
         let guide = view.safeAreaLayoutGuide
         headerLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: Constants.GRID_SIZE).isActive = true
         headerLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
+        closeButton.topAnchor.constraint(equalTo: headerLabel.topAnchor).isActive = true
+        closeButton.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
     }
     
     private func positionField() {
         view.addSubview(amountField)
         
-        let guide = view.safeAreaLayoutGuide
         amountField.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 3 * Constants.GRID_SIZE).isActive = true
-        amountField.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -Constants.GRID_SIZE).isActive = true
+        amountField.trailingAnchor.constraint(equalTo: closeButton.trailingAnchor).isActive = true
     }
     
     private func positionSwitch() {
@@ -90,6 +103,14 @@ class OneTimePaymentViewController: UIViewController {
         applePayButton.trailingAnchor.constraint(equalTo: publicSwitch.trailingAnchor).isActive = true
         applePayButton.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor).isActive = true
         applePayButton.addTarget(self, action: #selector(handleApplePayButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func handleCloseButtonTapped() {
+        unwindToOrganization()
+    }
+    
+    private func unwindToOrganization() {
+        performSegue(withIdentifier: "unwindToOrganization", sender: self)
     }
 
     /*
@@ -138,6 +159,7 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
                     ])
             
             completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+            self.unwindToOrganization()
         }
     }
     

@@ -55,15 +55,15 @@ class OrganizationViewController: UIViewController {
     }()
     
     fileprivate let oneTimeDonateButton: UIButton = {
-        let button = MagnanimoButton(title: "One-time", subtitle: "Make a single payment.", shadowType: .Small)
+        let button = MagnanimoButton(title: "One-time", subtitle: "Make a single payment.", shadowType: .Small).withIcon("dollar")
         button.addTarget(self, action: #selector(handleOneTimeDonateButtonTapped), for: .touchUpInside)
-        
+
         return button
     }()
 
     
     fileprivate let subscribeDonateButton: UIButton = {
-        let button = MagnanimoButton(title: "Subscribe", subtitle: "Schedule payments to repeat.", shadowType: .Small)
+        let button = MagnanimoButton(title: "Subscribe", subtitle: "Schedule payments to repeat.", shadowType: .Small).withIcon("clock")
         button.addTarget(self, action: #selector(handleSubscribeDonateButtonTapped), for: .touchUpInside)
         
         return button
@@ -163,5 +163,7 @@ class OrganizationViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func unwindToOrganization(segue: UIStoryboardSegue) {}
 
 }
