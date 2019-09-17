@@ -10,7 +10,11 @@ import UIKit
 
 extension UIColor {
     struct Magnanimo {
-        static let Disabled = UIColor.Blueprint.LightGray.LightGray1
-        static let Money = UIColor.Blueprint.Indigo.Indigo4
+        static let Disabled = UIColor.Blueprint.LightGray._1
+        static let Money = UIColor.Blueprint.Indigo._4
+        static let Background = UIColor.Blueprint.LightGray._4
+        static let Title = UIColor.Blueprint.DarkGray._1
+        static let Text = UIColor.Blueprint.DarkGray._5
+        static let Muted = UIColor.Blueprint.Gray._1
     }
 }

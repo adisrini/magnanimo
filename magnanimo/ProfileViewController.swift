@@ -10,7 +10,7 @@ import UIKit
 import FacebookCore
 import FirebaseAuth
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: MagnanimoViewController {
     
     @IBOutlet var profileName: UILabel!
     

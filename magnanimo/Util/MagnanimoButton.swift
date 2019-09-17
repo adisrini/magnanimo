@@ -16,7 +16,7 @@ class MagnanimoButton: UIButton {
     
     convenience init(title: String, shadowType: MagnanimoButtonShadowType) {
         let attributedTitle = NSMutableAttributedString(string: title)
-        attributedTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Blueprint.DarkGray.DarkGray1, range: title.fullRange())
+        attributedTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Blueprint.DarkGray._1, range: title.fullRange())
         
         self.init(attributedTitle: attributedTitle, shadowType: shadowType)
     }
@@ -27,13 +27,13 @@ class MagnanimoButton: UIButton {
         let attributedTitle = NSMutableAttributedString(string: combined)
 
         attributedTitle.addAttributes([
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
-            NSAttributedString.Key.foregroundColor: UIColor.Blueprint.DarkGray.DarkGray1
+            NSAttributedString.Key.font: UIFont.Magnanimo.BoldText,
+            NSAttributedString.Key.foregroundColor: UIColor.Magnanimo.Title
             ], range: combined.nsRange(from: combined.range(of: title)!))
 
         attributedTitle.addAttributes([
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
-            NSAttributedString.Key.foregroundColor: UIColor.Blueprint.Gray.Gray1
+            NSAttributedString.Key.font: UIFont.Magnanimo.SmallText,
+            NSAttributedString.Key.foregroundColor: UIColor.Magnanimo.Muted
             ], range: combined.nsRange(from: combined.range(of: subtitle)!))
         
         self.init(attributedTitle: attributedTitle, shadowType: shadowType)
@@ -47,7 +47,7 @@ class MagnanimoButton: UIButton {
         
         // set title
         self.setAttributedTitle(attributedTitle, for: .normal)
-        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        self.titleLabel?.font = UIFont.Magnanimo.BoldText
         
         // change layer
         applyShadow(shadowType)

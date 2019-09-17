@@ -10,7 +10,7 @@ import UIKit
 import PassKit
 import Stripe
 
-class OneTimePaymentViewController: UIViewController {
+class OneTimePaymentViewController: MagnanimoViewController {
     
     var organization: Organization?
     
@@ -22,11 +22,7 @@ class OneTimePaymentViewController: UIViewController {
     }()
     
     fileprivate let closeButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("X", for: .normal)
-        button.titleLabel!.font = UIFont.boldSystemFont(ofSize: 16)
-        button.setTitleColor(UIColor.black, for: .normal)
+        let button = MagnanimoCloseButton()
         button.addTarget(self, action: #selector(handleCloseButtonTapped), for: .touchUpInside)
         
         return button

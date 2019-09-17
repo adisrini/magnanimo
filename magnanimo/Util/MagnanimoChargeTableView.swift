@@ -49,6 +49,8 @@ class MagnanimoChargeTableView: UITableView {
 
 class MagnanimoChargeTableViewCell: UITableViewCell {
     
+    let PADDING = Constants.GRID_SIZE / 2
+
     static let ID = "chargeCell"
     
     var charge: StripeCharge? {
@@ -61,16 +63,17 @@ class MagnanimoChargeTableViewCell: UITableViewCell {
                 let isOneTime = charge.type == PaymentType.ONE_TIME
                 paymentTypeTag = paymentTypeTag.withTextAndColor(
                     text: isOneTime ? "ONE-TIME" : "SUBSCRIPTION",
-                    baseColor: isOneTime ? UIColor.Blueprint.Turquoise.Turquoise3 : UIColor.Blueprint.Forest.Forest3,
-                    accentColor: isOneTime ? UIColor.Blueprint.Turquoise.Turquoise2 : UIColor.Blueprint.Forest.Forest2
+                    palette: isOneTime ? UIColor.Blueprint.Turquoise : UIColor.Blueprint.Forest
                 )
                 
                 // is public
                 isPublicTag = isPublicTag.withTextAndColor(
                     text: charge.isPublic ? "PUBLIC" : "PRIVATE",
-                    baseColor: UIColor.Blueprint.Gray.Gray3,
-                    accentColor: UIColor.Blueprint.Gray.Gray2
+                    palette: UIColor.Blueprint.Gray
                 )
+                
+                // timestamp
+                timestampLabel.text = Dates.readableDateFormatter.string(from: charge.created)
             }
         }
     }
@@ -79,21 +82,33 @@ class MagnanimoChargeTableViewCell: UITableViewCell {
     var category: Category?
     
     fileprivate let amountLabel: UILabel = MagnanimoLabel(type: .Header)
+
+    fileprivate let timestampLabel = MagnanimoLabel(type: .Text)
+
     fileprivate var isPublicTag = MagnanimoTag()
+
     fileprivate var paymentTypeTag = MagnanimoTag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         positionAmount()
+        positionTimestamp()
         positionTags()
     }
     
     // MARK: - Positioning
+
     private func positionAmount() {
         self.addSubview(amountLabel)
-        amountLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.GRID_SIZE / 2).isActive = true
-        amountLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.GRID_SIZE / 2).isActive = true
+        amountLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: PADDING).isActive = true
+        amountLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: PADDING).isActive = true
+    }
+    
+    private func positionTimestamp() {
+        self.addSubview(timestampLabel)
+        timestampLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -PADDING).isActive = true
+        timestampLabel.bottomAnchor.constraint(equalTo: amountLabel.bottomAnchor).isActive = true
     }
     
     private func positionTags() {
@@ -102,8 +117,8 @@ class MagnanimoChargeTableViewCell: UITableViewCell {
             view: self,
             tags: tags,
             leadingConstraint: paymentTypeTag.leadingAnchor.constraint(equalTo: amountLabel.leadingAnchor),
-            globalConstraints: [{ tag in tag.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -(Constants.GRID_SIZE / 2)) }],
-            spacing: Constants.GRID_SIZE / 2
+            globalConstraints: [{ tag in tag.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -self.PADDING) }],
+            spacing: PADDING
         )
     }
     

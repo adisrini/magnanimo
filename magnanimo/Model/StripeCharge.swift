@@ -16,9 +16,10 @@ class StripeCharge: NSObject {
     var isPublic: Bool
     var organizationId: String
     var type: String
+    var created: Date
     
     
-    public init(id: String, token: String, amountInCents: Double, customerId: String, isPublic: Bool, organizationId: String, type: String) {
+    public init(id: String, token: String, amountInCents: Double, customerId: String, isPublic: Bool, organizationId: String, type: String, created: Date) {
         self.id = id
         self.token = token
         self.amountInCents = amountInCents
@@ -26,6 +27,7 @@ class StripeCharge: NSObject {
         self.isPublic = isPublic
         self.organizationId = organizationId
         self.type = type
+        self.created = created
     }
     
     convenience init(id: String, map: [String: Any]) {
@@ -36,7 +38,8 @@ class StripeCharge: NSObject {
             customerId: map["customer"] as! String,
             isPublic: map["is_public"] as! Bool,
             organizationId: map["organization_id"] as! String,
-            type: map["type"] as! String
+            type: map["type"] as! String,
+            created: Date(timeIntervalSince1970: map["created"] as! TimeInterval)
         )
     }
 }

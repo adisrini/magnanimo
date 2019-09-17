@@ -21,6 +21,9 @@
 		0B821D6C2330B81800B5F149 /* MagnanimoFirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D6B2330B81800B5F149 /* MagnanimoFirebaseClient.swift */; };
 		0B821D6E2330C97400B5F149 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D6D2330C97400B5F149 /* Functions.swift */; };
 		0B821D722330D87900B5F149 /* MagnanimoChargeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D712330D87900B5F149 /* MagnanimoChargeTableView.swift */; };
+		0B821D742330FBDA00B5F149 /* MagnanimoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D732330FBDA00B5F149 /* MagnanimoViewController.swift */; };
+		0B821D762330FC8700B5F149 /* MagnanimoCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D752330FC8700B5F149 /* MagnanimoCloseButton.swift */; };
+		0B821D78233112E800B5F149 /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D77233112E800B5F149 /* Dates.swift */; };
 		0B97BCEF232C09A800CA2D9F /* MagnanimoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCEE232C09A800CA2D9F /* MagnanimoLabel.swift */; };
 		0B97BCF1232F48D400CA2D9F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF0232F48D400CA2D9F /* Constants.swift */; };
 		0B97BCF3232F55E300CA2D9F /* MagnanimoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */; };
@@ -87,6 +90,9 @@
 		0B821D6B2330B81800B5F149 /* MagnanimoFirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoFirebaseClient.swift; sourceTree = "<group>"; };
 		0B821D6D2330C97400B5F149 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		0B821D712330D87900B5F149 /* MagnanimoChargeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoChargeTableView.swift; sourceTree = "<group>"; };
+		0B821D732330FBDA00B5F149 /* MagnanimoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoViewController.swift; sourceTree = "<group>"; };
+		0B821D752330FC8700B5F149 /* MagnanimoCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoCloseButton.swift; sourceTree = "<group>"; };
+		0B821D77233112E800B5F149 /* Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dates.swift; sourceTree = "<group>"; };
 		0B97BCEE232C09A800CA2D9F /* MagnanimoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoLabel.swift; sourceTree = "<group>"; };
 		0B97BCF0232F48D400CA2D9F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoButton.swift; sourceTree = "<group>"; };
@@ -195,6 +201,9 @@
 				0B821D692330B6DF00B5F149 /* PaymentType.swift */,
 				0B821D6D2330C97400B5F149 /* Functions.swift */,
 				0B821D712330D87900B5F149 /* MagnanimoChargeTableView.swift */,
+				0B821D732330FBDA00B5F149 /* MagnanimoViewController.swift */,
+				0B821D752330FC8700B5F149 /* MagnanimoCloseButton.swift */,
+				0B821D77233112E800B5F149 /* Dates.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -571,6 +580,7 @@
 			files = (
 				0BD316782329393500ACC5A9 /* UIColor+Blueprint.swift in Sources */,
 				0B18EE4B232A3F4900A16A1C /* CheckoutViewController.swift in Sources */,
+				0B821D742330FBDA00B5F149 /* MagnanimoViewController.swift in Sources */,
 				0B18EE50232A5BDC00A16A1C /* MyAPIClient.swift in Sources */,
 				0B18EE49232A3F2100A16A1C /* CheckoutRowView.swift in Sources */,
 				0B97BCF5232F75C500CA2D9F /* StringProtocol.swift in Sources */,
@@ -585,6 +595,8 @@
 				0B821D682330B64900B5F149 /* StripeCharge.swift in Sources */,
 				0B821D6A2330B6DF00B5F149 /* PaymentType.swift in Sources */,
 				0BD3167B232966DC00ACC5A9 /* Organization.swift in Sources */,
+				0B821D78233112E800B5F149 /* Dates.swift in Sources */,
+				0B821D762330FC8700B5F149 /* MagnanimoCloseButton.swift in Sources */,
 				0BF33ABA232A5F0E00190F15 /* UIColor+Stripe.swift in Sources */,
 				0B18EE47232A3EF500A16A1C /* Buttons.swift in Sources */,
 				0B97BD02232FA20800CA2D9F /* UIViewController.swift in Sources */,

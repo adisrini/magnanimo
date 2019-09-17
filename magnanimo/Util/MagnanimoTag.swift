@@ -15,7 +15,7 @@ class MagnanimoTag: UILabel {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.numberOfLines = 0
         self.layer.cornerRadius = Constants.CORNER_RADIUS
-        self.font = UIFont.boldSystemFont(ofSize: 12)
+        self.font = UIFont.Magnanimo.Tag
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,6 +31,10 @@ class MagnanimoTag: UILabel {
         intrinsicContentSize.width += Constants.INSETS.left + Constants.INSETS.right
         intrinsicContentSize.height += Constants.INSETS.top + Constants.INSETS.bottom
         return intrinsicContentSize
+    }
+    
+    func withTextAndColor(text: String, palette: BlueprintPalette) -> MagnanimoTag {
+        return withTextAndColor(text: text, baseColor: palette._3, accentColor: palette._2)
     }
     
     func withTextAndColor(text: String, baseColor: UIColor, accentColor: UIColor) -> MagnanimoTag {

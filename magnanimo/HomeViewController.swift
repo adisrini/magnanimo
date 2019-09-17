@@ -12,7 +12,7 @@ import PassKit
 import Stripe
 import SkeletonView
 
-class HomeViewController: UIViewController {
+class HomeViewController: MagnanimoViewController {
     
     var data: [[String: NSObject]]?
     var totalAmountDonated: Double = 0 {
@@ -208,7 +208,11 @@ class OrganizationCell: UICollectionViewCell {
     var category: Category? {
         didSet {
             guard let category = category else { return }
-            categoryLabel = categoryLabel.withTextAndColor(text: category.name, baseColor: category.baseColor, accentColor: category.accentColor)
+            categoryLabel = categoryLabel.withTextAndColor(
+                text: category.name,
+                baseColor: category.baseColor,
+                accentColor: category.accentColor
+            )
             
             showButton.layer.backgroundColor = category.baseColor.withAlphaComponent(0.15).cgColor
             showButton.category = category
@@ -294,7 +298,7 @@ class LastCell: UICollectionViewCell {
         
         contentView.addSubview(lastCellTitleLabel)
         contentView.addSubview(lastCellSubtitleLabel)
-        contentView.backgroundColor = UIColor.Blueprint.LightGray.LightGray3
+        contentView.backgroundColor = UIColor.Blueprint.LightGray._3
         
         lastCellSubtitleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         lastCellSubtitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true

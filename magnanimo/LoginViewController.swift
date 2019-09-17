@@ -11,7 +11,7 @@ import FacebookCore
 import FacebookLogin
 import FirebaseAuth
 
-class LoginViewController: UIViewController, LoginButtonDelegate {
+class LoginViewController: MagnanimoViewController, LoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()

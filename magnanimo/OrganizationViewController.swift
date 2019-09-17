@@ -40,11 +40,7 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
     fileprivate let descriptionLabel = MagnanimoLabel(type: .Text)
     
     fileprivate let closeButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("X", for: .normal)
-        button.titleLabel!.font = UIFont.boldSystemFont(ofSize: 16)
-        button.setTitleColor(UIColor.black, for: .normal)
+        let button = MagnanimoCloseButton()
         button.addTarget(self, action: #selector(handleCloseButtonTapped), for: .touchUpInside)
         
         return button
@@ -53,7 +49,7 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
     fileprivate let scrollView: UIScrollView = {
         let sv = UIScrollView()
         sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.backgroundColor = UIColor.Blueprint.LightGray.LightGray4
+        sv.backgroundColor = UIColor.Magnanimo.Background
         sv.isExclusiveTouch = false
         sv.delaysContentTouches = false
 
