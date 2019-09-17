@@ -10,6 +10,7 @@ import UIKit
 import FacebookCore
 import Firebase
 import Stripe
+import SkeletonView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         FirebaseApp.configure()
         Stripe.setDefaultPublishableKey("pk_test_5G2Xc1eMlUWFofGpWjGF733t00d6rM2wA9")
+        SkeletonAppearance.default.tintColor = UIColor.Blueprint.LightGray._2
+        SkeletonAppearance.default.gradient = SkeletonGradient(
+            baseColor: UIColor.Blueprint.LightGray._2,
+            secondaryColor: UIColor.Blueprint.Gray._5
+        )
 
         return true
     }
