@@ -220,7 +220,11 @@ class OrganizationCell: UICollectionViewCell {
     }
     
     fileprivate let titleLabel = MagnanimoLabel(type: .Title)
-    fileprivate let descriptionLabel = MagnanimoLabel(type: .Text)
+    fileprivate let descriptionLabel: UILabel = {
+        let label = MagnanimoLabel(type: .Text)
+        label.numberOfLines = 0
+        return label
+    }()
     fileprivate var categoryLabel = MagnanimoTag()
     
     fileprivate let showButton = ShowOrganizationButton(title: "View", shadowType: .Medium)
@@ -282,7 +286,7 @@ class LastCell: UICollectionViewCell {
     fileprivate let lastCellTitleLabel: UILabel = {
         let label = MagnanimoLabel(type: .Title)
         label.text = "Browse all organizations"
-        
+        label.numberOfLines = 0
         return label
     }()
     

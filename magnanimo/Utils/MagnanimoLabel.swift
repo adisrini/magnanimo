@@ -17,7 +17,6 @@ class MagnanimoLabel: UILabel {
     init(type: MagnanimoLabelType) {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.numberOfLines = 0
         self.textColor = colorForType(type)
         self.font = fontForType(type)
     }

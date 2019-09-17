@@ -37,7 +37,11 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
     
     fileprivate let categoryLabel = MagnanimoTag()
     
-    fileprivate let descriptionLabel = MagnanimoLabel(type: .Text)
+    fileprivate let descriptionLabel: UILabel = {
+        let label = MagnanimoLabel(type: .Text)
+        label.numberOfLines = 0
+        return label
+    }()
     
     fileprivate let closeButton: UIButton = {
         let button = MagnanimoCloseButton()

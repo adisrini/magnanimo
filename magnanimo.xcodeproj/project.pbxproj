@@ -180,6 +180,27 @@
 			path = Stripe;
 			sourceTree = "<group>";
 		};
+		0B821D7923311C2B00B5F149 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0BF187EA232894DD005E60B6 /* HomeViewController.swift */,
+				0BF187EC232894DD005E60B6 /* SearchViewController.swift */,
+				0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */,
+				0B0C21EF2328DB7C008655F8 /* ProfileViewController.swift */,
+				0BCF956E232B8E8B00F308B8 /* OrganizationViewController.swift */,
+				0B97BCF6232F960B00CA2D9F /* OneTimePaymentViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0B821D7A23311C4600B5F149 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				0B821D6B2330B81800B5F149 /* MagnanimoFirebaseClient.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		0B97BCFC232F9F2900CA2D9F /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,7 +209,7 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		0BCF956B232B862900F308B8 /* Util */ = {
+		0BCF956B232B862900F308B8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				0BCF956C232B863C00F308B8 /* MagnanimoTag.swift */,
@@ -205,7 +226,7 @@
 				0B821D752330FC8700B5F149 /* MagnanimoCloseButton.swift */,
 				0B821D77233112E800B5F149 /* Dates.swift */,
 			);
-			path = Util;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		0BD31679232966CE00ACC5A9 /* Model */ = {
@@ -254,25 +275,20 @@
 		0BF187E7232894DD005E60B6 /* magnanimo */ = {
 			isa = PBXGroup;
 			children = (
+				0B821D7A23311C4600B5F149 /* Firebase */,
+				0B821D7923311C2B00B5F149 /* Controllers */,
 				0B97BCFC232F9F2900CA2D9F /* Fonts */,
 				0BE0E857232C0862007E9344 /* Colors */,
-				0BCF956B232B862900F308B8 /* Util */,
+				0BCF956B232B862900F308B8 /* Utils */,
 				0B18EE43232A3E9E00A16A1C /* Stripe */,
 				0B18EE42232A2AB000A16A1C /* magnanimo.entitlements */,
 				0BD31679232966CE00ACC5A9 /* Model */,
 				0BF187E8232894DD005E60B6 /* AppDelegate.swift */,
-				0BF187EA232894DD005E60B6 /* HomeViewController.swift */,
-				0BF187EC232894DD005E60B6 /* SearchViewController.swift */,
 				0BF187EE232894DD005E60B6 /* Main.storyboard */,
 				0BF187F1232894DE005E60B6 /* Assets.xcassets */,
 				0BF187F3232894DE005E60B6 /* LaunchScreen.storyboard */,
 				0BF187F6232894DE005E60B6 /* Info.plist */,
-				0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */,
-				0B0C21EF2328DB7C008655F8 /* ProfileViewController.swift */,
 				0B0C21F12329011A008655F8 /* GoogleService-Info.plist */,
-				0BCF956E232B8E8B00F308B8 /* OrganizationViewController.swift */,
-				0B97BCF6232F960B00CA2D9F /* OneTimePaymentViewController.swift */,
-				0B821D6B2330B81800B5F149 /* MagnanimoFirebaseClient.swift */,
 			);
 			path = magnanimo;
 			sourceTree = "<group>";
