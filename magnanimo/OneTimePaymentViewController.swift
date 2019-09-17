@@ -154,9 +154,10 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
                 .document(token)
                 .setData([
                     "amount": self.amountField.decimal * 100,
+                    "currency": "usd",
                     "type": "one-time",
                     "is_public": self.publicSwitch.isOn,
-                    "organization_id": organization.id
+                    "organization_id": organization.id,
                     ])
             
             completion(PKPaymentAuthorizationResult(status: .success, errors: nil))

@@ -53,7 +53,11 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         initializeGreeting()
-        initializeData()
+        initializeOrganizations()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        loadAmountDonated()
     }
     
     private func initializeGreeting() {
@@ -80,7 +84,7 @@ class HomeViewController: UIViewController {
         amountLabel.showAnimatedGradientSkeleton()
     }
     
-    private func initializeData() {
+    private func initializeOrganizations() {
         self.view.addSubview(collectionView)
         let guide = view.safeAreaLayoutGuide
         collectionView.backgroundColor = UIColor.Blueprint.Util.Transparent
@@ -92,6 +96,10 @@ class HomeViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        loadOrganizations()
+    }
+    
+    private func loadOrganizations() {
         let db = Firestore.firestore()
         db.collection("organizations").getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -109,7 +117,13 @@ class HomeViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    private func loadAmountDonated() {
+        amountLabel.showAnimatedGradientSkeleton()
+        self.totalAmountDonated = 0
         
+        let db = Firestore.firestore()
         db.collection("stripe_customers").document(Auth.auth().currentUser!.uid).collection("charges").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting charges: \(err)")
