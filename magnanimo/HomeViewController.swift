@@ -74,6 +74,9 @@ class HomeViewController: UIViewController {
         greetingSublabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
         amountLabel.topAnchor.constraint(equalTo: greetingSublabel.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
         amountLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true
+        
+        amountLabel.isSkeletonable = true
+        amountLabel.showAnimatedGradientSkeleton()
     }
     
     private func initializeData() {
@@ -117,6 +120,7 @@ class HomeViewController: UIViewController {
                     }
                 }
                 self.totalAmountDonated /= 100
+                self.amountLabel.hideSkeleton()
             }
         }
     }
