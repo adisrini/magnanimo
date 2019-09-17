@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseFirestore
 import FirebaseAuth
 import PassKit
 import Stripe
@@ -100,21 +99,11 @@ class HomeViewController: UIViewController {
     }
     
     private func loadOrganizations() {
-        let db = Firestore.firestore()
-        db.collection("organizations").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting organizations: \(err)")
-            } else {
-                let organizations = querySnapshot!.documents.map({ doc in Organization(id: doc.documentID, map: doc.data()) })
-                db.collection("categories").getDocuments() { (querySnapshot, err) in
-                    if let err = err {
-                        print("Error getting categories: \(err)")
-                    } else {
-                        let categories = Dictionary(uniqueKeysWithValues: querySnapshot!.documents.map({ doc in (doc.documentID, Category(id: doc.documentID, map: doc.data())) }))
-                        self.data = organizations.map({ org in ["organization": org, "category": categories[org.categoryId]!] })
-                        self.collectionView.reloadData()
-                    }
-                }
+        MagnanimoFirebaseClient.getOrganizations() { organizations in
+            MagnanimoFirebaseClient.getCategories() { categories in
+                let categoriesById = Dictionary(uniqueKeysWithValues: categories.map({ category in (category.id, category) }))
+                self.data = organizations.map({ org in ["organization": org, "category": categoriesById[org.categoryId]!] })
+                self.collectionView.reloadData()
             }
         }
     }
@@ -123,20 +112,12 @@ class HomeViewController: UIViewController {
         amountLabel.showAnimatedGradientSkeleton()
         self.totalAmountDonated = 0
         
-        let db = Firestore.firestore()
-        db.collection("stripe_customers").document(Auth.auth().currentUser!.uid).collection("charges").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting charges: \(err)")
-            } else {
-                let charges = querySnapshot!.documents.map({ doc in doc.data() })
-                for charge in charges {
-                    if charge["error"] == nil {
-                        self.totalAmountDonated += charge["amount"] as! Double
-                    }
-                }
-                self.amountLabel.hideSkeleton()
-                self.totalAmountDonated /= 100
+        MagnanimoFirebaseClient.getSuccessfulUserCharges() { charges in
+            for charge in charges {
+                self.totalAmountDonated += charge.amountInCents
             }
+            self.amountLabel.hideSkeleton()
+            self.totalAmountDonated /= 100
         }
     }
     

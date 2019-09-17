@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseFirestore
-import FirebaseAuth
 import PassKit
 import Stripe
 
@@ -137,31 +135,21 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
             
             let token = stripeToken.tokenId
             
-            let db = Firestore.firestore()
-            let stripeCustomerRef = db.collection("stripe_customers").document((Auth.auth().currentUser?.uid)!)
-            
             // Add payment source
-            stripeCustomerRef
-                .collection("tokens")
-                .document(token)
-                .setData([
-                    "token": token
-                    ])
+            MagnanimoFirebaseClient.createPaymentSource(token: token)
             
             // Create charge
-            stripeCustomerRef
-                .collection("charges")
-                .document(token)
-                .setData([
-                    "amount": self.amountField.decimal * 100,
-                    "currency": "usd",
-                    "type": "one-time",
-                    "is_public": self.publicSwitch.isOn,
-                    "organization_id": organization.id,
-                    ])
+            MagnanimoFirebaseClient.createCharge(
+                token: token,
+                amount: self.amountField.decimal * 100,
+                currency: "usd",
+                type: PaymentType.ONE_TIME,
+                isPublic: self.publicSwitch.isOn,
+                organizationId: organization.id
+            )
             
             completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
-            self.unwindToOrganization()
+            Functions.setTimeout(millis: 1000, action: self.unwindToOrganization)
         }
     }
     
