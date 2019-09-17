@@ -73,7 +73,7 @@ class MagnanimoChargeTableViewCell: UITableViewCell {
                 )
                 
                 // timestamp
-                timestampLabel.text = Dates.readableDateFormatter.string(from: charge.created)
+                timestampLabel.text = Dates.readableDateTimeFormatter.string(from: charge.created)
             }
         }
     }
@@ -83,7 +83,7 @@ class MagnanimoChargeTableViewCell: UITableViewCell {
     
     fileprivate let amountLabel: UILabel = MagnanimoLabel(type: .Header)
 
-    fileprivate let timestampLabel = MagnanimoLabel(type: .Text)
+    fileprivate let timestampLabel = MagnanimoLabel(type: .SubtleText)
 
     fileprivate var isPublicTag = MagnanimoTag()
 
@@ -108,7 +108,7 @@ class MagnanimoChargeTableViewCell: UITableViewCell {
     private func positionTimestamp() {
         self.addSubview(timestampLabel)
         timestampLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -PADDING).isActive = true
-        timestampLabel.bottomAnchor.constraint(equalTo: amountLabel.bottomAnchor).isActive = true
+        timestampLabel.centerYAnchor.constraint(equalTo: amountLabel.centerYAnchor).isActive = true
     }
     
     private func positionTags() {

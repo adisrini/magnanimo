@@ -10,9 +10,9 @@ import Foundation
 
 class Dates {
     
-    static let readableDateFormatter: DateFormatter = {
+    static let readableDateTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM dd, yyyy"
+        formatter.dateFormat = "MMM dd, yyyy 'at' HH:mm"
         
         return formatter
     }()
