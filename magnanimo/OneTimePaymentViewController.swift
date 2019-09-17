@@ -129,8 +129,9 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         // Use Stripe to charge the user
         STPAPIClient.shared().createToken(with: payment) { (stripeToken, error) in
-            guard error == nil, let stripeToken = stripeToken else {
+            guard error == nil, let organization = self.organization, let stripeToken = stripeToken else {
                 print(error!)
+                completion(PKPaymentAuthorizationResult(status: .failure, errors: [error!]))
                 return
             }
             
@@ -153,9 +154,9 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
                 .document(token)
                 .setData([
                     "amount": self.amountField.decimal * 100,
-                    "currency": "USD",
                     "type": "one-time",
-                    "is_public": self.publicSwitch.isOn
+                    "is_public": self.publicSwitch.isOn,
+                    "organization_id": organization.id
                     ])
             
             completion(PKPaymentAuthorizationResult(status: .success, errors: nil))

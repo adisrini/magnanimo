@@ -97,12 +97,12 @@ class HomeViewController: UIViewController {
             if let err = err {
                 print("Error getting organizations: \(err)")
             } else {
-                let organizations = querySnapshot!.documents.map({ doc in Organization(map: doc.data()) })
+                let organizations = querySnapshot!.documents.map({ doc in Organization(id: doc.documentID, map: doc.data()) })
                 db.collection("categories").getDocuments() { (querySnapshot, err) in
                     if let err = err {
                         print("Error getting categories: \(err)")
                     } else {
-                        let categories = Dictionary(uniqueKeysWithValues: querySnapshot!.documents.map({ doc in (doc.documentID, Category(map: doc.data())) }))
+                        let categories = Dictionary(uniqueKeysWithValues: querySnapshot!.documents.map({ doc in (doc.documentID, Category(id: doc.documentID, map: doc.data())) }))
                         self.data = organizations.map({ org in ["organization": org, "category": categories[org.categoryId]!] })
                         self.collectionView.reloadData()
                     }
@@ -120,8 +120,8 @@ class HomeViewController: UIViewController {
                         self.totalAmountDonated += charge["amount"] as! Double
                     }
                 }
-                self.totalAmountDonated /= 100
                 self.amountLabel.hideSkeleton()
+                self.totalAmountDonated /= 100
             }
         }
     }
