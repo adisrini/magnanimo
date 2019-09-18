@@ -14,6 +14,7 @@ import SwiftyJSON
 
 class MagnanimoClient {
     
+    // MARK: - Types
     typealias MagnanimoCompletion<T> = (T) -> Void
     typealias MagnanimoFailure = MagnanimoCompletion<String>
     typealias MagnanimoFirebaseSuccess = MagnanimoCompletion<QuerySnapshot>
@@ -91,7 +92,7 @@ class MagnanimoClient {
     }
     
     static func createCharge(
-        token: String,
+        source: String,
         amount: Decimal,
         currency: String,
         type: String,
@@ -105,11 +106,13 @@ class MagnanimoClient {
                 baseURL + "/charges/user/" + Auth.auth().currentUser!.uid,
                 method: .post,
                 parameters: [
-                    "token": token,
+                    "source": source,
                     "amount": amount,
                     "currency": currency,
                     "is_public": isPublic,
-                    "organization_id": organizationId
+                    "type": type,
+                    "organization_id": organizationId,
+                    "idempotency_key": Functions.generateIdempotencyKey()
                 ]
             ),
             failure: failure,

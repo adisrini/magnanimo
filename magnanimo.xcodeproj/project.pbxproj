@@ -24,6 +24,7 @@
 		0B821D742330FBDA00B5F149 /* MagnanimoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D732330FBDA00B5F149 /* MagnanimoViewController.swift */; };
 		0B821D762330FC8700B5F149 /* MagnanimoCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D752330FC8700B5F149 /* MagnanimoCloseButton.swift */; };
 		0B821D78233112E800B5F149 /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D77233112E800B5F149 /* Dates.swift */; };
+		0B821D7C2332365C00B5F149 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D7B2332365C00B5F149 /* Toast.swift */; };
 		0B97BCEF232C09A800CA2D9F /* MagnanimoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCEE232C09A800CA2D9F /* MagnanimoLabel.swift */; };
 		0B97BCF1232F48D400CA2D9F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF0232F48D400CA2D9F /* Constants.swift */; };
 		0B97BCF3232F55E300CA2D9F /* MagnanimoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */; };
@@ -93,6 +94,7 @@
 		0B821D732330FBDA00B5F149 /* MagnanimoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoViewController.swift; sourceTree = "<group>"; };
 		0B821D752330FC8700B5F149 /* MagnanimoCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoCloseButton.swift; sourceTree = "<group>"; };
 		0B821D77233112E800B5F149 /* Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dates.swift; sourceTree = "<group>"; };
+		0B821D7B2332365C00B5F149 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		0B97BCEE232C09A800CA2D9F /* MagnanimoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoLabel.swift; sourceTree = "<group>"; };
 		0B97BCF0232F48D400CA2D9F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoButton.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				0B821D732330FBDA00B5F149 /* MagnanimoViewController.swift */,
 				0B821D752330FC8700B5F149 /* MagnanimoCloseButton.swift */,
 				0B821D77233112E800B5F149 /* Dates.swift */,
+				0B821D7B2332365C00B5F149 /* Toast.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -559,6 +563,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stripe.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -611,6 +616,7 @@
 				0B821D722330D87900B5F149 /* MagnanimoChargeTableView.swift in Sources */,
 				0B97BCF7232F960B00CA2D9F /* OneTimePaymentViewController.swift in Sources */,
 				0B97BCF1232F48D400CA2D9F /* Constants.swift in Sources */,
+				0B821D7C2332365C00B5F149 /* Toast.swift in Sources */,
 				0B821D6E2330C97400B5F149 /* Functions.swift in Sources */,
 				0B821D682330B64900B5F149 /* StripeCharge.swift in Sources */,
 				0B821D6A2330B6DF00B5F149 /* PaymentType.swift in Sources */,

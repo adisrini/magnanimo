@@ -140,6 +140,7 @@ PODS:
   - SkeletonView (1.8.1)
   - Stripe (17.0.1)
   - SwiftyJSON (4.3.0)
+  - Toast-Swift (5.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.2)
@@ -153,6 +154,7 @@ DEPENDENCIES:
   - SkeletonView
   - Stripe
   - SwiftyJSON (~> 4.0)
+  - Toast-Swift (~> 5.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -183,6 +185,7 @@ SPEC REPOS:
     - SkeletonView
     - Stripe
     - SwiftyJSON
+    - Toast-Swift
 
 EXTERNAL SOURCES:
   FacebookCore:
@@ -230,7 +233,8 @@ SPEC CHECKSUMS:
   SkeletonView: 9e4db6c1478bce9da695109dd0972bff7b6efe65
   Stripe: b8e845e12fd6dbc9cb010422b3b6b212e803d308
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
 
-PODFILE CHECKSUM: f332d704c48e98311d593767df1d37120aece0b4
+PODFILE CHECKSUM: 630574dfc1026e64506c68749ad6d7415a64f945
 
 COCOAPODS: 1.5.3

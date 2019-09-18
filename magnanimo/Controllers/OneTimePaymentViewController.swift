@@ -122,21 +122,18 @@ class OneTimePaymentViewController: MagnanimoViewController {
 extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         // Use Stripe to charge the user
-        STPAPIClient.shared().createToken(with: payment) { (stripeToken, error) in
-            guard error == nil, let organization = self.organization, let stripeToken = stripeToken else {
+        STPAPIClient.shared().createSource(with: payment) { (source, error) in
+            guard error == nil, let organization = self.organization, let s = source, s.flow == .none, s.status == .chargeable else {
                 print(error!)
                 completion(PKPaymentAuthorizationResult(status: .failure, errors: [error!]))
                 return
             }
             
-            let token = stripeToken.tokenId
-            
-            // Add payment source
-//            MagnanimoClient.createPaymentSource(token: token)
+            let source = s.stripeID
             
             // Create charge
             MagnanimoClient.createCharge(
-                token: token,
+                source: source,
                 amount: self.amountField.decimal * 100,
                 currency: "usd",
                 type: PaymentType.ONE_TIME,
@@ -144,7 +141,7 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
                 organizationId: organization.id,
                 failure: { err in
                     completion(PKPaymentAuthorizationResult(status: .failure, errors: nil))
-                    // TODO: show toast
+                    Toast.make(self.view, err)
                 },
                 success: { charge in
                     completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
