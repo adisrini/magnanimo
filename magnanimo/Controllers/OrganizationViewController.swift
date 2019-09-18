@@ -244,15 +244,19 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
     
     @objc func handleSubscribeDonateButtonTapped() {
         impact.impactOccurred()
+        performSegue(withIdentifier: "showSubscriptionPayment", sender: self)
     }
     
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showOneTimePayment" {
             if let destinationVC = segue.destination as? OneTimePaymentViewController {
+                destinationVC.organization = self.organization
+            }
+        } else if segue.identifier == "showSubscriptionPayment" {
+            if let destinationVC = segue.destination as? SubscriptionPaymentViewController {
                 destinationVC.organization = self.organization
             }
         }

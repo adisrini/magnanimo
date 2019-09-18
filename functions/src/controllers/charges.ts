@@ -1,19 +1,11 @@
 import { Controller } from "../model/types";
 import * as Stripe from "stripe";
 import { userFacingMessage } from "../helpers/errors";
+import { _getCustomerForUserId, _tryAttachingSource } from "../helpers/utils";
 
 export const chargesController: Controller = {
   path: "/charges",
   register: (router, stripe, firestore) => {
-    const _getCustomerForUserId = async (userId: string) => {
-      const customerSnapshot = await firestore
-        .collection("users")
-        .doc(userId)
-        .get();
-
-      return customerSnapshot.data();
-    };
-
     const _getChargesForCustomerId = (customerId: string) =>
       stripe.charges
         .list({
@@ -25,7 +17,7 @@ export const chargesController: Controller = {
     router.get("/user/:userId", async (req, res) => {
       const { userId } = req.params;
 
-      const customer = await _getCustomerForUserId(userId);
+      const customer = await _getCustomerForUserId(firestore, userId);
 
       if (!customer) {
         res.status(500).send({ error: "User does not exist" });
@@ -61,7 +53,8 @@ export const chargesController: Controller = {
         } = req.body;
         const { userId } = req.params;
 
-        const customerDocument = await _getCustomerForUserId(userId);
+        // 1. get user
+        const customerDocument = await _getCustomerForUserId(firestore, userId);
 
         if (!customerDocument) {
           res.status(500).send({ error: "User does not exist" });
@@ -70,28 +63,8 @@ export const chargesController: Controller = {
 
         const { customer_id } = customerDocument;
 
-        // takes care of attaching source to customer (if it doesn't already exist) and making it default
-
-        // TODO: may need to adjust for non-card sources
-        const getUniqueIdentifier = (_stripeSource: Stripe.sources.ISource) =>
-          _stripeSource.card!.fingerprint;
-
-        const stripeSource = await stripe.sources.retrieve(source);
-        const stripeCustomer = await stripe.customers.retrieve(customer_id);
-        const uniqueIdentifier = getUniqueIdentifier(stripeSource);
-        const maybeExistingCard = stripeCustomer.sources!.data.find(
-          s =>
-            s.object === "source" && uniqueIdentifier === getUniqueIdentifier(s)
-        );
-
-        if (!maybeExistingCard) {
-          await stripe.customers.createSource(customer_id, {
-            source
-          });
-          await stripe.customers.update(customer_id, {
-            default_source: source
-          });
-        }
+        // 2. try attaching source
+        await _tryAttachingSource(stripe, source, customer_id);
 
         const charge: Stripe.charges.IChargeCreationOptions = {
           amount,
@@ -104,6 +77,7 @@ export const chargesController: Controller = {
           }
         };
 
+        // 3. create charge
         const response = await stripe.charges.create(charge, {
           idempotency_key: idempotency_key
         });

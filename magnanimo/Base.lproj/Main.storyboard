@@ -42,6 +42,7 @@
                     <connections>
                         <segue destination="T4t-Du-qDo" kind="unwind" identifier="unwindToHome" unwindAction="unwindToHomeWithSegue:" id="Bmt-2b-bbc"/>
                         <segue destination="sHc-NZ-Rnc" kind="show" identifier="showOneTimePayment" id="75v-4h-tlE"/>
+                        <segue destination="2kh-t8-IhT" kind="show" identifier="showSubscriptionPayment" id="sAg-Sa-buX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tpj-de-tgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -66,7 +67,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1QH-ED-nqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="eL4-L8-BSy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4628" y="-760"/>
+            <point key="canvasLocation" x="4697" y="-1196"/>
+        </scene>
+        <!--Subscription Payment-->
+        <scene sceneID="C7g-Vq-qU2">
+            <objects>
+                <viewController id="2kh-t8-IhT" userLabel="Subscription Payment" customClass="SubscriptionPaymentViewController" customModule="magnanimo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZF9-eo-A6n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8IT-90-nfk"/>
+                    </view>
+                    <connections>
+                        <segue destination="ZAx-ZW-JHD" kind="unwind" identifier="unwindToOrganization" unwindAction="unwindToOrganizationWithSegue:" id="iBE-0R-tvX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gfp-kL-VwI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ZAx-ZW-JHD" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4697" y="-332"/>
         </scene>
         <!--Profile-->
         <scene sceneID="EhV-8O-nlK">

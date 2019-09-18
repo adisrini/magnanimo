@@ -1,8 +1,8 @@
 //
-//  OneTimePaymentViewController.swift
+//  SubscriptionPaymentViewController.swift
 //  magnanimo
 //
-//  Created by Aditya Srinivasan on 9/16/19.
+//  Created by Aditya Srinivasan on 9/18/19.
 //  Copyright © 2019 Aditya Srinivasan. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 import PassKit
 import Stripe
 
-class OneTimePaymentViewController: MagnanimoViewController {
+class SubscriptionPaymentViewController: MagnanimoViewController {
     
     var organization: Organization?
     
@@ -41,15 +41,15 @@ class OneTimePaymentViewController: MagnanimoViewController {
         let uiSwitch = UISwitch(frame: .zero)
         uiSwitch.translatesAutoresizingMaskIntoConstraints = false
         uiSwitch.isOn = true
-
+        
         return uiSwitch
     }()
     
     fileprivate let applePayButton: PKPaymentButton = PKPaymentButton(paymentButtonType: .donate, paymentButtonStyle: .black)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         positionHeader()
         positionField()
@@ -91,7 +91,7 @@ class OneTimePaymentViewController: MagnanimoViewController {
     private func positionPayment() {
         view.addSubview(applePayButton)
         applePayButton.translatesAutoresizingMaskIntoConstraints = false
-
+        
         applePayButton.isEnabled = Stripe.deviceSupportsApplePay()
         applePayButton.topAnchor.constraint(equalTo: publicSwitch.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
         applePayButton.trailingAnchor.constraint(equalTo: publicSwitch.trailingAnchor).isActive = true
@@ -106,20 +106,20 @@ class OneTimePaymentViewController: MagnanimoViewController {
     private func unwindToOrganization() {
         performSegue(withIdentifier: "unwindToOrganization", sender: self)
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
-extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
+extension SubscriptionPaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         // Use Stripe to charge the user
         STPAPIClient.shared().createSource(with: payment) { (source, error) in
@@ -131,22 +131,23 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
             
             let source = s.stripeID
             
-            // Create charge
-            MagnanimoClient.createCharge(
+            // Create subscription
+            MagnanimoClient.createSubscription(
                 source: source,
                 amount: self.amountField.decimal * 100,
                 currency: "usd",
-                type: PaymentType.ONE_TIME,
+                interval: "day",
+                type: PaymentType.SUBSCRIPTION,
                 isPublic: self.publicSwitch.isOn,
-                organizationId: organization.id,
+                productId: organization.productId,
                 failure: { err in
                     completion(PKPaymentAuthorizationResult(status: .failure, errors: nil))
                     Toast.make(self.view, err, .Danger)
-                },
-                success: { _ in
+            },
+                success: { subscription in
                     completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
                     Functions.setTimeout(millis: 1000, action: self.unwindToOrganization)
-                }
+            }
             )
         }
     }
@@ -162,7 +163,7 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
         if amount == 0 {
             return
         }
-
+        
         // Cards that should be accepted
         let paymentNetworks:[PKPaymentNetwork] = [.amex, .masterCard, .visa]
         
@@ -173,13 +174,13 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
             request.countryCode = "US"
             request.currencyCode = "USD"
             request.supportedNetworks = paymentNetworks
-
+            
             // This is based on using Stripe
             request.merchantCapabilities = .capability3DS
             
             let donation = PKPaymentSummaryItem(label: "Donation to " + organization!.name, amount: NSDecimalNumber(decimal: amount), type: .final)
             let total = PKPaymentSummaryItem(label: "Total", amount: NSDecimalNumber(decimal: amount), type: .final)
-
+            
             request.paymentSummaryItems = [donation, total]
             
             let authorizationViewController = PKPaymentAuthorizationViewController(paymentRequest: request)
