@@ -13,7 +13,7 @@ class MagnanimoCloseButton: UIButton {
     init() {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.setImage(UIImage(named: "x-circle"), for: .normal)
+        self.setImage(UIImage(named: Constants.CLOSE_ICON), for: .normal)
     }
     
     required init?(coder aDecoder: NSCoder) {

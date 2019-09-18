@@ -122,7 +122,7 @@ class HomeViewController: MagnanimoViewController {
             failure: { _ in },
             success: { charges in
                 for charge in charges {
-                    self.totalAmountDonated += charge.amountInCents
+                    self.totalAmountDonated += charge.amount
                 }
                 self.amountLabel.hideSkeleton()
                 self.totalAmountDonated /= 100
@@ -195,7 +195,8 @@ class ShowOrganizationButton: MagnanimoButton {
     var category: Category? = nil
     
     init(title: String, shadowType: MagnanimoButton.MagnanimoButtonShadowType) {
-        super.init(attributedTitle: NSAttributedString(string: title), shadowType: shadowType)
+        super.init()
+        let _ = self.withShadowType(type: shadowType).withTitle(title: title)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -13,6 +13,14 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
     let impact = UIImpactFeedbackGenerator()
     
     var historicalCharges: Array<StripeCharge>?
+    var existingSubscription: StripeSubscription? {
+        didSet {
+            let _ = subscribeDonateButton
+                .withTitleAndSubtitle(title: "Subscribed", subtitle: "You've subscribed.")
+                .withIcon(Constants.SUBSCRIBED_ICON)
+                .withPalette(palette: UIColor.Blueprint.Green)
+        }
+    }
     
     var organization: Organization? {
         didSet {
@@ -76,15 +84,22 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
         return label
     }()
     
-    fileprivate let oneTimeDonateButton: UIButton = {
-        let button = MagnanimoButton(title: "One-time", subtitle: "Make a single payment.", shadowType: .Small).withIcon(Constants.ONE_TIME_ICON)
+    fileprivate let oneTimeDonateButton: MagnanimoButton = {
+        let button = MagnanimoButton()
+            .withTitleAndSubtitle(title: "One-time", subtitle: "Make a single payment.")
+            .withShadowType(type: .Small)
+            .withIcon(Constants.ONE_TIME_ICON)
+
         button.addTarget(self, action: #selector(handleOneTimeDonateButtonTapped), for: .touchUpInside)
 
         return button
     }()
     
-    fileprivate let subscribeDonateButton: UIButton = {
-        let button = MagnanimoButton(title: "Subscribe", subtitle: "Schedule payments to repeat.", shadowType: .Small).withIcon(Constants.SUBSCRIBE_ICON)
+    fileprivate var subscribeDonateButton: MagnanimoButton = {
+        let button = MagnanimoButton()
+            .withTitleAndSubtitle(title: "Subscribe", subtitle: "Schedule payments to repeat.")
+            .withShadowType(type: .Small)
+            .withIcon(Constants.SUBSCRIBE_ICON)
         button.addTarget(self, action: #selector(handleSubscribeDonateButtonTapped), for: .touchUpInside)
         
         return button
@@ -142,6 +157,7 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        loadSubscription()
         loadHistory()
     }
     
@@ -210,6 +226,20 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     // MARK: - Data loading
+    
+    private func loadSubscription() {
+        if let organization = organization {
+            MagnanimoClient.getSubscriptionForOrganization(
+                organizationId: organization.id,
+                failure: { s in print(s) },
+                success: { subscription in
+                    if let sub = subscription {
+                        self.existingSubscription = sub
+                    }
+                }
+            )
+        }
+    }
 
     private func loadHistory() {
         historicalAmountLabel.showAnimatedGradientSkeleton()
@@ -221,7 +251,7 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
                     self.historicalCharges = charges
                     var totalAmount: Double = 0
                     for charge in charges {
-                        totalAmount += charge.amountInCents
+                        totalAmount += charge.amount
                     }
                     self.historicalAmountLabel.hideSkeleton()
                     self.historicalAmountLabel.text = Formatter.currency.string(from: NSNumber(value: totalAmount / 100))
@@ -258,6 +288,7 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
         } else if segue.identifier == "showSubscriptionPayment" {
             if let destinationVC = segue.destination as? SubscriptionPaymentViewController {
                 destinationVC.organization = self.organization
+                destinationVC.subscription = self.existingSubscription
             }
         }
     }

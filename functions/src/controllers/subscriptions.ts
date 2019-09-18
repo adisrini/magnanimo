@@ -1,11 +1,66 @@
 import { Controller } from "../model/types";
 import { userFacingMessage } from "../helpers/errors";
-import { _getCustomerForUserId, _tryAttachingSource } from "../helpers/utils";
+import {
+  _getCustomerForUserId,
+  _tryAttachingSource,
+  _getAllObjects
+} from "../helpers/utils";
 import Stripe = require("stripe");
 
 export const subscriptionsController: Controller = {
   path: "/subscriptions",
   register: (router, stripe, firestore) => {
+    const _getSubscriptionsForCustomerId = async (customerId: string) =>
+      _getAllObjects<
+        Stripe.subscriptions.ISubscription,
+        Stripe.subscriptions.ISubscriptionListOptions,
+        Stripe.resources.Subscriptions
+      >(stripe.subscriptions, { customer: customerId });
+
+    // get all subscriptions for user
+    router.get("/user/:userId", async (req, res) => {
+      const { userId } = req.params;
+
+      const customer = await _getCustomerForUserId(firestore, userId);
+
+      if (!customer) {
+        res.status(500).send({ error: "User does not exist" });
+        return;
+      }
+
+      const { customer_id } = customer;
+
+      res.status(200).send({
+        subscriptions: await _getSubscriptionsForCustomerId(customer_id)
+      });
+    });
+
+    // get subscription for organization for user
+    router.get(
+      "/user/:userId/organization/:organizationId",
+      async (req, res) => {
+        const { userId, organizationId } = req.params;
+
+        const customer = await _getCustomerForUserId(firestore, userId);
+
+        if (!customer) {
+          res.status(500).send({ error: "User does not exist" });
+          return;
+        }
+
+        const { customer_id } = customer;
+
+        res.status(200).send({
+          subscription: (await _getSubscriptionsForCustomerId(
+            customer_id
+          )).find(
+            subscription =>
+              subscription.metadata.organization_id === organizationId
+          )
+        });
+      }
+    );
+
     // post subscription for user
     router.post("/user/:userId", async (req, res) => {
       try {

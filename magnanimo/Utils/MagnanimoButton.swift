@@ -14,43 +14,14 @@ class MagnanimoButton: UIButton {
         case None, Small, Medium, Large
     }
     
-    convenience init(title: String, shadowType: MagnanimoButtonShadowType) {
-        let attributedTitle = NSMutableAttributedString(string: title)
-        attributedTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Blueprint.DarkGray._1, range: title.fullRange())
-        
-        self.init(attributedTitle: attributedTitle, shadowType: shadowType)
-    }
-    
-    convenience init(title: String, subtitle: String, shadowType: MagnanimoButtonShadowType) {
-        let combined = title + "\n" + subtitle
-        
-        let attributedTitle = NSMutableAttributedString(string: combined)
-
-        attributedTitle.addAttributes([
-            NSAttributedString.Key.font: UIFont.Magnanimo.BoldText,
-            NSAttributedString.Key.foregroundColor: UIColor.Magnanimo.Title
-            ], range: combined.nsRange(from: combined.range(of: title)!))
-
-        attributedTitle.addAttributes([
-            NSAttributedString.Key.font: UIFont.Magnanimo.SmallText,
-            NSAttributedString.Key.foregroundColor: UIColor.Magnanimo.Muted
-            ], range: combined.nsRange(from: combined.range(of: subtitle)!))
-        
-        self.init(attributedTitle: attributedTitle, shadowType: shadowType)
-    }
-    
-    init(attributedTitle: NSAttributedString, shadowType: MagnanimoButtonShadowType) {
+    init() {
         super.init(frame: .zero)
         
         // ignore sizing
         self.translatesAutoresizingMaskIntoConstraints = false
         
         // set title
-        self.setAttributedTitle(attributedTitle, for: .normal)
         self.titleLabel?.font = UIFont.Magnanimo.BoldText
-        
-        // change layer
-        applyShadow(shadowType)
         
         // rounded corners
         self.layer.cornerRadius = Constants.CORNER_RADIUS
@@ -66,12 +37,43 @@ class MagnanimoButton: UIButton {
         self.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
     }
     
-    private func applyShadow(_ shadowType: MagnanimoButtonShadowType) {
+    public func withIcon(_ iconName: String) -> MagnanimoButton {
+        let icon = UIImage(named: iconName)!
+        self.setImage(icon, for: .normal)
+        self.imageView?.contentMode = .scaleAspectFit
+        self.imageEdgeInsets = UIEdgeInsets(top: 0, left: -Constants.GRID_SIZE / 2, bottom: 0, right: Constants.GRID_SIZE / 2)
+
+        return self
+    }
+    
+    public func withTitleAndSubtitle(title: String, subtitle: String) -> MagnanimoButton {
+        let combined = title + "\n" + subtitle
+        
+        let attributedTitle = NSMutableAttributedString(string: combined)
+        
+        attributedTitle.addAttributes([
+            NSAttributedString.Key.font: UIFont.Magnanimo.BoldText,
+            NSAttributedString.Key.foregroundColor: UIColor.Magnanimo.Title
+            ], range: combined.nsRange(from: combined.range(of: title)!))
+        
+        attributedTitle.addAttributes([
+            NSAttributedString.Key.font: UIFont.Magnanimo.SmallText,
+            NSAttributedString.Key.foregroundColor: UIColor.Magnanimo.Muted
+            ], range: combined.nsRange(from: combined.range(of: subtitle)!))
+        
+        self.setAttributedTitle(attributedTitle, for: .normal)
+        
+        return self
+    }
+    
+    public func withShadowType(type: MagnanimoButtonShadowType) -> MagnanimoButton {
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
-        self.layer.shadowRadius = shadowRadiusForType(shadowType)
+        self.layer.shadowRadius = shadowRadiusForType(type)
         self.layer.shadowOpacity = 0.15
         self.layer.masksToBounds = false
+        
+        return self
     }
     
     private func shadowRadiusForType(_ shadowType: MagnanimoButtonShadowType) -> CGFloat {
@@ -87,12 +89,17 @@ class MagnanimoButton: UIButton {
         }
     }
     
-    public func withIcon(_ iconName: String) -> MagnanimoButton {
-        let icon = UIImage(named: iconName)!
-        self.setImage(icon, for: .normal)
-        self.imageView?.contentMode = .scaleAspectFit
-        self.imageEdgeInsets = UIEdgeInsets(top: 0, left: -Constants.GRID_SIZE / 2, bottom: 0, right: Constants.GRID_SIZE / 2)
-
+    public func withTitle(title: String) -> MagnanimoButton {
+        let attributedTitle = NSMutableAttributedString(string: title)
+        attributedTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Blueprint.DarkGray._1, range: title.fullRange())
+        
+        self.setAttributedTitle(attributedTitle, for: .normal)
+        
+        return self
+    }
+    
+    public func withPalette(palette: BlueprintPalette) -> MagnanimoButton {
+        self.backgroundColor = palette._5.withAlphaComponent(0.8)
         return self
     }
     

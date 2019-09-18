@@ -10,12 +10,6 @@
 		0B0C21EE2328CF9A008655F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0C21ED2328CF9A008655F8 /* LoginViewController.swift */; };
 		0B0C21F02328DB7C008655F8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0C21EF2328DB7C008655F8 /* ProfileViewController.swift */; };
 		0B0C21F22329011A008655F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B0C21F12329011A008655F8 /* GoogleService-Info.plist */; };
-		0B18EE45232A3EB600A16A1C /* BrowseProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE44232A3EB600A16A1C /* BrowseProductsViewController.swift */; };
-		0B18EE47232A3EF500A16A1C /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE46232A3EF500A16A1C /* Buttons.swift */; };
-		0B18EE49232A3F2100A16A1C /* CheckoutRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE48232A3F2100A16A1C /* CheckoutRowView.swift */; };
-		0B18EE4B232A3F4900A16A1C /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE4A232A3F4900A16A1C /* CheckoutViewController.swift */; };
-		0B18EE4F232A400700A16A1C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE4E232A400700A16A1C /* SettingsViewController.swift */; };
-		0B18EE50232A5BDC00A16A1C /* MyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18EE4C232A3F9F00A16A1C /* MyAPIClient.swift */; };
 		0B821D682330B64900B5F149 /* StripeCharge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D672330B64900B5F149 /* StripeCharge.swift */; };
 		0B821D6A2330B6DF00B5F149 /* PaymentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D692330B6DF00B5F149 /* PaymentType.swift */; };
 		0B821D6C2330B81800B5F149 /* MagnanimoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D6B2330B81800B5F149 /* MagnanimoClient.swift */; };
@@ -26,6 +20,8 @@
 		0B821D78233112E800B5F149 /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D77233112E800B5F149 /* Dates.swift */; };
 		0B821D7C2332365C00B5F149 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D7B2332365C00B5F149 /* Toast.swift */; };
 		0B821D7E233249D800B5F149 /* SubscriptionPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D7D233249D800B5F149 /* SubscriptionPaymentViewController.swift */; };
+		0B821D8023325EB000B5F149 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D7F23325EB000B5F149 /* Icon.swift */; };
+		0B821D822332602900B5F149 /* StripeSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B821D812332602900B5F149 /* StripeSubscription.swift */; };
 		0B97BCEF232C09A800CA2D9F /* MagnanimoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCEE232C09A800CA2D9F /* MagnanimoLabel.swift */; };
 		0B97BCF1232F48D400CA2D9F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF0232F48D400CA2D9F /* Constants.swift */; };
 		0B97BCF3232F55E300CA2D9F /* MagnanimoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */; };
@@ -49,9 +45,6 @@
 		0BF187F5232894DE005E60B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF187F3232894DE005E60B6 /* LaunchScreen.storyboard */; };
 		0BF18800232894DE005E60B6 /* magnanimoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF187FF232894DE005E60B6 /* magnanimoTests.swift */; };
 		0BF1880B232894DF005E60B6 /* magnanimoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1880A232894DF005E60B6 /* magnanimoUITests.swift */; };
-		0BF33AB4232A5E5B00190F15 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF33AB3232A5E5B00190F15 /* EmojiCell.swift */; };
-		0BF33AB6232A5E8000190F15 /* EmojiCheckoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF33AB5232A5E8000190F15 /* EmojiCheckoutCell.swift */; };
-		0BF33AB8232A5EB300190F15 /* PaymentContextFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF33AB7232A5EB300190F15 /* PaymentContextFooterView.swift */; };
 		0BF33ABA232A5F0E00190F15 /* UIColor+Stripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF33AB9232A5F0E00190F15 /* UIColor+Stripe.swift */; };
 		2B9CF8BE0C3B466D10CB9C91 /* Pods_magnanimoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925B2DACA4BF7233FFBBFD7C /* Pods_magnanimoTests.framework */; };
 		8C98FA25766CD56B52EEEEC2 /* Pods_magnanimo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C888666054C1BD11F707896B /* Pods_magnanimo.framework */; };
@@ -81,12 +74,6 @@
 		0B0C21EF2328DB7C008655F8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0B0C21F12329011A008655F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0B18EE42232A2AB000A16A1C /* magnanimo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = magnanimo.entitlements; sourceTree = "<group>"; };
-		0B18EE44232A3EB600A16A1C /* BrowseProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseProductsViewController.swift; sourceTree = "<group>"; };
-		0B18EE46232A3EF500A16A1C /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
-		0B18EE48232A3F2100A16A1C /* CheckoutRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutRowView.swift; sourceTree = "<group>"; };
-		0B18EE4A232A3F4900A16A1C /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
-		0B18EE4C232A3F9F00A16A1C /* MyAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAPIClient.swift; sourceTree = "<group>"; };
-		0B18EE4E232A400700A16A1C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0B821D672330B64900B5F149 /* StripeCharge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeCharge.swift; sourceTree = "<group>"; };
 		0B821D692330B6DF00B5F149 /* PaymentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentType.swift; sourceTree = "<group>"; };
 		0B821D6B2330B81800B5F149 /* MagnanimoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoClient.swift; sourceTree = "<group>"; };
@@ -97,6 +84,8 @@
 		0B821D77233112E800B5F149 /* Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dates.swift; sourceTree = "<group>"; };
 		0B821D7B2332365C00B5F149 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		0B821D7D233249D800B5F149 /* SubscriptionPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPaymentViewController.swift; sourceTree = "<group>"; };
+		0B821D7F23325EB000B5F149 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		0B821D812332602900B5F149 /* StripeSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeSubscription.swift; sourceTree = "<group>"; };
 		0B97BCEE232C09A800CA2D9F /* MagnanimoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoLabel.swift; sourceTree = "<group>"; };
 		0B97BCF0232F48D400CA2D9F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0B97BCF2232F55E300CA2D9F /* MagnanimoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnanimoButton.swift; sourceTree = "<group>"; };
@@ -126,9 +115,6 @@
 		0BF18806232894DE005E60B6 /* magnanimoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = magnanimoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF1880A232894DF005E60B6 /* magnanimoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = magnanimoUITests.swift; sourceTree = "<group>"; };
 		0BF1880C232894DF005E60B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0BF33AB3232A5E5B00190F15 /* EmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
-		0BF33AB5232A5E8000190F15 /* EmojiCheckoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCheckoutCell.swift; sourceTree = "<group>"; };
-		0BF33AB7232A5EB300190F15 /* PaymentContextFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentContextFooterView.swift; sourceTree = "<group>"; };
 		0BF33AB9232A5F0E00190F15 /* UIColor+Stripe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Stripe.swift"; sourceTree = "<group>"; };
 		6952B5939E3D103332A4DFDD /* Pods-magnanimo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-magnanimo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-magnanimo/Pods-magnanimo.debug.xcconfig"; sourceTree = "<group>"; };
 		8B18BA8933A829F42AEF4007 /* Pods-magnanimoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-magnanimoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-magnanimoTests/Pods-magnanimoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,22 +154,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B18EE43232A3E9E00A16A1C /* Stripe */ = {
-			isa = PBXGroup;
-			children = (
-				0B18EE44232A3EB600A16A1C /* BrowseProductsViewController.swift */,
-				0B18EE46232A3EF500A16A1C /* Buttons.swift */,
-				0B18EE48232A3F2100A16A1C /* CheckoutRowView.swift */,
-				0B18EE4A232A3F4900A16A1C /* CheckoutViewController.swift */,
-				0B18EE4C232A3F9F00A16A1C /* MyAPIClient.swift */,
-				0B18EE4E232A400700A16A1C /* SettingsViewController.swift */,
-				0BF33AB3232A5E5B00190F15 /* EmojiCell.swift */,
-				0BF33AB5232A5E8000190F15 /* EmojiCheckoutCell.swift */,
-				0BF33AB7232A5EB300190F15 /* PaymentContextFooterView.swift */,
-			);
-			path = Stripe;
-			sourceTree = "<group>";
-		};
 		0B821D7923311C2B00B5F149 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +201,7 @@
 				0B821D752330FC8700B5F149 /* MagnanimoCloseButton.swift */,
 				0B821D77233112E800B5F149 /* Dates.swift */,
 				0B821D7B2332365C00B5F149 /* Toast.swift */,
+				0B821D7F23325EB000B5F149 /* Icon.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -241,6 +212,7 @@
 				0BD3167A232966DC00ACC5A9 /* Organization.swift */,
 				0BD3167C2329679F00ACC5A9 /* Category.swift */,
 				0B821D672330B64900B5F149 /* StripeCharge.swift */,
+				0B821D812332602900B5F149 /* StripeSubscription.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,7 +258,6 @@
 				0B97BCFC232F9F2900CA2D9F /* Fonts */,
 				0BE0E857232C0862007E9344 /* Colors */,
 				0BCF956B232B862900F308B8 /* Utils */,
-				0B18EE43232A3E9E00A16A1C /* Stripe */,
 				0B18EE42232A2AB000A16A1C /* magnanimo.entitlements */,
 				0BD31679232966CE00ACC5A9 /* Model */,
 				0BF187E8232894DD005E60B6 /* AppDelegate.swift */,
@@ -607,12 +578,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BD316782329393500ACC5A9 /* UIColor+Blueprint.swift in Sources */,
-				0B18EE4B232A3F4900A16A1C /* CheckoutViewController.swift in Sources */,
 				0B821D742330FBDA00B5F149 /* MagnanimoViewController.swift in Sources */,
-				0B18EE50232A5BDC00A16A1C /* MyAPIClient.swift in Sources */,
-				0B18EE49232A3F2100A16A1C /* CheckoutRowView.swift in Sources */,
 				0B97BCF5232F75C500CA2D9F /* StringProtocol.swift in Sources */,
-				0BF33AB8232A5EB300190F15 /* PaymentContextFooterView.swift in Sources */,
 				0B97BCFB232F9C8E00CA2D9F /* MagnanimoCurrencyField.swift in Sources */,
 				0B0C21EE2328CF9A008655F8 /* LoginViewController.swift in Sources */,
 				0B97BD00232F9FCF00CA2D9F /* UIColor+Magnanimo.swift in Sources */,
@@ -627,24 +594,21 @@
 				0B821D78233112E800B5F149 /* Dates.swift in Sources */,
 				0B821D762330FC8700B5F149 /* MagnanimoCloseButton.swift in Sources */,
 				0BF33ABA232A5F0E00190F15 /* UIColor+Stripe.swift in Sources */,
-				0B18EE47232A3EF500A16A1C /* Buttons.swift in Sources */,
 				0B97BD02232FA20800CA2D9F /* UIViewController.swift in Sources */,
+				0B821D8023325EB000B5F149 /* Icon.swift in Sources */,
 				0BCF956D232B863C00F308B8 /* MagnanimoTag.swift in Sources */,
 				0B97BCF3232F55E300CA2D9F /* MagnanimoButton.swift in Sources */,
 				0BD316762329383500ACC5A9 /* UIColor+Hex.swift in Sources */,
 				0B97BCFE232F9F3500CA2D9F /* UIFont+Magnanimo.swift in Sources */,
-				0B18EE4F232A400700A16A1C /* SettingsViewController.swift in Sources */,
 				0B821D7E233249D800B5F149 /* SubscriptionPaymentViewController.swift in Sources */,
-				0BF33AB6232A5E8000190F15 /* EmojiCheckoutCell.swift in Sources */,
+				0B821D822332602900B5F149 /* StripeSubscription.swift in Sources */,
 				0BCF956F232B8E8B00F308B8 /* OrganizationViewController.swift in Sources */,
 				0B821D6C2330B81800B5F149 /* MagnanimoClient.swift in Sources */,
-				0B18EE45232A3EB600A16A1C /* BrowseProductsViewController.swift in Sources */,
 				0BF187ED232894DD005E60B6 /* SearchViewController.swift in Sources */,
 				0B97BCEF232C09A800CA2D9F /* MagnanimoLabel.swift in Sources */,
 				0BD3167D2329679F00ACC5A9 /* Category.swift in Sources */,
 				0B0C21F02328DB7C008655F8 /* ProfileViewController.swift in Sources */,
 				0BF187E9232894DD005E60B6 /* AppDelegate.swift in Sources */,
-				0BF33AB4232A5E5B00190F15 /* EmojiCell.swift in Sources */,
 				0BF187EB232894DD005E60B6 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

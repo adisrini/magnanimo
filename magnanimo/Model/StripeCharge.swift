@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class StripeCharge: NSObject {
     var id: String
-    var amountInCents: Double
+    var amount: Double
     var customerId: String
     var isPublic: Bool
     var organizationId: String
@@ -19,9 +19,9 @@ class StripeCharge: NSObject {
     var created: Date
     
     
-    public init(id: String, amountInCents: Double, customerId: String, isPublic: Bool, organizationId: String, type: String, created: Date) {
+    public init(id: String, amount: Double, customerId: String, isPublic: Bool, organizationId: String, type: String, created: Date) {
         self.id = id
-        self.amountInCents = amountInCents
+        self.amount = amount
         self.customerId = customerId
         self.isPublic = isPublic
         self.organizationId = organizationId
@@ -32,7 +32,7 @@ class StripeCharge: NSObject {
     convenience init(json: [String: JSON]) {
         self.init(
             id: json["id"]!.stringValue,
-            amountInCents: json["amount"]!.doubleValue,
+            amount: json["amount"]!.doubleValue,
             customerId: json["customer"]!.stringValue,
             isPublic: json["metadata"]!["is_public"].boolValue,
             organizationId: json["metadata"]!["organization_id"].stringValue,

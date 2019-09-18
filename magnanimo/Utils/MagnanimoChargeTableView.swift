@@ -57,7 +57,7 @@ class MagnanimoChargeTableViewCell: UITableViewCell {
         didSet {
             if let charge = charge {
                 // amount
-                amountLabel.text = Formatter.currency.string(from: NSNumber(value: charge.amountInCents / 100))
+                amountLabel.text = Formatter.currency.string(from: NSNumber(value: charge.amount / 100))
                 
                 // type
                 let isOneTime = charge.type == PaymentType.ONE_TIME

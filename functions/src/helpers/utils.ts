@@ -38,3 +38,34 @@ export const _tryAttachingSource = async (
     });
   }
 };
+
+export async function _getAllObjects<
+  O extends { id: string },
+  S extends Stripe.IListOptions,
+  R extends { list: (options: S) => Stripe.IListPromise<O> }
+>(resource: R, options: S) {
+  const LIMIT = 50;
+
+  const objects: O[] = [];
+
+  const firstResponse = await resource.list({
+    ...options,
+    limit: LIMIT
+  });
+
+  objects.push(...firstResponse.data);
+  let hasMore = firstResponse.has_more;
+
+  while (hasMore) {
+    const lastObjectId = objects[objects.length - 1].id;
+    const response = await resource.list({
+      ...options,
+      limit: LIMIT,
+      starting_after: lastObjectId
+    });
+    objects.push(...response.data);
+    hasMore = response.has_more;
+  }
+
+  return objects;
+}

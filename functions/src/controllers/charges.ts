@@ -1,17 +1,21 @@
 import { Controller } from "../model/types";
 import * as Stripe from "stripe";
 import { userFacingMessage } from "../helpers/errors";
-import { _getCustomerForUserId, _tryAttachingSource } from "../helpers/utils";
+import {
+  _getCustomerForUserId,
+  _tryAttachingSource,
+  _getAllObjects
+} from "../helpers/utils";
 
 export const chargesController: Controller = {
   path: "/charges",
   register: (router, stripe, firestore) => {
-    const _getChargesForCustomerId = (customerId: string) =>
-      stripe.charges
-        .list({
-          customer: customerId
-        })
-        .then(r => r.data);
+    const _getChargesForCustomerId = async (customerId: string) =>
+      _getAllObjects<
+        Stripe.charges.ICharge,
+        Stripe.charges.IChargeListOptions,
+        Stripe.resources.Charges
+      >(stripe.charges, { customer: customerId });
 
     // get charges for user
     router.get("/user/:userId", async (req, res) => {

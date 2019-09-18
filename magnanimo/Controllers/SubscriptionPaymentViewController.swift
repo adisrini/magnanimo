@@ -13,6 +13,7 @@ import Stripe
 class SubscriptionPaymentViewController: MagnanimoViewController {
     
     var organization: Organization?
+    var subscription: StripeSubscription?
     
     fileprivate let headerLabel: UILabel = {
         let label = MagnanimoLabel(type: .Header)

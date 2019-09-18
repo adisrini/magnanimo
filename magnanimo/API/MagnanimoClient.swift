@@ -122,6 +122,8 @@ class MagnanimoClient {
         )
     }
     
+    // MARK: - Subscriptions
+    
     static func createSubscription(
         source: String,
         amount: Decimal,
@@ -150,6 +152,27 @@ class MagnanimoClient {
             ),
             failure: failure,
             success: { _ in success(nil) }
+        )
+    }
+    
+    static func getSubscriptionForOrganization(
+        organizationId: String,
+        failure: @escaping MagnanimoFailure,
+        success: @escaping MagnanimoCompletion<StripeSubscription?>
+        ) {
+        executeHTTPRequest(
+            request: AF.request(
+                baseURL + "/subscriptions/user/" + Auth.auth().currentUser!.uid + "/organization/" + organizationId,
+                method: .get
+            ),
+            failure: failure,
+            success: { json in
+                if let sub = json["subscription"].dictionary {
+                    success(StripeSubscription(json: sub))
+                } else {
+                    success(nil)
+                }
+            }
         )
     }
     
