@@ -132,20 +132,25 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
             let token = stripeToken.tokenId
             
             // Add payment source
-            MagnanimoFirebaseClient.createPaymentSource(token: token)
+//            MagnanimoClient.createPaymentSource(token: token)
             
             // Create charge
-            MagnanimoFirebaseClient.createCharge(
+            MagnanimoClient.createCharge(
                 token: token,
                 amount: self.amountField.decimal * 100,
                 currency: "usd",
                 type: PaymentType.ONE_TIME,
                 isPublic: self.publicSwitch.isOn,
-                organizationId: organization.id
+                organizationId: organization.id,
+                failure: { err in
+                    completion(PKPaymentAuthorizationResult(status: .failure, errors: nil))
+                    // TODO: show toast
+                },
+                success: { charge in
+                    completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+                    Functions.setTimeout(millis: 1000, action: self.unwindToOrganization)
+                }
             )
-            
-            completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
-            Functions.setTimeout(millis: 1000, action: self.unwindToOrganization)
         }
     }
     

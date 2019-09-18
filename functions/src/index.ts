@@ -59,14 +59,11 @@ exports.deleteUserCustomer = deleteUserCustomer(stripe, admin.firestore());
 //         currency,
 //         customer
 //       };
-//       const maybeExists = await stripe.charges.retrieve(idempotencyKey);
-//       if (!maybeExists.id) {
-//         const response = await stripe.charges.create(charge, {
-//           idempotency_key: idempotencyKey
-//         });
-//         // If the result is successful, write it back to the database
-//         return snap.ref.set(response, { merge: true });
-//       }
+//       const response = await stripe.charges.create(charge, {
+//         idempotency_key: idempotencyKey
+//       });
+//       // If the result is successful, write it back to the database
+//       return snap.ref.set(response, { merge: true });
 //     } catch (error) {
 //       // We want to capture errors and render them in a user-friendly way, while
 //       // still logging an exception with StackDriver

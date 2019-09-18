@@ -7,10 +7,10 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class StripeCharge: NSObject {
     var id: String
-    var token: String
     var amountInCents: Double
     var customerId: String
     var isPublic: Bool
@@ -19,9 +19,8 @@ class StripeCharge: NSObject {
     var created: Date
     
     
-    public init(id: String, token: String, amountInCents: Double, customerId: String, isPublic: Bool, organizationId: String, type: String, created: Date) {
+    public init(id: String, amountInCents: Double, customerId: String, isPublic: Bool, organizationId: String, type: String, created: Date) {
         self.id = id
-        self.token = token
         self.amountInCents = amountInCents
         self.customerId = customerId
         self.isPublic = isPublic
@@ -30,16 +29,15 @@ class StripeCharge: NSObject {
         self.created = created
     }
     
-    convenience init(id: String, map: [String: Any]) {
+    convenience init(json: [String: JSON]) {
         self.init(
-            id: map["id"] as! String,
-            token: id,
-            amountInCents: map["amount"] as! Double,
-            customerId: map["customer"] as! String,
-            isPublic: map["is_public"] as! Bool,
-            organizationId: map["organization_id"] as! String,
-            type: map["type"] as! String,
-            created: Date(timeIntervalSince1970: map["created"] as! TimeInterval)
+            id: json["id"]!.stringValue,
+            amountInCents: json["amount"]!.doubleValue,
+            customerId: json["customer"]!.stringValue,
+            isPublic: json["metadata"]!["is_public"].boolValue,
+            organizationId: json["metadata"]!["organization_id"].stringValue,
+            type: json["metadata"]!["type"].stringValue,
+            created: Date(timeIntervalSince1970: json["created"]!.doubleValue)
         )
     }
 }

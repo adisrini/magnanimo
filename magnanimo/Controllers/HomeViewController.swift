@@ -99,26 +99,35 @@ class HomeViewController: MagnanimoViewController {
     }
     
     private func loadOrganizations() {
-        MagnanimoFirebaseClient.getOrganizations() { organizations in
-            MagnanimoFirebaseClient.getCategories() { categories in
-                let categoriesById = Dictionary(uniqueKeysWithValues: categories.map({ category in (category.id, category) }))
-                self.data = organizations.map({ org in ["organization": org, "category": categoriesById[org.categoryId]!] })
-                self.collectionView.reloadData()
+        MagnanimoClient.getAllOrganizations(
+            failure: { _ in },
+            success: { organizations in
+                MagnanimoClient.getAllCategories(
+                    failure: { _ in },
+                    success: { categories in
+                        let categoriesById = Dictionary(uniqueKeysWithValues: categories.map({ category in (category.id, category) }))
+                        self.data = organizations.map({ org in ["organization": org, "category": categoriesById[org.categoryId]!] })
+                        self.collectionView.reloadData()
+                    }
+                )
             }
-        }
+        )
     }
     
     private func loadAmountDonated() {
         amountLabel.showAnimatedGradientSkeleton()
         self.totalAmountDonated = 0
         
-        MagnanimoFirebaseClient.getSuccessfulUserCharges() { charges in
-            for charge in charges {
-                self.totalAmountDonated += charge.amountInCents
+        MagnanimoClient.getUserCharges(
+            failure: { _ in },
+            success: { charges in
+                for charge in charges {
+                    self.totalAmountDonated += charge.amountInCents
+                }
+                self.amountLabel.hideSkeleton()
+                self.totalAmountDonated /= 100
             }
-            self.amountLabel.hideSkeleton()
-            self.totalAmountDonated /= 100
-        }
+        )
     }
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {}

@@ -214,16 +214,20 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
     private func loadHistory() {
         historicalAmountLabel.showAnimatedGradientSkeleton()
         if let organization = organization {
-            MagnanimoFirebaseClient.getSuccessfulUserChargesForOrganization(organizationId: organization.id) { charges in
-                self.historicalCharges = charges
-                var totalAmount: Double = 0
-                for charge in charges {
-                    totalAmount += charge.amountInCents
+            MagnanimoClient.getUserChargesForOrganization(
+                organizationId: organization.id,
+                failure: { _ in },
+                success: { charges in
+                    self.historicalCharges = charges
+                    var totalAmount: Double = 0
+                    for charge in charges {
+                        totalAmount += charge.amountInCents
+                    }
+                    self.historicalAmountLabel.hideSkeleton()
+                    self.historicalAmountLabel.text = Formatter.currency.string(from: NSNumber(value: totalAmount / 100))
+                    self.historyTable.reloadData()
                 }
-                self.historicalAmountLabel.hideSkeleton()
-                self.historicalAmountLabel.text = Formatter.currency.string(from: NSNumber(value: totalAmount / 100))
-                self.historyTable.reloadData()
-            }
+            )
         }
     }
     
@@ -240,7 +244,6 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
     
     @objc func handleSubscribeDonateButtonTapped() {
         impact.impactOccurred()
-        MagnanimoFirebaseClient.createSubscription(amount: 100, currency: "usd", interval: "month", isPublic: true, productId: "prod_FpM6d6MdTkdEfn")
     }
     
 

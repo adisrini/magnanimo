@@ -15,7 +15,8 @@ target 'magnanimo' do
   pod 'Firebase/Firestore'
   pod 'Stripe'
   pod 'SkeletonView'
-  
+  pod 'Alamofire', '~> 5.0.0-rc.2'
+  pod 'SwiftyJSON', '~> 4.0'
 
   target 'magnanimoTests' do
     inherit! :search_paths
