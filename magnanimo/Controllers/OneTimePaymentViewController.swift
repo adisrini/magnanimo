@@ -122,30 +122,32 @@ class OneTimePaymentViewController: MagnanimoViewController {
 extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         // Use Stripe to charge the user
-        STPAPIClient.shared().createToken(with: payment) { (stripeToken, error) in
-            guard error == nil, let organization = self.organization, let stripeToken = stripeToken else {
+        STPAPIClient.shared().createSource(with: payment) { (source, error) in
+            guard error == nil, let organization = self.organization, let s = source, s.flow == .none, s.status == .chargeable else {
                 print(error!)
                 completion(PKPaymentAuthorizationResult(status: .failure, errors: [error!]))
                 return
             }
             
-            let token = stripeToken.tokenId
-            
-            // Add payment source
-            MagnanimoFirebaseClient.createPaymentSource(token: token)
+            let source = s.stripeID
             
             // Create charge
-            MagnanimoFirebaseClient.createCharge(
-                token: token,
+            MagnanimoClient.createCharge(
+                source: source,
                 amount: self.amountField.decimal * 100,
                 currency: "usd",
                 type: PaymentType.ONE_TIME,
                 isPublic: self.publicSwitch.isOn,
-                organizationId: organization.id
+                organizationId: organization.id,
+                failure: { err in
+                    completion(PKPaymentAuthorizationResult(status: .failure, errors: nil))
+                    Toast.make(self.view, err, .Danger)
+                },
+                success: { _ in
+                    completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+                    Functions.setTimeout(millis: 1000, action: self.unwindToOrganization)
+                }
             )
-            
-            completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
-            Functions.setTimeout(millis: 1000, action: self.unwindToOrganization)
         }
     }
     

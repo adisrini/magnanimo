@@ -214,16 +214,20 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
     private func loadHistory() {
         historicalAmountLabel.showAnimatedGradientSkeleton()
         if let organization = organization {
-            MagnanimoFirebaseClient.getSuccessfulUserChargesForOrganization(organizationId: organization.id) { charges in
-                self.historicalCharges = charges
-                var totalAmount: Double = 0
-                for charge in charges {
-                    totalAmount += charge.amountInCents
+            MagnanimoClient.getUserChargesForOrganization(
+                organizationId: organization.id,
+                failure: { _ in },
+                success: { charges in
+                    self.historicalCharges = charges
+                    var totalAmount: Double = 0
+                    for charge in charges {
+                        totalAmount += charge.amountInCents
+                    }
+                    self.historicalAmountLabel.hideSkeleton()
+                    self.historicalAmountLabel.text = Formatter.currency.string(from: NSNumber(value: totalAmount / 100))
+                    self.historyTable.reloadData()
                 }
-                self.historicalAmountLabel.hideSkeleton()
-                self.historicalAmountLabel.text = Formatter.currency.string(from: NSNumber(value: totalAmount / 100))
-                self.historyTable.reloadData()
-            }
+            )
         }
     }
     
@@ -240,16 +244,19 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
     
     @objc func handleSubscribeDonateButtonTapped() {
         impact.impactOccurred()
-        print("Subscribe")
+        performSegue(withIdentifier: "showSubscriptionPayment", sender: self)
     }
     
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showOneTimePayment" {
             if let destinationVC = segue.destination as? OneTimePaymentViewController {
+                destinationVC.organization = self.organization
+            }
+        } else if segue.identifier == "showSubscriptionPayment" {
+            if let destinationVC = segue.destination as? SubscriptionPaymentViewController {
                 destinationVC.organization = self.organization
             }
         }

@@ -67,6 +67,30 @@ extension UIColor {
             _5: UIColor(netHex: 0x62D96B)
         )
         
+        static let Red = BlueprintPalette(
+            _1: UIColor(netHex: 0xA82A2A),
+            _2: UIColor(netHex: 0xC23030),
+            _3: UIColor(netHex: 0xDB3737),
+            _4: UIColor(netHex: 0xF55656),
+            _5: UIColor(netHex: 0xFF7373)
+        )
+        
+        static let Green = BlueprintPalette(
+            _1: UIColor(netHex: 0x0A6640),
+            _2: UIColor(netHex: 0x0D8050),
+            _3: UIColor(netHex: 0x0F9960),
+            _4: UIColor(netHex: 0x15B371),
+            _5: UIColor(netHex: 0x3DCC91)
+        )
+        
+        static let Orange = BlueprintPalette(
+            _1: UIColor(netHex: 0xA66321),
+            _2: UIColor(netHex: 0xBF7326),
+            _3: UIColor(netHex: 0xD9822B),
+            _4: UIColor(netHex: 0xF29D49),
+            _5: UIColor(netHex: 0xFFB366)
+        )
+        
         struct Util {
             static let Transparent = UIColor(white: 0, alpha: 0)
         }

@@ -43,5 +43,8 @@ class Functions {
         }
     }
     
+    static func generateIdempotencyKey() -> String {
+        return UUID().uuidString
+    }
     
 }
