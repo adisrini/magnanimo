@@ -127,9 +127,9 @@ class MagnanimoClient {
         amount: Decimal,
         currency: String,
         interval: String,
-        type: String,
         isPublic: Bool,
         productId: String,
+        organizationId: String,
         failure: @escaping MagnanimoFailure,
         success: @escaping MagnanimoCompletion<Optional<Any>>
         ) {
@@ -143,8 +143,8 @@ class MagnanimoClient {
                     "currency": currency,
                     "interval": interval,
                     "is_public": isPublic,
-                    "type": type,
                     "product_id": productId,
+                    "organization_id": organizationId,
                     "idempotency_key": Functions.generateIdempotencyKey()
                 ]
             ),

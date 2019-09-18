@@ -137,9 +137,9 @@ extension SubscriptionPaymentViewController: PKPaymentAuthorizationViewControlle
                 amount: self.amountField.decimal * 100,
                 currency: "usd",
                 interval: "day",
-                type: PaymentType.SUBSCRIPTION,
                 isPublic: self.publicSwitch.isOn,
                 productId: organization.productId,
+                organizationId: organization.id,
                 failure: { err in
                     completion(PKPaymentAuthorizationResult(status: .failure, errors: nil))
                     Toast.make(self.view, err, .Danger)

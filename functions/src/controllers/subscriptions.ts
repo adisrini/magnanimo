@@ -14,6 +14,7 @@ export const subscriptionsController: Controller = {
           currency,
           interval,
           product_id,
+          organization_id,
           is_public,
           source,
           idempotency_key
@@ -46,7 +47,8 @@ export const subscriptionsController: Controller = {
         const subscription: Stripe.subscriptions.ISubscriptionCreationOptions = {
           customer: customer_id,
           metadata: {
-            is_public
+            is_public,
+            organization_id
           },
           items: [
             {
