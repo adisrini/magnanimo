@@ -141,7 +141,7 @@ extension OneTimePaymentViewController: PKPaymentAuthorizationViewControllerDele
                 organizationId: organization.id,
                 failure: { err in
                     completion(PKPaymentAuthorizationResult(status: .failure, errors: nil))
-                    Toast.make(self.view, err)
+                    Toast.make(self.view, err, .Danger)
                 },
                 success: { charge in
                     completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
