@@ -13,15 +13,23 @@ class Organization: NSObject {
     var name: String
     var desc: String
     var categoryId: String
+    var productId: String
     
-    public init(id: String, name: String, desc: String, categoryId: String) {
+    public init(id: String, name: String, desc: String, categoryId: String, productId: String) {
         self.id = id
         self.name = name
         self.desc = desc
         self.categoryId = categoryId
+        self.productId = productId
     }
     
     convenience init(id: String, map: [String: Any]) {
-        self.init(id: id, name: map["name"] as! String, desc: map["description"] as! String, categoryId: map["categoryId"] as! String)
+        self.init(
+            id: id,
+            name: map["name"] as! String,
+            desc: map["description"] as! String,
+            categoryId: map["categoryId"] as! String,
+            productId: map["product_id"] as! String
+        )
     }
 }

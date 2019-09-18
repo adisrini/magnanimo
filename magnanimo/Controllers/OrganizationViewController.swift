@@ -240,7 +240,7 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
     
     @objc func handleSubscribeDonateButtonTapped() {
         impact.impactOccurred()
-        print("Subscribe")
+        MagnanimoFirebaseClient.createSubscription(amount: 100, currency: "usd", interval: "month", isPublic: true, productId: "prod_FpM6d6MdTkdEfn")
     }
     
 

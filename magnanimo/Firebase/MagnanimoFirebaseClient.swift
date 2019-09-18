@@ -110,4 +110,16 @@ class MagnanimoFirebaseClient {
                 ])
     }
     
+    static func createSubscription(amount: Decimal, currency: String, interval: String, isPublic: Bool, productId: String) {
+        self.customerRef()
+            .collection("subscriptions")
+            .addDocument(data: [
+                "amount": amount,
+                "currency": currency,
+                "interval": interval,
+                "is_public": isPublic,
+                "product_id": productId
+            ])
+    }
+    
 }
