@@ -16,7 +16,7 @@ class StripeSubscription: NSObject {
     var amount: Double
     var currency: String
     var interval: String
-    var intervalCount: Double
+    var intervalCount: Int
     var organizationId: String
     var isPublic: Bool
     var productId: String
@@ -29,7 +29,7 @@ class StripeSubscription: NSObject {
         amount: Double,
         currency: String,
         interval: String,
-        intervalCount: Double,
+        intervalCount: Int,
         organizationId: String,
         isPublic: Bool,
         productId: String,
@@ -56,7 +56,7 @@ class StripeSubscription: NSObject {
             amount: json["plan"]!["amount"].doubleValue,
             currency: json["plan"]!["currency"].stringValue,
             interval: json["plan"]!["interval"].stringValue,
-            intervalCount: json["plan"]!["interval_count"].doubleValue,
+            intervalCount: json["plan"]!["interval_count"].intValue,
             organizationId: json["metadata"]!["organization_id"].stringValue,
             isPublic: json["metadata"]!["is_public"].boolValue,
             productId: json["plan"]!["product"].stringValue,

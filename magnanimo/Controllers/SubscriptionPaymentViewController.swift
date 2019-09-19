@@ -20,19 +20,28 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
     ]
     
     var organization: Organization?
-    var subscription: StripeSubscription?
+    var subscription: StripeSubscription? {
+        didSet {
+            guard let subscription = subscription else { return }
+            amountField.text = Formatter.currency.string(for: subscription.amount / 100)
+            publicSwitch.isOn = subscription.isPublic
+            selectedInterval = subscription.interval
+            selectedIntervalCount = subscription.intervalCount
+        }
+    }
     
     var selectedInterval: String? {
         didSet {
-            guard let interval = selectedInterval else { return }
-            frequencyTextField.text = interval
+            guard let interval = selectedInterval, let count = selectedIntervalCount else { return }
+            frequencyTextField.text = count > 1 ? interval + "s" : interval
         }
     }
 
     var selectedIntervalCount: Int? {
         didSet {
-            guard let count = selectedIntervalCount else { return }
+            guard let interval = selectedInterval, let count = selectedIntervalCount else { return }
             frequencyCountTextField.text = String(count)
+            frequencyTextField.text = count > 1 ? interval + "s" : interval
         }
     }
     
@@ -258,7 +267,7 @@ extension SubscriptionPaymentViewController: PKPaymentAuthorizationViewControlle
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         // Use Stripe to charge the user
         STPAPIClient.shared().createSource(with: payment) { (source, error) in
-            guard error == nil, let interval = self.selectedInterval, let organization = self.organization, let s = source, s.flow == .none, s.status == .chargeable else {
+            guard error == nil, let interval = self.selectedInterval, let intervalCount = self.selectedIntervalCount, let organization = self.organization, let s = source, s.flow == .none, s.status == .chargeable else {
                 print(error!)
                 completion(PKPaymentAuthorizationResult(status: .failure, errors: [error!]))
                 return
@@ -272,6 +281,7 @@ extension SubscriptionPaymentViewController: PKPaymentAuthorizationViewControlle
                 amount: self.amountField.decimal * 100,
                 currency: "usd",
                 interval: interval,
+                intervalCount: intervalCount,
                 isPublic: self.publicSwitch.isOn,
                 productId: organization.productId,
                 organizationId: organization.id,

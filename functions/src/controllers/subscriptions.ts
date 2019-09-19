@@ -68,6 +68,7 @@ export const subscriptionsController: Controller = {
           amount,
           currency,
           interval,
+          interval_count,
           product_id,
           organization_id,
           is_public,
@@ -91,7 +92,8 @@ export const subscriptionsController: Controller = {
           product: product_id,
           amount,
           currency,
-          interval
+          interval,
+          interval_count
         };
         const stripePlan = await stripe.plans.create(plan);
 
