@@ -61,7 +61,7 @@ export const subscriptionsController: Controller = {
       }
     );
 
-    // post subscription for user
+    // create subscription for user
     router.post("/user/:userId", async (req, res) => {
       try {
         const {
@@ -117,6 +117,65 @@ export const subscriptionsController: Controller = {
         const response = await stripe.subscriptions.create(subscription, {
           idempotency_key: idempotency_key
         });
+
+        res.status(200).send(response);
+      } catch (error) {
+        res.status(500).send({ error: userFacingMessage(error) });
+      }
+    });
+
+    // update subscription for user
+    router.put("/:id", async (req, res) => {
+      try {
+        const {
+          amount,
+          currency,
+          interval,
+          interval_count,
+          is_public,
+          product_id,
+          idempotency_key
+        } = req.body;
+        const { id } = req.params;
+
+        // 1. update the subscription
+        const subscription = await stripe.subscriptions.retrieve(id);
+        let response = await stripe.subscriptions.update(
+          id,
+          {
+            metadata: {
+              ...subscription.metadata,
+              is_public
+            }
+          },
+          {
+            idempotency_key: idempotency_key
+          }
+        );
+
+        // 2. if necessary, create a new plan and attach to subscription
+        const plan = await stripe.plans.retrieve(subscription.items.data[0].id);
+        if (
+          amount !== plan.amount ||
+          currency !== plan.currency ||
+          interval !== plan.interval ||
+          interval_count !== plan.interval_count
+        ) {
+          const newPlan = await stripe.plans.create({
+            product: product_id,
+            amount,
+            currency,
+            interval,
+            interval_count
+          });
+          response = await stripe.subscriptions.update(id, {
+            items: [
+              {
+                plan: newPlan.id
+              }
+            ]
+          });
+        }
 
         res.status(200).send(response);
       } catch (error) {

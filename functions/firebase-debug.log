@@ -1,0 +1,24 @@
+[debug] [2019-09-19T07:06:58.179Z] ----------------------------------------------------------------------
+[debug] [2019-09-19T07:06:58.181Z] Command:       /Users/adityasrinivasan/.nvm/versions/node/v12.9.0/bin/node /Users/adityasrinivasan/.nvm/versions/node/v12.9.0/bin/firebase deploy --only functions
+[debug] [2019-09-19T07:06:58.181Z] CLI Version:   7.3.2
+[debug] [2019-09-19T07:06:58.181Z] Platform:      darwin
+[debug] [2019-09-19T07:06:58.181Z] Node Version:  v12.9.0
+[debug] [2019-09-19T07:06:58.184Z] Time:          Thu Sep 19 2019 12:36:58 GMT+0530 (India Standard Time)
+[debug] [2019-09-19T07:06:58.184Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-09-19T07:06:58.192Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-09-19T07:06:58.192Z] > authorizing via signed-in user
+[debug] [2019-09-19T07:06:58.192Z] [iam] checking project magnanimo-app for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2019-09-19T07:06:58.194Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-09-19T07:06:58.194Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-09-19T07:06:58.420Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-19T07:06:58.439Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/magnanimo-app:testIamPermissions  
+
+[debug] [2019-09-19T07:07:00.178Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'magnanimo-app'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build

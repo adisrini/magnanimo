@@ -58,7 +58,7 @@ class MagnanimoButton: UIButton {
         
         attributedTitle.addAttributes([
             NSAttributedString.Key.font: UIFont.Magnanimo.SmallText,
-            NSAttributedString.Key.foregroundColor: UIColor.Magnanimo.Muted
+            NSAttributedString.Key.foregroundColor: UIColor.Magnanimo.Text
             ], range: combined.nsRange(from: combined.range(of: subtitle)!))
         
         self.setAttributedTitle(attributedTitle, for: .normal)
@@ -99,8 +99,57 @@ class MagnanimoButton: UIButton {
     }
     
     public func withPalette(palette: BlueprintPalette) -> MagnanimoButton {
-        self.backgroundColor = palette._5.withAlphaComponent(0.5)
+        self.backgroundColor = palette._5
         return self
+    }
+    
+    // MARK: - Enable loading indicator
+    var originalButtonText: NSAttributedString?
+    var originalButtonImage: UIImage?
+    var activityIndicator: UIActivityIndicatorView!
+    
+    func isLoadable() -> MagnanimoButton {
+        // Give enough spacing for activity indicator to not stretch button
+        self.heightAnchor.constraint(equalToConstant: 2 * Constants.GRID_SIZE).isActive = true
+        return self
+    }
+    
+    func showLoading() {
+        originalButtonText = self.currentAttributedTitle
+        originalButtonImage = self.currentImage
+        self.setAttributedTitle(NSAttributedString(string: ""), for: .normal)
+        self.setImage(nil, for: .normal)
+        
+        if (activityIndicator == nil) {
+            activityIndicator = createActivityIndicator()
+        }
+        
+        showSpinning()
+    }
+    
+    func hideLoading() {
+        self.setAttributedTitle(originalButtonText, for: .normal)
+        self.setImage(originalButtonImage, for: .normal)
+        activityIndicator.stopAnimating()
+    }
+    
+    private func createActivityIndicator() -> UIActivityIndicatorView {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .lightGray
+        return activityIndicator
+    }
+    
+    private func showSpinning() {
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(activityIndicator)
+        centerActivityIndicatorInButton()
+        activityIndicator.startAnimating()
+    }
+    
+    private func centerActivityIndicatorInButton() {
+        activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

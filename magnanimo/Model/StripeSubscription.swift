@@ -49,18 +49,19 @@ class StripeSubscription: NSObject {
     }
     
     convenience init(json: [String: JSON]) {
+        let plan = json["items"]!["data"].arrayValue[0]["plan"].dictionaryValue
         self.init(
             id: json["id"]!.stringValue,
             created: Date(timeIntervalSince1970: json["created"]!.doubleValue),
             currentPeriodEnd: Date(timeIntervalSince1970: json["current_period_end"]!.doubleValue),
-            amount: json["plan"]!["amount"].doubleValue,
-            currency: json["plan"]!["currency"].stringValue,
-            interval: json["plan"]!["interval"].stringValue,
-            intervalCount: json["plan"]!["interval_count"].intValue,
+            amount: plan["amount"]!.doubleValue,
+            currency: plan["currency"]!.stringValue,
+            interval: plan["interval"]!.stringValue,
+            intervalCount: plan["interval_count"]!.intValue,
             organizationId: json["metadata"]!["organization_id"].stringValue,
             isPublic: json["metadata"]!["is_public"].boolValue,
-            productId: json["plan"]!["product"].stringValue,
-            planId: json["plan"]!["id"].stringValue
+            productId: plan["product"]!.stringValue,
+            planId: plan["id"]!.stringValue
         )
     }
 }

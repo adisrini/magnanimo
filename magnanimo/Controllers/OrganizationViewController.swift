@@ -101,6 +101,7 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
             .withShadowType(type: .Small)
             .withIcon(Constants.SUBSCRIBE_ICON)
         button.addTarget(self, action: #selector(handleSubscribeDonateButtonTapped), for: .touchUpInside)
+        button.isSkeletonable = true
         
         return button
     }()
@@ -229,10 +230,12 @@ class OrganizationViewController: UIViewController, UITableViewDataSource, UITab
     
     private func loadSubscription() {
         if let organization = organization {
+            subscribeDonateButton.showAnimatedGradientSkeleton()
             MagnanimoClient.getSubscriptionForOrganization(
                 organizationId: organization.id,
                 failure: { s in print(s) },
                 success: { subscription in
+                    self.subscribeDonateButton.hideSkeleton()
                     if let sub = subscription {
                         self.existingSubscription = sub
                     }

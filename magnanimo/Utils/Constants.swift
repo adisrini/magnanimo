@@ -16,8 +16,10 @@ class Constants {
     
     static let ONE_TIME_ICON = Icon.PLUS
     static let SUBSCRIBE_ICON = Icon.CLOCK
-    static let SUBSCRIBED_ICON = Icon.CHECK
+    static let SUBSCRIBED_ICON = Icon.CHECK_CIRCLE
     static let CLOSE_ICON = Icon.CROSS_CIRCLE
+    static let CANCEL_ICON = Icon.CROSS_CIRCLE
+    static let SAVE_ICON = Icon.CHECK
 
     static let MERCHANT_ID = "merchant.com.magnanimo"
 }

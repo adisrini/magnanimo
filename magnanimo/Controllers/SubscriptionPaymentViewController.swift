@@ -107,7 +107,20 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
         return uiSwitch
     }()
     
-    fileprivate let applePayButton: PKPaymentButton = PKPaymentButton(paymentButtonType: .donate, paymentButtonStyle: .black)
+    fileprivate let applePayButton: PKPaymentButton = PKPaymentButton(paymentButtonType: .subscribe, paymentButtonStyle: .black)
+    
+    fileprivate let cancelButton: MagnanimoButton = MagnanimoButton()
+        .withTitle(title: "Cancel")
+        .withIcon(Constants.CANCEL_ICON)
+        .withPalette(palette: UIColor.Blueprint.Red)
+        .withShadowType(type: .Small)
+        .isLoadable()
+    
+    fileprivate let saveButton: MagnanimoButton = MagnanimoButton()
+        .withTitle(title: "Update")
+        .withIcon(Constants.SAVE_ICON)
+        .withShadowType(type: .Small)
+        .isLoadable()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,9 +130,12 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
         positionField()
         positionPicker()
         positionSwitch()
-        positionPayment()
         
         self.hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        positionActions(subscription: self.subscription)
     }
     
     private func positionHeader() {
@@ -177,15 +193,60 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
         publicLabel.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor).isActive = true
     }
     
-    private func positionPayment() {
-        view.addSubview(applePayButton)
-        applePayButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        applePayButton.isEnabled = Stripe.deviceSupportsApplePay()
-        applePayButton.topAnchor.constraint(equalTo: publicSwitch.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
-        applePayButton.trailingAnchor.constraint(equalTo: publicSwitch.trailingAnchor).isActive = true
-        applePayButton.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor).isActive = true
-        applePayButton.addTarget(self, action: #selector(handleApplePayButtonTapped), for: .touchUpInside)
+    private func positionActions(subscription: StripeSubscription?) {
+        if subscription != nil {
+            view.addSubview(cancelButton)
+            view.addSubview(saveButton)
+            
+            cancelButton.topAnchor.constraint(equalTo: publicSwitch.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
+            cancelButton.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor).isActive = true
+            cancelButton.addTarget(self, action: #selector(handleCancelButtonTapped), for: .touchUpInside)
+            
+            saveButton.topAnchor.constraint(equalTo: cancelButton.topAnchor).isActive = true
+            saveButton.trailingAnchor.constraint(equalTo: publicSwitch.trailingAnchor).isActive = true
+            saveButton.addTarget(self, action: #selector(handleSaveButtonTapped), for: .touchUpInside)
+            
+            cancelButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
+            saveButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
+        } else {
+            view.addSubview(applePayButton)
+            applePayButton.translatesAutoresizingMaskIntoConstraints = false
+            
+            applePayButton.isEnabled = Stripe.deviceSupportsApplePay()
+            applePayButton.topAnchor.constraint(equalTo: publicSwitch.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
+            applePayButton.trailingAnchor.constraint(equalTo: publicSwitch.trailingAnchor).isActive = true
+            applePayButton.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor).isActive = true
+            applePayButton.addTarget(self, action: #selector(handleApplePayButtonTapped), for: .touchUpInside)
+        }
+    }
+    
+    @objc func handleCancelButtonTapped() {
+        print("Cancel")
+    }
+    
+    @objc func handleSaveButtonTapped() {
+        // update subscription
+        if let organization = self.organization, let interval = self.selectedInterval, let intervalCount = self.selectedIntervalCount, let subscription = self.subscription {
+            saveButton.showLoading()
+            MagnanimoClient.updateSubscription(
+                id: subscription.id,
+                amount: self.amountField.decimal * 100,
+                currency: "usd",
+                interval: interval,
+                intervalCount: intervalCount,
+                isPublic: self.publicSwitch.isOn,
+                productId: organization.productId,
+                failure: { err in
+                    self.saveButton.hideLoading()
+                    Toast.make(self.view, err, .Danger)
+            },
+                success: { subscription in
+                    self.saveButton.hideLoading()
+                    Toast.make(self.view, "Subscription updated!", .Success)
+                    self.unwindToOrganization()
+                }
+            )
+        }
     }
     
     @objc func handleCloseButtonTapped() {
@@ -292,7 +353,7 @@ extension SubscriptionPaymentViewController: PKPaymentAuthorizationViewControlle
                 success: { subscription in
                     completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
                     Functions.setTimeout(millis: 1000, action: self.unwindToOrganization)
-            }
+                }
             )
         }
     }

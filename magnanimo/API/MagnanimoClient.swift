@@ -157,6 +157,36 @@ class MagnanimoClient {
         )
     }
     
+    static func updateSubscription(
+        id: String,
+        amount: Decimal,
+        currency: String,
+        interval: String,
+        intervalCount: Int,
+        isPublic: Bool,
+        productId: String,
+        failure: @escaping MagnanimoFailure,
+        success: @escaping MagnanimoCompletion<Optional<Any>>
+    ) {
+        executeHTTPRequest(
+            request: AF.request(
+                baseURL + "/subscriptions/" + id,
+                method: .put,
+                parameters: [
+                    "amount": amount,
+                    "currency": currency,
+                    "interval": interval,
+                    "interval_count": intervalCount,
+                    "is_public": isPublic,
+                    "product_id": productId,
+                    "idempotency_key": Functions.generateIdempotencyKey()
+                ]
+            ),
+            failure: failure,
+            success: { _ in success(nil) }
+        )
+    }
+    
     static func getSubscriptionForOrganization(
         organizationId: String,
         failure: @escaping MagnanimoFailure,

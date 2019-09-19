@@ -11,6 +11,7 @@ import Foundation
 class Icon {
     static let PLUS = "plus"
     static let CLOCK = "clock"
+    static let CHECK_CIRCLE = "check-circle"
     static let CHECK = "check"
     static let DOLLAR = "dollar"
     static let HOME = "home"
