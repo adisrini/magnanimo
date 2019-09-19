@@ -187,6 +187,21 @@ class MagnanimoClient {
         )
     }
     
+    static func deleteSubscription(
+        id: String,
+        failure: @escaping MagnanimoFailure,
+        success: @escaping MagnanimoCompletion<Optional<Any>>
+        ) {
+        executeHTTPRequest(
+            request: AF.request(
+                baseURL + "/subscriptions/" + id,
+                method: .delete
+            ),
+            failure: failure,
+            success: { _ in success(nil) }
+        )
+    }
+    
     static func getSubscriptionForOrganization(
         organizationId: String,
         failure: @escaping MagnanimoFailure,

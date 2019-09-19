@@ -19,6 +19,7 @@ class Toast {
         var style = ToastStyle()
         style.cornerRadius = Constants.CORNER_RADIUS
         style.backgroundColor = self.backgroundColorForIntent(intent)
+        style.horizontalPadding = Constants.GRID_SIZE
         
         view.makeToast(message, duration: 4.0, position: .top, style: style)
     }

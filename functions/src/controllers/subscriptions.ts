@@ -185,5 +185,15 @@ export const subscriptionsController: Controller = {
         res.status(500).send({ error: userFacingMessage(error) });
       }
     });
+
+    router.delete("/:id", async (req, res) => {
+      try {
+        const { id } = req.params;
+        const response = await stripe.subscriptions.del(id);
+        res.status(200).send(response);
+      } catch (error) {
+        res.status(500).send({ error: userFacingMessage(error) });
+      }
+    });
   }
 };

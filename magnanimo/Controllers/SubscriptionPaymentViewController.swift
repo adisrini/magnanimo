@@ -226,7 +226,21 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
     }
     
     @objc func handleCancelButtonTapped() {
-        print("Cancel")
+        if let subscription = self.subscription {
+            cancelButton.showLoading()
+            MagnanimoClient.deleteSubscription(
+                id: subscription.id,
+                failure: { err in
+                    self.cancelButton.hideLoading()
+                    Toast.make(self.view, err, .Danger)
+                },
+                success: { subscription in
+                    self.cancelButton.hideLoading()
+                    Toast.make(self.view, "Subscription cancelled", .None)
+                    Functions.setTimeout(millis: 1000, action: self.unwindToOrganization)
+                }
+            )
+        }
     }
     
     @objc func handleSaveButtonTapped() {
@@ -244,11 +258,11 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
                 failure: { err in
                     self.saveButton.hideLoading()
                     Toast.make(self.view, err, .Danger)
-            },
+                },
                 success: { subscription in
                     self.saveButton.hideLoading()
-                    Toast.make(self.view, "Subscription updated!", .Success)
-                    self.unwindToOrganization()
+                    Toast.make(self.view, "Subscription updated", .Success)
+                    Functions.setTimeout(millis: 1000, action: self.unwindToOrganization)
                 }
             )
         }
