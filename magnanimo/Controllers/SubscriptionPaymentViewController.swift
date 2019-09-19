@@ -12,7 +12,7 @@ import Stripe
 
 class SubscriptionPaymentViewController: MagnanimoViewController {
     
-    let FREQUENCY_OPTIONS = [
+    let INTERVAL_OPTIONS = [
         "day",
         "week",
         "month",
@@ -22,7 +22,19 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
     var organization: Organization?
     var subscription: StripeSubscription?
     
-    var selectedFrequency: String?
+    var selectedInterval: String? {
+        didSet {
+            guard let interval = selectedInterval else { return }
+            frequencyTextField.text = interval
+        }
+    }
+
+    var selectedIntervalCount: Int? {
+        didSet {
+            guard let count = selectedIntervalCount else { return }
+            frequencyCountTextField.text = String(count)
+        }
+    }
     
     fileprivate let headerLabel: UILabel = {
         let label = MagnanimoLabel(type: .Header)
@@ -42,15 +54,27 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
     
     fileprivate let frequencyLabel: UILabel = {
         let label = MagnanimoLabel(type: .Text)
-        label.text = "per"
+        label.text = "every"
         
         return label
+    }()
+    
+    fileprivate let frequencyCountTextField: UITextField = {
+        let field = UITextField(frame: .zero)
+        field.translatesAutoresizingMaskIntoConstraints = false
+        return field
     }()
     
     fileprivate let frequencyTextField: UITextField = {
         let field = UITextField(frame: .zero)
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
+    }()
+    
+    fileprivate let frequencyCountPicker: UIPickerView = {
+        let picker = UIPickerView(frame: .zero)
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
     }()
     
     fileprivate let frequencyPicker: UIPickerView = {
@@ -110,17 +134,27 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
     private func positionPicker() {
         view.addSubview(frequencyLabel)
         view.addSubview(frequencyTextField)
+        view.addSubview(frequencyCountTextField)
         
-        frequencyTextField.text = FREQUENCY_OPTIONS[0]
         frequencyTextField.topAnchor.constraint(equalTo: amountField.bottomAnchor, constant: 2 * Constants.GRID_SIZE).isActive = true
         frequencyTextField.trailingAnchor.constraint(equalTo: amountField.trailingAnchor).isActive = true
         
+        frequencyCountTextField.topAnchor.constraint(equalTo: frequencyTextField.topAnchor).isActive = true
+        frequencyCountTextField.trailingAnchor.constraint(equalTo: frequencyTextField.leadingAnchor, constant: -Constants.GRID_SIZE).isActive = true
+        
         frequencyLabel.centerYAnchor.constraint(equalTo: frequencyTextField.centerYAnchor).isActive = true
-        frequencyLabel.trailingAnchor.constraint(equalTo: frequencyTextField.leadingAnchor, constant: -Constants.GRID_SIZE).isActive = true
+        frequencyLabel.trailingAnchor.constraint(equalTo: frequencyCountTextField.leadingAnchor, constant: -Constants.GRID_SIZE).isActive = true
         
         frequencyTextField.inputView = frequencyPicker
         frequencyPicker.dataSource = self
         frequencyPicker.delegate = self
+        
+        frequencyCountTextField.inputView = frequencyCountPicker
+        frequencyCountPicker.dataSource = self
+        frequencyCountPicker.delegate = self
+        
+        selectedInterval = INTERVAL_OPTIONS[0]
+        selectedIntervalCount = 1
     }
     
     private func positionSwitch() {
@@ -171,18 +205,52 @@ extension SubscriptionPaymentViewController: UIPickerViewDataSource, UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return FREQUENCY_OPTIONS.count
+        switch pickerView {
+        case frequencyPicker:
+            return INTERVAL_OPTIONS.count
+        case frequencyCountPicker:
+            return frequencyCountOptions()
+        default:
+            return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return FREQUENCY_OPTIONS[row]
+        switch pickerView {
+        case frequencyPicker:
+            return INTERVAL_OPTIONS[row]
+        case frequencyCountPicker:
+            return String(row + 1)
+        default:
+            return ""
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedFrequency = FREQUENCY_OPTIONS[row]
-        frequencyTextField.text = selectedFrequency
+        switch pickerView {
+        case frequencyPicker:
+            selectedInterval = INTERVAL_OPTIONS[row]
+            selectedIntervalCount = 1
+        case frequencyCountPicker:
+            selectedIntervalCount = row + 1
+        default:
+            return
+        }
     }
     
+    private func frequencyCountOptions() -> Int {
+        if selectedInterval == "year" {
+            return 1
+        } else if selectedInterval == "month" {
+            return 12
+        } else if selectedInterval == "week" {
+            return 52
+        } else if selectedInterval == "day" {
+            return 365
+        } else {
+            return 0
+        }
+    }
     
 }
 
@@ -190,7 +258,7 @@ extension SubscriptionPaymentViewController: PKPaymentAuthorizationViewControlle
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         // Use Stripe to charge the user
         STPAPIClient.shared().createSource(with: payment) { (source, error) in
-            guard error == nil, let interval = self.selectedFrequency, let organization = self.organization, let s = source, s.flow == .none, s.status == .chargeable else {
+            guard error == nil, let interval = self.selectedInterval, let organization = self.organization, let s = source, s.flow == .none, s.status == .chargeable else {
                 print(error!)
                 completion(PKPaymentAuthorizationResult(status: .failure, errors: [error!]))
                 return
