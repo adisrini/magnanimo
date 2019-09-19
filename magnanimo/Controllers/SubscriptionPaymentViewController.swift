@@ -12,12 +12,21 @@ import Stripe
 
 class SubscriptionPaymentViewController: MagnanimoViewController {
     
+    let FREQUENCY_OPTIONS = [
+        "day",
+        "week",
+        "month",
+        "year"
+    ]
+    
     var organization: Organization?
     var subscription: StripeSubscription?
     
+    var selectedFrequency: String?
+    
     fileprivate let headerLabel: UILabel = {
         let label = MagnanimoLabel(type: .Header)
-        label.text = "Enter your amount"
+        label.text = "Manage your subscription"
         
         return label
     }()
@@ -30,6 +39,25 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
     }()
     
     fileprivate let amountField = MagnanimoCurrencyField()
+    
+    fileprivate let frequencyLabel: UILabel = {
+        let label = MagnanimoLabel(type: .Text)
+        label.text = "per"
+        
+        return label
+    }()
+    
+    fileprivate let frequencyTextField: UITextField = {
+        let field = UITextField(frame: .zero)
+        field.translatesAutoresizingMaskIntoConstraints = false
+        return field
+    }()
+    
+    fileprivate let frequencyPicker: UIPickerView = {
+        let picker = UIPickerView(frame: .zero)
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
+    }()
     
     fileprivate let publicLabel: UILabel = {
         let label = MagnanimoLabel(type: .Text)
@@ -54,6 +82,7 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
         // Do any additional setup after loading the view.
         positionHeader()
         positionField()
+        positionPicker()
         positionSwitch()
         positionPayment()
         
@@ -78,11 +107,27 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
         amountField.trailingAnchor.constraint(equalTo: closeButton.trailingAnchor).isActive = true
     }
     
+    private func positionPicker() {
+        view.addSubview(frequencyLabel)
+        view.addSubview(frequencyTextField)
+        
+        frequencyTextField.text = FREQUENCY_OPTIONS[0]
+        frequencyTextField.topAnchor.constraint(equalTo: amountField.bottomAnchor, constant: 2 * Constants.GRID_SIZE).isActive = true
+        frequencyTextField.trailingAnchor.constraint(equalTo: amountField.trailingAnchor).isActive = true
+        
+        frequencyLabel.centerYAnchor.constraint(equalTo: frequencyTextField.centerYAnchor).isActive = true
+        frequencyLabel.trailingAnchor.constraint(equalTo: frequencyTextField.leadingAnchor, constant: -Constants.GRID_SIZE).isActive = true
+        
+        frequencyTextField.inputView = frequencyPicker
+        frequencyPicker.dataSource = self
+        frequencyPicker.delegate = self
+    }
+    
     private func positionSwitch() {
         view.addSubview(publicLabel)
         view.addSubview(publicSwitch)
         
-        publicSwitch.topAnchor.constraint(equalTo: amountField.bottomAnchor, constant: 2 * Constants.GRID_SIZE).isActive = true
+        publicSwitch.topAnchor.constraint(equalTo: frequencyTextField.bottomAnchor, constant: Constants.GRID_SIZE).isActive = true
         publicSwitch.trailingAnchor.constraint(equalTo: amountField.trailingAnchor).isActive = true
         
         publicLabel.centerYAnchor.constraint(equalTo: publicSwitch.centerYAnchor).isActive = true
@@ -120,11 +165,32 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
     
 }
 
+extension SubscriptionPaymentViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return FREQUENCY_OPTIONS.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return FREQUENCY_OPTIONS[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedFrequency = FREQUENCY_OPTIONS[row]
+        frequencyTextField.text = selectedFrequency
+    }
+    
+    
+}
+
 extension SubscriptionPaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         // Use Stripe to charge the user
         STPAPIClient.shared().createSource(with: payment) { (source, error) in
-            guard error == nil, let organization = self.organization, let s = source, s.flow == .none, s.status == .chargeable else {
+            guard error == nil, let interval = self.selectedFrequency, let organization = self.organization, let s = source, s.flow == .none, s.status == .chargeable else {
                 print(error!)
                 completion(PKPaymentAuthorizationResult(status: .failure, errors: [error!]))
                 return
@@ -137,7 +203,7 @@ extension SubscriptionPaymentViewController: PKPaymentAuthorizationViewControlle
                 source: source,
                 amount: self.amountField.decimal * 100,
                 currency: "usd",
-                interval: "day",
+                interval: interval,
                 isPublic: self.publicSwitch.isOn,
                 productId: organization.productId,
                 organizationId: organization.id,

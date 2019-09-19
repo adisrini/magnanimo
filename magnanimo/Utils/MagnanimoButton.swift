@@ -30,7 +30,7 @@ class MagnanimoButton: UIButton {
         self.layer.backgroundColor = UIColor.white.cgColor
         
         // padding
-        self.titleEdgeInsets = Constants.INSETS
+        self.titleEdgeInsets = Constants.BUTTON_INSETS
         
         // line breaks
         self.titleLabel?.numberOfLines = 0
@@ -99,7 +99,7 @@ class MagnanimoButton: UIButton {
     }
     
     public func withPalette(palette: BlueprintPalette) -> MagnanimoButton {
-        self.backgroundColor = palette._5.withAlphaComponent(0.8)
+        self.backgroundColor = palette._5.withAlphaComponent(0.5)
         return self
     }
     
@@ -109,8 +109,8 @@ class MagnanimoButton: UIButton {
     
     override var intrinsicContentSize: CGSize {
         var intrinsicContentSize = super.intrinsicContentSize
-        intrinsicContentSize.width += Constants.INSETS.left + Constants.INSETS.right
-        intrinsicContentSize.height += Constants.INSETS.top + Constants.INSETS.bottom
+        intrinsicContentSize.width += Constants.BUTTON_INSETS.left + Constants.BUTTON_INSETS.right
+        intrinsicContentSize.height += Constants.BUTTON_INSETS.top + Constants.BUTTON_INSETS.bottom
         return intrinsicContentSize
     }
     

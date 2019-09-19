@@ -316,7 +316,7 @@ class LastCell: UICollectionViewCell {
         
         contentView.addSubview(lastCellTitleLabel)
         contentView.addSubview(lastCellSubtitleLabel)
-        contentView.backgroundColor = UIColor.Blueprint.LightGray._3
+        contentView.backgroundColor = UIColor.Blueprint.LightGray._1
         
         lastCellSubtitleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         lastCellSubtitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.GRID_SIZE).isActive = true

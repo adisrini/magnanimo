@@ -23,13 +23,13 @@ class MagnanimoTag: UILabel {
     }
     
     override func draw(_ rect: CGRect) {
-        super.drawText(in: rect.inset(by: Constants.INSETS))
+        super.drawText(in: rect.inset(by: Constants.TAG_INSETS))
     }
     
     override var intrinsicContentSize: CGSize {
         var intrinsicContentSize = super.intrinsicContentSize
-        intrinsicContentSize.width += Constants.INSETS.left + Constants.INSETS.right
-        intrinsicContentSize.height += Constants.INSETS.top + Constants.INSETS.bottom
+        intrinsicContentSize.width += Constants.TAG_INSETS.left + Constants.TAG_INSETS.right
+        intrinsicContentSize.height += Constants.TAG_INSETS.top + Constants.TAG_INSETS.bottom
         return intrinsicContentSize
     }
     
