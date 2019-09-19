@@ -154,7 +154,9 @@ export const subscriptionsController: Controller = {
         );
 
         // 2. if necessary, create a new plan and attach to subscription
-        const plan = await stripe.plans.retrieve(subscription.items.data[0].id);
+        const subscriptionLineItem = subscription.items.data[0];
+        const plan = await stripe.plans.retrieve(subscriptionLineItem.plan.id);
+
         if (
           amount !== plan.amount ||
           currency !== plan.currency ||
@@ -171,6 +173,7 @@ export const subscriptionsController: Controller = {
           response = await stripe.subscriptions.update(id, {
             items: [
               {
+                id: subscriptionLineItem.id,
                 plan: newPlan.id
               }
             ]

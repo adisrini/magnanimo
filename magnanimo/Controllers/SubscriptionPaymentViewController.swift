@@ -194,7 +194,7 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
     }
     
     private func positionActions(subscription: StripeSubscription?) {
-        if subscription != nil {
+        if let subscription = subscription {
             view.addSubview(cancelButton)
             view.addSubview(saveButton)
             
@@ -208,6 +208,11 @@ class SubscriptionPaymentViewController: MagnanimoViewController {
             
             cancelButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
             saveButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
+            
+            let count = subscription.intervalCount
+            let interval = subscription.interval
+            frequencyTextField.text = count > 1 ? interval + "s" : interval
+            frequencyCountTextField.text = String(count)
         } else {
             view.addSubview(applePayButton)
             applePayButton.translatesAutoresizingMaskIntoConstraints = false
